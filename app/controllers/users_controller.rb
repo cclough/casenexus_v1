@@ -4,6 +4,15 @@ class UsersController < ApplicationController
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user, only: :destroy
 
+  def view
+
+    #@userlist = @users.map do |u|
+    #    { id: u.id, lat: u.lng, lng: u.lng }
+    #end
+
+    #@json_map = Users.all.to_json
+  end
+
   def index
     @users = User.paginate(page: params[:page])
   end
