@@ -1,0 +1,13 @@
+:javascript
+  load_map
+
+#map
+
+
+%h1 Welcome to the Nexus
+
+- if @posts.count > 0
+  - @posts.each do |post|
+    %p= post.content
+- else
+  %p No posts

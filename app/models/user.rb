@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
                   :lat, :lng, :country, :city
   has_secure_password
 
+  has_many :posts
+
   before_save { |user| user.email = user.email.downcase }
   before_save :create_remember_token
 

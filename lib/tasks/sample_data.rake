@@ -22,5 +22,11 @@ namespace :db do
 						 password_confirmation: password,
 						 lat: lat, lng: lng, country: country, city: city)
 		end
+
+		User.all.each do |user|
+      		2.times do
+        		user.posts.create!(:content => Faker::Lorem.sentence(5))
+			end
+		end
 	end
 end

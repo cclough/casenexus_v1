@@ -1,19 +1,20 @@
 class UsersController < ApplicationController
 
-  before_filter :signed_in_user, only: [:index, :edit, :update]
+  before_filter :signed_in_user, only: [:map, :index, :edit, :update]
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user, only: :destroy
 
-  def view
+  def index
 
-    #@userlist = @users.map do |u|
+   #@userlist = @users.map do |u|
     #    { id: u.id, lat: u.lng, lng: u.lng }
     #end
 
     #@json_map = Users.all.to_json
+    @posts = Post.all 
   end
 
-  def index
+  def list
     @users = User.paginate(page: params[:page])
   end
 
