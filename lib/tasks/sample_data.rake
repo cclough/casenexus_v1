@@ -5,8 +5,8 @@ namespace :db do
 					 email: "example@railstutorial.org",
 					 password: "foobar",
 					 password_confirmation: "foobar",
-					 lat: "51.5",
-					 lng: "5",
+					 lat: 51.501128232665856,
+					 lng: -0.14241188764572144,
 					 country: "UK",
 					 city: "London")
 		admin.toggle!(:admin) 

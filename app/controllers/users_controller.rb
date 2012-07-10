@@ -1,17 +1,22 @@
 class UsersController < ApplicationController
 
+  # respond_to :html, :json
+  # respond_to :json
+
   before_filter :signed_in_user, only: [:map, :index, :edit, :update]
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user, only: :destroy
 
   def index
 
-   #@userlist = @users.map do |u|
-    #    { id: u.id, lat: u.lng, lng: u.lng }
-    #end
-
-    #@json_map = Users.all.to_json
     @posts = Post.all 
+
+    @markers = User.all
+    respond_to do |format|
+      format.html # index.html.haml
+      format.json { render json: @markers }
+    end
+
   end
 
   def list
