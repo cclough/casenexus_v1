@@ -4,13 +4,8 @@ class UsersController < ApplicationController
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user, only: :destroy
 
-#todo
-#1. json only lat and lng
-#2. improve method of ajax profile load
-#3. partials for posts that I want to use in users - can I put them in posts views?
 
   def index
-
     @post = current_user.posts.build
     @posts = Post.all
 
@@ -19,7 +14,6 @@ class UsersController < ApplicationController
       format.html # index.html.haml
       format.json { render json: @markers } #need to make this so only lat and lng are included!
     end
-  
   end
 
   def list

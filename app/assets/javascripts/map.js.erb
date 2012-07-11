@@ -110,8 +110,6 @@ function showInSidePanel(uid) {
 
   $("#user").fadeOut('fast', function() {
 
-	//$("#user").load('/users/' + uid);
-
         $('#user').load('/users/' + uid, function() {
              $("#user").fadeIn('fast');
         });

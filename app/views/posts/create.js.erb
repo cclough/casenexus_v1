@@ -1,0 +1,14 @@
+//$("#post_list").html("<%= escape_javascript(render('post_list')) %>")
+
+//$('#post_list').html("hello");  
+
+$('body').html("<h1><%= escape_javascript(@post.title) %></h1>").append("<%= escape_javascript(@post.content) %>");
+
+
+// $("#post_list").fadeOut('fast', function() {
+
+//       $('#user').load('/posts', function() {
+//            $("#user").fadeIn('fast');
+//       });
+
+// });

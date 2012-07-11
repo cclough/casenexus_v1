@@ -6,13 +6,18 @@ class PostsController < ApplicationController
   end
 
   def create
+
     @post = current_user.posts.build(params[:post])
-    if @post.save
-      flash[:success] = "Micropost created!"
-      redirect_to root_path
-    else
-      @feed_items = []
-      render 'static_pages/home'
+
+    respond_to do |format|
+      if @post.save
+        # flash[:success] = "Micropost created!"
+        format.html { redirect_to @post, notice: 'Post was successfully created.' }  
+        format.js  
+      else
+        format.html { render action: "new" }  
+        format.js  
+      end
     end
   end
 
