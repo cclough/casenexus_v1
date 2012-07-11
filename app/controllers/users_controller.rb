@@ -4,9 +4,13 @@ class UsersController < ApplicationController
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user, only: :destroy
 
+#todo
+#1. json only lat and lng
+#2. improve method of ajax profile load
+
   def index
 
-    @posts = Post.all 
+    @posts = Post.all
 
     @markers = User.all
     respond_to do |format|
@@ -22,8 +26,11 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
+    respond_to do |format|
+      format.html { render :layout => false }
+     end  
   end
-
+  
   def new
   	@user = User.new
   end

@@ -106,12 +106,6 @@ function bindInfo(marker, map, uid) {
 
 function showInSidePanel(uid) {
 
-  	$("#user").fadeOut('fast', function() {
-
-        $('#user').load('../map.php?do=user&id=' + uid, function() {
-             $("#user").fadeIn('fast');
-        });
-
-  	});
+	$("#user").load('/users/' + uid);
 
 }
