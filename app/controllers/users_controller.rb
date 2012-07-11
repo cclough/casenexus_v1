@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
     @markers = User.all
     respond_to do |format|
-      format.html # index.html.haml
+      format.html
       format.json { render json: @markers } #need to make this so only lat and lng are included!
     end
   end

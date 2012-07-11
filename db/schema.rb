@@ -11,7 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120709222402) do
+ActiveRecord::Schema.define(:version => 20120711191621) do
+
+  create_table "appraisals", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "marker_id"
+    t.string   "subject"
+    t.string   "source"
+    t.integer  "plan"
+    t.string   "plan_s"
+    t.integer  "analytic"
+    t.string   "analytic_s"
+    t.integer  "struc"
+    t.string   "struc_s"
+    t.integer  "conc"
+    t.string   "conc_s"
+    t.integer  "comms"
+    t.string   "comms_s"
+    t.integer  "imp"
+    t.string   "imp_s"
+    t.string   "comment"
+    t.string   "notes"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "posts", :force => true do |t|
     t.string   "content"
