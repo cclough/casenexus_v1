@@ -13,7 +13,10 @@
 
 .row
   %aside.span3
-    #filter
+    #post_form
+      = render 'post_form'
+
+    #post_filter
       %ul.filter
         %li
           .btn-group
@@ -60,9 +63,10 @@
               %li
                 %a{:href => "#"} Victor Cheng-like
 
-    #posts
+    #post_list
       %ol.posts
-        = render 'posts'
+        = render 'post_list'
+
   .span6
     #map(style="width:100%;height:600px")
   .span3

@@ -1,7 +1,12 @@
 - provide(:title, @user.name)
-.row
-  %aside.span4
-    %section
-      %h1
-        = gravatar_for @user
-        = @user.name
+
+%section
+  %h3
+    = gravatar_for @user
+    = @user.name
+
+%section
+  %p
+    = @user.city
+  %p
+    = @user.country
