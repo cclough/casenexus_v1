@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
 
-  # respond_to :html, :json
-  # respond_to :json
-
   before_filter :signed_in_user, only: [:map, :index, :edit, :update]
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user, only: :destroy
@@ -14,7 +11,7 @@ class UsersController < ApplicationController
     @markers = User.all
     respond_to do |format|
       format.html # index.html.haml
-      format.json { render json: @markers }
+      format.json { render json: @markers } #need to make this so only lat and lng are included!
     end
 
   end

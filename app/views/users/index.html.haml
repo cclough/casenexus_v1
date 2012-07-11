@@ -7,12 +7,63 @@
 
 %script(type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false")
 
-#map(style="width:100%;height:500px")
-
 %body(onload="load_map();") 
 
 %h1 Map 
 
-#posts
-  = render 'posts'
+.row
+  %aside.span3
+    #filter
+      %ul.filter
+        %li
+          .btn-group
+            %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
+              Country
+              %span.caret
+            %ul.dropdown-menu
+              %li
+                %a{:href => "#"} United Kingdom
+              %li
+                %a{:href => "#"} United Status of America
+              %li
+                %a{:href => "#"} Venezuela
 
+        %li
+          .btn-group
+            %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
+              City
+              %span.caret
+            %ul.dropdown-menu
+              %li
+                %a{:href => "#"} Ipswich
+              %li
+                %a{:href => "#"} London
+              %li
+                %a{:href => "#"} Norwich
+
+        %li
+          .btn-group
+            %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
+              Skill
+              %span.caret
+            %ul.dropdown-menu
+              %li
+                %a{:href => "#"} Beginner
+              %li
+                %a{:href => "#"} Novice
+              %li
+                %a{:href => "#"} Intermediate
+              %li
+                %a{:href => "#"} Advanced
+              %li
+                %a{:href => "#"} God
+              %li
+                %a{:href => "#"} Victor Cheng-like
+
+    #posts
+      %ol.posts
+        = render 'posts'
+  .span6
+    #map(style="width:100%;height:500px")
+  .span3
+    #user

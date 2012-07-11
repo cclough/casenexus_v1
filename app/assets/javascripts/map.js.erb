@@ -76,8 +76,8 @@ function load_map() {
 		        animation: google.maps.Animation.DROP
 		    });
 
-      		bindInfo(marker, map, json[i].user_id);
-      		markerArray[json[i].user_id] = marker;
+      		bindInfo(marker, map, json[i].id);
+      		markerArray[json[i].id] = marker;
 
     	}
 
@@ -98,18 +98,18 @@ function bindInfo(marker, map, uid) {
     marker.setAnimation(google.maps.Animation.BOUNCE);
     setTimeout(function(){ marker.setAnimation(null); }, 700);
 
-});
+  });
   google.maps.event.addListener(marker, 'mouseover', function() {
     //showInSmallPanel(uid);
   });
 }
 
-function showInSidePanel(jsonid) {
+function showInSidePanel(uid) {
 
-  	$("#sidepanel").fadeOut('fast', function() {
+  	$("#user").fadeOut('fast', function() {
 
-        $('#sidepanel').load('../map.php?do=user&id=' + jsonid, function() {
-             $("#sidepanel").fadeIn('fast');
+        $('#user').load('../map.php?do=user&id=' + uid, function() {
+             $("#user").fadeIn('fast');
         });
 
   	});
