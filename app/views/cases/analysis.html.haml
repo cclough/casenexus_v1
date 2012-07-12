@@ -1,0 +1,294 @@
+- provide(:title, 'Your Progress')
+.row
+  %aside.span3
+    = render 'nav'
+  .span9
+    %h1 Your progress
+    .row(style="margin-bottom:15px;")
+      .span4
+        .row
+          .span2
+            %p
+              Total case #
+          .span2
+            50
+        .row
+          .span2
+            %p
+              Date of first case
+          .span2
+            1st Jan 2012
+        .row
+          .span2
+            %p
+              "...some metrics..."
+          .span2
+            "...xxx...""
+      .span5
+        #chartdiv_radar{:style => "width: 100%; height: 300px;"}
+
+    .row
+      .span9
+        #chartdiv_area{:style => "width:100%; height:350px;"}
+
+
+
+:javascript
+  var chart_radar;
+
+  var chartData_radar = #{@chart_data_radar};
+ 
+  AmCharts.ready(function () {
+    // RADAR CHART
+    chart = new AmCharts.AmRadarChart();
+    chart.dataProvider = chartData_radar;
+    chart.categoryField = "criteria";
+    chart.startDuration = 0;
+
+    // VALUE AXIS
+    var valueAxis = new AmCharts.ValueAxis();
+    valueAxis.gridType = "circles";
+    valueAxis.fillAlpha = 0.05;
+    valueAxis.fillColor = "#000000"
+    valueAxis.axisAlpha = 0.2;
+    valueAxis.gridAlpha = 0;
+    valueAxis.fontWeight = "bold"
+    valueAxis.minimum = 0;
+    chart.addValueAxis(valueAxis);
+
+    // GRAPH
+    var graph = new AmCharts.AmGraph();
+    graph.lineColor = "#98cdff"
+    graph.fillAlphas = 0.4;
+    graph.bullet = "round"
+    graph.valueField = "score"
+    graph.balloonText = "[[category]]: [[value]] m/s"
+    chart.addGraph(graph);
+
+    // WRITE
+    chart.write("chartdiv_radar");
+  });
+
+:javascript
+            var chart_area;
+
+            var chartData_area = [{
+                year: 2000,
+                plan: 3,
+                analytic: 1,
+                struc: 3,
+                conc: 4
+            }, {
+                year: 1995,
+                plan: 3,
+                analytic: 4,
+                struc: 4,
+                conc: 1
+            }, {
+                year: 1996,
+                plan: 1,
+                analytic: 2,
+                struc: 3,
+                conc: 4
+            }, {
+                year: 1997,
+                plan: 5,
+                analytic: 6,
+                struc: 5,
+                conc: 5
+            }, {
+                year: 1998,
+                plan: 6,
+                analytic: 4,
+                struc: 5,
+                conc: 6
+            }, {
+                year: 1999,
+                plan: 3,
+                analytic: 4,
+                struc: 5,
+                conc: 5
+            }, {
+                year: 2000,
+                plan: 5,
+                analytic: 5,
+                struc: 6,
+                conc: 4
+            }, {
+                year: 2001,
+                plan: 3,
+                analytic: 4,
+                struc: 2,
+                conc: 1
+            }, {
+                year: 2002,
+                plan: 6,
+                analytic: 7,
+                struc: 8,
+                conc: 6
+            }, {
+                year: 2003,
+                plan: 6,
+                analytic: 8,
+                struc: 7,
+                conc: 8
+            }, {
+                year: 2004,
+                plan: 8,
+                analytic: 8,
+                struc: 8,
+                conc: 9
+            }, {
+                year: 2005,
+                plan: 10,
+                analytic: 10,
+                struc: 9,
+                conc: 8
+            }, {
+                year: 2006,
+                plan: 10,
+                analytic: 9,
+                struc: 10,
+                conc: 10
+            }, {
+                year: 2007,
+                plan: 10,
+                analytic: 10,
+                struc: 10,
+                conc: 10
+            }, {
+                year: 2008,
+                plan: 3,
+                analytic: 2,
+                struc: 1,
+                conc: 3
+            }, {
+                year: 2009,
+                plan: 3,
+                analytic: 2,
+                struc: 3,
+                conc: 1
+            }, {
+                year: 2010,
+                plan: 1,
+                analytic: 1,
+                struc: 1,
+                conc: 2
+            }, {
+                year: 2011,
+                plan: 2,
+                analytic: 3,
+                struc: 4,
+                conc: 1
+            }, {
+                year: 2012,
+                plan: 3,
+                analytic: 4,
+                struc: 2,
+                conc: 1
+            }];
+
+            AmCharts.ready(function () {
+                // SERIAL CHART
+                chart = new AmCharts.AmSerialChart();
+                chart.pathToImages = "/lib/samples/javascript/images/";
+                chart.zoomOutButton = {
+                    backgroundColor: "#000000",
+                    backgroundAlpha: 0.15
+                };
+                chart.dataProvider = chartData_area;
+                chart.marginTop = 10;
+                chart.marginRight = 30;
+                chart.categoryField = "year";
+
+                // AXES
+                // Category
+                var categoryAxis = chart.categoryAxis;
+                categoryAxis.gridAlpha = 0.07;
+                categoryAxis.axisColor = "#DADADA";
+                categoryAxis.startOnAxis = true;
+
+                // Value
+                var valueAxis = new AmCharts.ValueAxis();
+                valueAxis.stackType = "regular"; // this line makes the chart "stacked"
+                valueAxis.gridAlpha = 0.07;
+                valueAxis.axisColor = "#DADADA";
+                valueAxis.title = "Case Score";
+                valueAxis.titleBold = false;
+                chart.addValueAxis(valueAxis);
+
+                // GUIDES are vertical (can also be horizontal) lines (or areas) marking some event.
+                // first guide
+                var guide1 = new AmCharts.Guide();
+                guide1.category = "2001";
+                guide1.lineColor = "#CC0000";
+                guide1.lineAlpha = 1;
+                guide1.dashLength = 2;
+                guide1.inside = true;
+                guide1.labelRotation = 90;
+                guide1.label = "xxx event";
+                categoryAxis.addGuide(guide1);
+
+                // second guide
+                var guide2 = new AmCharts.Guide();
+                guide2.category = "2007";
+                guide2.lineColor = "#CC0000";
+                guide2.lineAlpha = 1;
+                guide2.dashLength = 2;
+                guide2.inside = true;
+                guide2.labelRotation = 90;
+                guide2.label = "yyy event";
+        categoryAxis.addGuide(guide2);
+
+                // GRAPHS
+                // first graph
+                var graph = new AmCharts.AmGraph();
+                graph.type = "line";
+                graph.title = "Planning";
+                graph.valueField = "plan";
+                graph.lineAlpha = 1;
+                graph.fillAlphas = 0.6; // setting fillAlphas to > 0 value makes it area graph
+                chart.addGraph(graph);
+
+                // second graph
+                graph = new AmCharts.AmGraph();
+                graph.type = "line";
+                graph.title = "Analytical";
+                graph.valueField = "analytic";
+                graph.lineAlpha = 1;
+                graph.fillAlphas = 0.6;
+                chart.addGraph(graph);
+
+                // third graph
+                graph = new AmCharts.AmGraph();
+                graph.type = "line";
+                graph.title = "Structure";
+                graph.valueField = "struc";
+                graph.lineAlpha = 1;
+                graph.fillAlphas = 0.6;
+                chart.addGraph(graph);
+
+                // fourth graph
+                graph = new AmCharts.AmGraph();
+                graph.type = "line";
+                graph.title = "Conclusion";
+                graph.valueField = "conc";
+                graph.lineAlpha = 1;
+                graph.fillAlphas = 0.6;
+                chart.addGraph(graph);
+
+                // LEGEND
+                var legend = new AmCharts.AmLegend();
+                legend.position = "top";
+                chart.addLegend(legend);
+
+                // CURSOR
+                var chartCursor = new AmCharts.ChartCursor();
+                chartCursor.zoomable = false; // as the chart displayes not too many values, we disabled zooming
+                chartCursor.cursorAlpha = 0;
+                chart.addChartCursor(chartCursor);
+
+                // WRITE
+                chart.write("chartdiv_area");
+            });
+

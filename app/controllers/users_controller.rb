@@ -9,6 +9,8 @@ class UsersController < ApplicationController
     @post = current_user.posts.build
     @posts = Post.all
 
+    # @notify = ""
+    
     @markers = User.all
     respond_to do |format|
       format.html
@@ -35,8 +37,8 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
   	if @user.save
       sign_in @user
-  		flash[:success] = "Welcome to the Sample App!"
-  		redirect_to @user
+  		flash[:success] = "Welcome to casenexus!"
+  		redirect_to action: 'index'
   	else
   		render 'new'
   	end
@@ -49,7 +51,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
       sign_in @user
       flash[:success] = "Profile updated"
-      redirect_to @user 
+      redirect_to action: 'index'
     else
       render 'edit'
     end

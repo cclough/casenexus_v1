@@ -1,7 +1,10 @@
 - provide(:title, 'Sign up')
+
+%body(onload="load_geocode();")
+
 %h1 Sign up
 .row
-  .span6.offset3
+  .span5
     = form_for(@user) do |f|
       = render 'shared/error_messages', object: @user
       = f.label :name
@@ -12,4 +15,75 @@
       = f.password_field :password
       = f.label :password_confirmation, "Confirm Password"
       = f.password_field :password_confirmation
+
+      = f.label :lat, "Latitude"
+      = f.text_field :lat, id: "lat"
+      = f.label :lng, "Longitude"
+      = f.text_field :lng, id: "lng"
+      = f.label :country, "Country"
+      = f.text_field :country, id: "country"
+      = f.label :city, "City"
+      = f.text_field :city, id: "city"
+
       = f.submit "Create my account", class: "btn btn-large btn-primary"
+  .span7
+    #map.map{:style => "height:450px; width:100%"}
+
+
+%script{:src => "//maps.googleapis.com/maps/api/js?sensor=false", :type => "text/javascript"}
+
+
+
+:javascript
+  var geocoder = new google.maps.Geocoder();
+  
+  function geocodePosition(pos) {
+    geocoder.geocode({
+      latLng: pos
+    }, function(responses) {
+      if (responses && responses.length > 0) {
+        updateMarkerAddress(responses[0].formatted_address);
+      } else {
+        updateMarkerAddress('Cannot determine address at this location.');
+      }
+    });
+  }
+    
+  function load_geocode() {
+  
+    var latLng = new google.maps.LatLng(51,0);
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 12,
+      center: latLng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      streetViewControl: false,
+      mapTypeControl: false
+    });
+    var marker = new google.maps.Marker({
+      position: latLng,
+      title: 'Point A',
+      map: map,
+      draggable: true
+    });
+  
+    // Update current position info.
+  
+    google.maps.event.addListener(marker, 'drag', function() {
+      updateMarkerPosition(marker.getPosition());
+    });
+    
+    google.maps.event.addListener(marker, 'dragend', function() {
+      geocodePosition(marker.getPosition());
+    }); 
+  }
+
+  function updateMarkerPosition(latLng) {
+  
+  document.getElementById('lat').value = latLng.lat(); 
+  document.getElementById('lng').value = latLng.lng();
+  
+  }
+  
+  function updateMarkerAddress(str) {
+    document.getElementById('loc').value = str;
+  }

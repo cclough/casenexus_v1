@@ -1,9 +1,11 @@
 - provide(:title, 'Case')
+
 .row
   %aside.span3
     = render 'nav'
 
   .span9
+    %h1 A Case you did...
     .row(style="margin-bottom:15px;")
       .span4
 
@@ -39,6 +41,7 @@
             = @case.created_at
 
       .span5
+        #chartdiv{:style => "width: 100%; height: 250px;"}
 
     .row
       .span4
@@ -84,11 +87,48 @@
         .case_comment
           = @case.comment
     .row
-      .span9
+      .span4
         .case_comment
+          = image_tag('art/paper.jpg')
           = @case.notes
 
 
-    
+
+
+:javascript
+  var chart;
+
+  var chartData = #{@chart_data};
+ 
+  AmCharts.ready(function () {
+    // RADAR CHART
+    chart = new AmCharts.AmRadarChart();
+    chart.dataProvider = chartData;
+    chart.categoryField = "criteria";
+    chart.startDuration = 0;
+
+    // VALUE AXIS
+    var valueAxis = new AmCharts.ValueAxis();
+    valueAxis.gridType = "circles";
+    valueAxis.fillAlpha = 0.05;
+    valueAxis.fillColor = "#000000"
+    valueAxis.axisAlpha = 0.2;
+    valueAxis.gridAlpha = 0;
+    valueAxis.fontWeight = "bold"
+    valueAxis.minimum = 0;
+    chart.addValueAxis(valueAxis);
+
+    // GRAPH
+    var graph = new AmCharts.AmGraph();
+    graph.lineColor = "#98cdff"
+    graph.fillAlphas = 0.4;
+    graph.bullet = "round"
+    graph.valueField = "score"
+    graph.balloonText = "[[category]]: [[value]] m/s"
+    chart.addGraph(graph);
+
+    // WRITE
+    chart.write("chartdiv");
+  });
 
 

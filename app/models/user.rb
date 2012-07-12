@@ -17,7 +17,10 @@ class User < ActiveRecord::Base
   
   validates :password, length: { minimum: 6 }
   validates :password_confirmation, presence: true
-  
+ 
+  validates :lat, presence: true
+  validates :lng, presence: true
+
   private
 
   	def create_remember_token

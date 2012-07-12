@@ -4,10 +4,10 @@
     = render 'nav'
 
   .span9
+    %h1 Send Case Feedback
     = form_for(@case) do |f|
       = render 'shared/error_messages', object: @case
       .case_form
-        %h1 Case Feedback
         .row(style="margin-bottom:15px;")
           .span4
             .field_text

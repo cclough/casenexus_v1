@@ -2,11 +2,48 @@
 
 %section
   %h3
-    = gravatar_for @user
+    / = gravatar_for @user
     = @user.name
 
-%section
+%section(style="margin-top:30px;")
   %p
+    City:
     = @user.city
   %p
+    Country:
     = @user.country
+
+%section
+  %p Education:
+  %p Experience:
+
+%section
+  %p Interview skill:
+  %p # Cases done:
+
+%section
+  %p Last login:
+
+%section
+  %p Skype username:
+
+/ %a{:href => "xx?add"}
+/   %img{:alt => "xx's status", :height => "16", :src => "http://mystatus.skype.com/smallicon/xx", :style => "margin-right:30px;", :width => "16"}
+
+= link_to image_tag("icons/linkedin.png", alt: "View xx's profile on LinkedIn", height: "15", width: "20", border:"0") + "LinkedIn", 'http://uk.linkedin.com/in/xx'
+
+%section(style="margin-top:30px;")
+  = link_to "Send feedback", 'signup_path', class: "btn btn-large btn btn-primary"
+
+%section(style="margin-top:30px;")
+  %a#notify_show.btn.btn-primary.btn-large{:href => "#"}
+    Notify
+
+%section
+  = render 'notify_form'
+
+:javascript
+  $('#notify_show').click(function() {
+    $('#notify_form').show('slow');
+  });
+
