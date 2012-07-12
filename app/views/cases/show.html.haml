@@ -1,0 +1,94 @@
+- provide(:title, 'Case')
+.row
+  %aside.span3
+    = render 'nav'
+
+  .span9
+    .row(style="margin-bottom:15px;")
+      .span4
+
+        .row
+          .span2
+            %p
+              Marker id:
+          .span2
+            = @case.marker_id
+        .row
+          .span2
+            %p
+              Date:
+          .span2
+            = @case.date
+        .row
+          .span2
+            %p
+              Subject:
+          .span2
+            = @case.subject
+        .row
+          .span2
+            %p
+              Source:
+          .span2
+            = @case.source
+        .row
+          .span2
+            %p
+              Submitted:
+          .span2
+            = @case.created_at
+
+      .span5
+
+    .row
+      .span4
+        .case_block_title
+          Plan
+        .case_score
+          = @case.plan
+        .case_comment
+          = @case.plan_s
+      .span5
+        .case_block_title
+          Analytical/Problem-solving      
+        .case_score
+          = @case.analytic
+        .case_comment
+          = @case.analytic_s
+    .row
+      .span4      
+        .case_block_title
+          Structure
+        .case_score
+          = @case.struc
+        .case_comment
+          = @case.struc_s
+      .span5
+        .case_block_title
+          Conclusion/Solution       
+        .case_score
+          = @case.conc
+        .case_comment
+          = @case.conc_s
+    .row
+      .span4
+        .case_block_title
+          Communication/Presentation       
+        .case_score
+          = @case.comms
+        .case_comment
+          = @case.comms_s
+      .span5
+        .case_block_title
+          Further Comment  
+        .case_comment
+          = @case.comment
+    .row
+      .span9
+        .case_comment
+          = @case.notes
+
+
+    
+
+

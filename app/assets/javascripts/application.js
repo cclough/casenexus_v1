@@ -13,5 +13,6 @@
 //= http://maps.google.com/maps/api/js?sensor=false
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
 //= require bootstrap
 //= require_tree .

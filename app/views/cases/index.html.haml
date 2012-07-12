@@ -1,0 +1,18 @@
+- provide(:title, 'Your cases')
+.row
+  %aside.span3
+    = render 'nav'
+
+  .span9
+    %ol.posts
+      - if @cases.count > 0
+        - @cases.each do |c|
+          %li
+            %span.user
+              = link_to c.email, "#"
+            %span.content
+              = link_to c.subject, "/cases/" + c.id.to_s
+            %span.timestamp
+              #{time_ago_in_words(c.created_at)} ago.
+      - else
+        %p You have no cases

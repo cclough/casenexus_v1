@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_many :posts
-  has_many :appraisals
+  has_many :cases
 
   before_save { |user| user.email = user.email.downcase }
   before_save :create_remember_token

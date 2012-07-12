@@ -63,8 +63,8 @@
               %li
                 %a{:href => "#"} Victor Cheng-like
 
-    #post_list
-      = render 'post_list'
+    #post_list(style="overflow:auto;height:400px;")
+      = render template: 'posts/index'
 
   .span6
     #map(style="width:100%;height:600px")

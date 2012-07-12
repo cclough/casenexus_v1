@@ -1,6 +1,23 @@
 namespace :db do
 	desc "Fill database with sample data"
 	task populate: :environment do
+
+    def randomDate(params={})
+      years_back = params[:year_range] || 5
+      latest_year  = params [:year_latest] || 0
+      year = (rand * (years_back)).ceil + (Time.now.year - latest_year - years_back)
+      month = (rand * 12).ceil
+      day = (rand * 31).ceil
+      series = [date = Time.local(year, month, day)]
+      if params[:series]
+        params[:series].each do |some_time_after|
+          series << series.last + (rand * some_time_after).ceil
+        end
+        return series
+      end
+      date
+    end
+
 		admin = User.create!(name: "Example User",
 					 email: "example@railstutorial.org",
 					 password: "foobar",
@@ -29,10 +46,12 @@ namespace :db do
 			end
 		end
 
-  	50.times do
-    	User.find(1).appraisals.create!(
+  	50.times do |n|
+    	User.find(1).cases.create!(
     		:user_id => 1,
+        :email => "test-#{n+1}@cases.org",
     		:marker_id => rand(100),
+        :date => randomDate(:year_range => 1, :year_latest => 0),
     		:subject => Faker::Lorem.sentence(5),
     		:source => Faker::Lorem.sentence(5), 		
     		:plan => rand(10),
@@ -45,14 +64,10 @@ namespace :db do
     		:conc_s => Faker::Lorem.sentence(5),
     		:comms => rand(10),
     		:comms_s => Faker::Lorem.sentence(5),
-     		:imp => rand(10),
-    		:imp_s => Faker::Lorem.sentence(5),
      		:comment => Faker::Lorem.sentence(5),
     		:notes => Faker::Lorem.sentence(5)
     	)
 		end
-
-
 
 	end
 end

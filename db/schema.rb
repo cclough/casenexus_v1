@@ -11,11 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120711191621) do
+ActiveRecord::Schema.define(:version => 20120712155732) do
 
-  create_table "appraisals", :force => true do |t|
+  create_table "cases", :force => true do |t|
     t.integer  "user_id"
+    t.string   "email"
     t.integer  "marker_id"
+    t.date     "date"
     t.string   "subject"
     t.string   "source"
     t.integer  "plan"
@@ -28,8 +30,6 @@ ActiveRecord::Schema.define(:version => 20120711191621) do
     t.string   "conc_s"
     t.integer  "comms"
     t.string   "comms_s"
-    t.integer  "imp"
-    t.string   "imp_s"
     t.string   "comment"
     t.string   "notes"
     t.datetime "created_at", :null => false

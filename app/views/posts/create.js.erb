@@ -1,14 +1,7 @@
-//$("#post_list").html("<%= escape_javascript(render('post_list')) %>")
+$("#post_list").fadeOut('fast', function() {
 
-//$('#post_list').html("hello");  
+      $('#post_list').load('/posts', function() {
+           $("#post_list").fadeIn('fast');
+      });
 
-$('body').html("<h1><%= escape_javascript(@post.title) %></h1>").append("<%= escape_javascript(@post.content) %>");
-
-
-// $("#post_list").fadeOut('fast', function() {
-
-//       $('#user').load('/posts', function() {
-//            $("#user").fadeIn('fast');
-//       });
-
-// });
+});

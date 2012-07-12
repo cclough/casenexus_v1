@@ -1,0 +1,107 @@
+- provide(:title, 'Send Feedback')
+.row
+  %aside.span3
+    = render 'nav'
+
+  .span9
+    = form_for(@case) do |f|
+      = render 'shared/error_messages', object: @case
+      .case_form
+        %h1 Case Feedback
+        .row(style="margin-bottom:15px;")
+          .span4
+            .field_text
+              = f.text_field :user_id, placeholder: "Partner id"
+            .field_text
+              = f.text_field :email, placeholder: "Partner email"
+            .field_text         
+              = f.text_field :date, placeholder: "Date", id: "datepicker"
+          .span5
+            .field
+              = f.text_area :subject, placeholder: "Subject"
+            .field_text         
+              = f.text_field :source, placeholder: "Source"
+
+        .row(style="margin-bottom:10px;")
+          .span4
+            #case_block
+              .case_block_title
+                Plan
+              #plan_slider.slider
+              .slider_value
+                = f.text_field :plan, placeholder: "1", class: "slider_input", id: "plan_slider_input", name: "plan_slider_input"
+              .case_block_desc
+                Brief instructions on how to score and comment
+              .field
+                = f.text_area :plan_s, placeholder: "Comment..."
+            #case_block
+              .case_block_title
+                Structure
+              #struc_slider.slider
+              .slider_value
+              = f.text_field :struc, placeholder: "1", class: "slider_input", id: "struc_slider_input", name: "struc_slider_input"
+              .case_block_desc
+                Brief instructions on how to score and comment  
+              .field
+                = f.text_area :struc_s, placeholder: "Comment..."
+            #case_block
+              .case_block_title
+                Communication
+              #comms_slider.slider
+              .slider_value
+              = f.text_field :comms, placeholder: "1", class: "slider_input", id: "comms_slider_input", name: "comms_slider_input"
+              .case_block_desc
+                Brief instructions on how to score and comment
+              .field
+                = f.text_area :comms_s, placeholder: "Comment..."
+          .span5
+            #case_block
+              .case_block_title
+                Analytical/Problem Solving
+              #analytic_slider.slider
+              .slider_value
+              = f.text_field :analytic, placeholder: "1", class: "slider_input", id: "analytic_slider_input", name: "analytic_slider_input"
+              .case_block_desc
+                Brief instructions on how to score and comment
+              .field
+                = f.text_area :analytic_s, placeholder: "Comment..."
+            #case_block
+              .case_block_title
+                Conclusion/Solution
+              #conc_slider.slider
+              .slider_value
+              = f.text_field :conc, placeholder: "1", class: "slider_input", id: "conc_slider_input", name: "conc_slider_input"
+              .case_block_desc
+                Brief instructions on how to score and comment
+              .field
+                = f.text_area :conc_s, placeholder: "Comment..."
+
+        .row
+          .span9
+            .field
+              = f.text_area :comment, placeholder: "Any further comments", :style=>'width: 620px;'
+
+            = f.submit "Submit", class: "btn btn-large btn-inverse", :style=>'float: right;margin-right:80px;'
+
+:javascript
+  //$(document).ready(function(){
+  //if decide to reset all slider inputs to zero use this    
+  //)};
+
+  $(function() {
+    $(".slider").slider({
+      range: "min",
+      step: 1,
+      min: 1,
+      max: 10,
+      value: 1,
+      slide: function(event, ui) {
+        $("input[name=" + $(this).attr("id") + "_input]").val(ui.value);
+        $("input[name=" + $(this).attr("id") + "_input]").css( 'color', '#6db9ff' )
+      }
+    });
+  });
+
+  $(function() {
+    $("#datepicker").datepicker();
+  });
