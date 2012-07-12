@@ -52,7 +52,7 @@
     
   function load_geocode() {
   
-    var latLng = new google.maps.LatLng(51,0);
+    var latLng = new google.maps.LatLng("#{@user.lat}",#{@user.lng});
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 12,
       center: latLng,
