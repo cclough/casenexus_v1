@@ -1,42 +1,41 @@
 %header.navbar.navbar-fixed-top
   .navbar-inner
     .container
-      = link_to "casenexus.com", root_path, id: "logo"
+      = link_to "casenexus.com", users_path, id: "logo"
       %nav
+      - if signed_in?
+        %ul.nav.pull-left
+          %li= link_to "Users", users_path
+          %li= link_to "Roulette", help_path
+        %ul.nav.pull-right
+          %li= link_to "Help", help_path
+          %li#fat-menu.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              N
+              %span.caret
+            %ul.dropdown-menu(style="height:300px;overflow:auto;width:300px;max-width:300px;")
+              / - if @messages.count > 0
+              /   - @messages.each do |message|
+              /     %li
+              /       = link_to message.user.name, message.user
+              /       = message.content
+              / - else
+              /   %p No messages      
+              %li.divider
+              %li
+                = link_to "See all", '/messages'
+          %li#fat-menu.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              Account
+              %span.caret
+            %ul.dropdown-menu
+              %li= link_to "Your Feedback", "/cases"
+              %li= link_to "Settings", edit_user_path(current_user)
+              %li.divider
+              %li
+                = link_to "Sign out", signout_path, method: "delete"
+      -else
         %ul.nav.pull-right
           %li= link_to "Home", root_path
-          %li= link_to "Help", help_path
-          - if signed_in?
-            %li= link_to "Users", users_path
-            %li#fat-menu.dropdown
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                Account
-                %span.caret
-              %ul.dropdown-menu
-                %li= link_to "Your Feedback", "/cases"
-                %li= link_to "Settings", edit_user_path(current_user)
-                %li.divider
-                %li
-                  = link_to "Sign out", signout_path, method: "delete"
-            %li#fat-menu.dropdown
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                N
-                %span.caret
-              %ul.dropdown-menu
-                / - if @messages.count > 0
-                /   - @messages.each do |message|
-                /     %li
-                /       %span.user
-                /         = link_to message.user.name, message.user
-                /       %span.content
-                /         = message.content
-                / - else
-                /   %p No posts
-
-                %li= link_to "Message 1", "/messages"
-                %li= link_to "Message 2", "/messages"             
-                %li.divider
-                %li
-                  = link_to "See all", '/messages'
-          -else            
-            %li= link_to "Sign in", signin_path
+          %li= link_to "Help", help_path          
+          %li= link_to "Sign in", signin_path

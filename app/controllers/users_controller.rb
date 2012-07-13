@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   end
   
   def new
-  	@user = User.new
+    @user = User.new
   end
 
   def create
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   	if @user.save
       sign_in @user
   		flash[:success] = "Welcome to casenexus!"
-  		redirect_to action: 'index'
+  		redirect_to users_path
   	else
   		render 'new'
   	end
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
       sign_in @user
       flash[:success] = "Profile updated"
-      redirect_to action: 'index'
+      redirect_to users_path
     else
       render 'edit'
     end

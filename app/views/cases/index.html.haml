@@ -7,6 +7,7 @@
     %ol.posts
       - if @cases.count > 0
         - @cases.each do |c|
+          /<a href="<%= "/cases/" + c.id.to_s %>><%= c.subject =></a>
           %li
             %span.user
               = link_to c.email, "#"

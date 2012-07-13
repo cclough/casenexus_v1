@@ -15,58 +15,13 @@
   %aside.span3
     #post_form
       = render 'post_form'
-
     #post_filter
-      %ul.filter
-        %li
-          .btn-group
-            %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
-              Country
-              %span.caret
-            %ul.dropdown-menu
-              %li
-                %a{:href => "#"} United Kingdom
-              %li
-                %a{:href => "#"} United Status of America
-              %li
-                %a{:href => "#"} Venezuela
-
-        %li
-          .btn-group
-            %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
-              City
-              %span.caret
-            %ul.dropdown-menu
-              %li
-                %a{:href => "#"} Ipswich
-              %li
-                %a{:href => "#"} London
-              %li
-                %a{:href => "#"} Norwich
-
-        %li
-          .btn-group
-            %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
-              Skill
-              %span.caret
-            %ul.dropdown-menu
-              %li
-                %a{:href => "#"} Beginner
-              %li
-                %a{:href => "#"} Novice
-              %li
-                %a{:href => "#"} Intermediate
-              %li
-                %a{:href => "#"} Advanced
-              %li
-                %a{:href => "#"} God
-              %li
-                %a{:href => "#"} Victor Cheng-like
-
+      = render 'post_filter'
     #post_list(style="overflow:auto;height:400px;")
       = render template: 'posts/index'
 
   .span6
     #map.map(style="width:100%;height:600px")
+    
   .span3
     #user

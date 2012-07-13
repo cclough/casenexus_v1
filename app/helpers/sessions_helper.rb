@@ -4,6 +4,7 @@ module SessionsHelper
 		# Sign the user in
 		cookies.permanent[:remember_token] = user.remember_token
 		self.current_user = user
+		@messages = current_user.messages.all
 	end
 
 	def signed_in?
