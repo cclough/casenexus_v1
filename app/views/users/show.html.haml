@@ -36,9 +36,9 @@
   = link_to "Send feedback", 'signup_path', class: "btn btn-large btn btn-primary"
 
 %section(style="margin-top:30px;")
-  %a#notify_show.btn.btn-primary.btn-large{:href => "#"}
-    Notify
-
+  %a#notify_show.btn.btn-large{:href => "#"}
+    Notify     
+    %span.caret
 %section
   = render 'notify_form'
 

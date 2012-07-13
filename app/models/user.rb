@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_many :posts
+  has_many :messages
   has_many :cases
 
   before_save { |user| user.email = user.email.downcase }

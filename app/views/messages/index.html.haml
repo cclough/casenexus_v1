@@ -1,0 +1,15 @@
+- provide(:title, 'Your notifications')
+.row
+  .span12
+    %ol.messages
+      - if @messages.count > 0
+        - @messages.each do |message|
+          %li
+            %span.user
+              = link_to message.user.id, "#"
+            %span.content
+              = message.content
+            %span.timestamp
+              #{time_ago_in_words(message.created_at)} ago.
+      - else
+        %p You have no messages

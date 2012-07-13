@@ -18,5 +18,25 @@
                 %li.divider
                 %li
                   = link_to "Sign out", signout_path, method: "delete"
-          - else
+            %li#fat-menu.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                N
+                %span.caret
+              %ul.dropdown-menu
+                / - if @messages.count > 0
+                /   - @messages.each do |message|
+                /     %li
+                /       %span.user
+                /         = link_to message.user.name, message.user
+                /       %span.content
+                /         = message.content
+                / - else
+                /   %p No posts
+
+                %li= link_to "Message 1", "/messages"
+                %li= link_to "Message 2", "/messages"             
+                %li.divider
+                %li
+                  = link_to "See all", '/messages'
+          -else            
             %li= link_to "Sign in", signin_path

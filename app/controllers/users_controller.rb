@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user, only: :destroy
 
-
   def index
     @post = current_user.posts.build
     @posts = Post.all
