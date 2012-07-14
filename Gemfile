@@ -8,6 +8,8 @@ gem 'faker', '1.0.1'
 gem 'haml'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
+gem 'session_tracker'
+gem 'ezmobius-redis-rb'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'

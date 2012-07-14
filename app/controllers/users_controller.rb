@@ -9,12 +9,16 @@ class UsersController < ApplicationController
     @posts = Post.all
 
     # @notify = ""
-    
+
+    @usersonline = SessionTracker.new("user", $redis).active_users
+  
     @markers = User.all
     respond_to do |format|
       format.html
       format.json { render json: @markers } #need to make this so only lat and lng are included!
     end
+
+
   end
 
   def list

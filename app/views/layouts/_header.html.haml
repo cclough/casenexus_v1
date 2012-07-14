@@ -13,7 +13,7 @@
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               N
               %span.caret
-            %ul.dropdown-menu(style="height:300px;overflow:auto;width:300px;max-width:300px;")
+            %ul.dropdown-menu(style="height:300px;width:300px;overflow:auto;")
               / - if @messages.count > 0
               /   - @messages.each do |message|
               /     %li
