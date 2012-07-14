@@ -1,3 +1,9 @@
-#notify_form(style="display:none;margin-top:30px;")
-  %textarea(style="height:100px;")
-  = link_to "Post", 'signup_path', class: "btn btn-large btn btn-primary"
+= form_for(@message, remote: true) do |f|
+  = render 'shared/error_messages', object: @message
+  .field
+    = f.text_area :content, placeholder: "Send message...", style: "height:100px;"
+    = f.hidden_field :user_id
+    = f.hidden_field :sender_id
+  = f.submit "Notify", class: "btn btn-large btn-primary"
+
+  / current_user.relationships.build(followed_id: @user.id)

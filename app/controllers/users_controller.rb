@@ -9,8 +9,7 @@ class UsersController < ApplicationController
     @posts = Post.all
 
     # @notify = ""
-
-    @usersonline = SessionTracker.new("user", $redis).active_users
+    # @usersonline = SessionTracker.new("user", $redis).active_users
   
     @markers = User.all
     respond_to do |format|
@@ -27,6 +26,8 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
+    @message = Message.new
+    
     respond_to do |format|
       format.html { render :layout => false }
      end  
@@ -39,6 +40,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
   	if @user.save
+      UserMailer.welcome_email(@user).deliver
       sign_in @user
   		flash[:success] = "Welcome to casenexus!"
   		redirect_to users_path

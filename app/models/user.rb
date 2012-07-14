@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, 
-                  :lat, :lng, :country, :city
+                  :lat, :lng, :country, :city, :email_admin, :email_users
   has_secure_password
 
   has_many :posts

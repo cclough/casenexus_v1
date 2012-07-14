@@ -31,6 +31,8 @@ function load_map() {
 	//} else {
 	    lat_start = 51.501128232665856;
 	    lng_start = -0.14241188764572144;
+	    // lat_start = ' current_user.lat ';
+	    // lng_start = ' current_user.lng ';
 	//}
 
   	var mapOptions = {
@@ -94,6 +96,7 @@ function bindInfo(marker, map, uid) {
 
     newlatlng = marker.getPosition();
     map.panTo(newlatlng);
+    map.setZoom(5);
 
     marker.setAnimation(google.maps.Animation.BOUNCE);
     setTimeout(function(){ marker.setAnimation(null); }, 700);

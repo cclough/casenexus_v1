@@ -25,6 +25,13 @@
       = f.label :city, "City"
       = f.text_field :city, id: "city"
 
+      = f.label :email_admin, "Receive case interview advice email letter"
+      = f.check_box :email_admin
+
+      = f.label :email_users, "Send notifications from users to your email"
+      = f.check_box :email_users
+
+      %br
       = f.submit "Save changes", class: "btn btn-large btn-primary"
     - gravatar_for @user
     %a{:href => "http://gravatar.com/emails", :target => "_blank"} change
