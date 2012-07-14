@@ -60,7 +60,6 @@ GEM
     eventmachine (0.12.10)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    ezmobius-redis-rb (0.1)
     factory_girl (2.3.2)
       activesupport
     factory_girl_rails (1.4.0)
@@ -164,7 +163,6 @@ GEM
       libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
       rubyzip
-    session_tracker (0.0.4)
     spork (0.9.0)
     sprockets (2.1.3)
       hike (~> 1.2)
@@ -194,7 +192,6 @@ DEPENDENCIES
   capybara (= 1.1.2)
   coffee-rails (= 3.2.2)
   database_cleaner (= 0.7.0)
-  ezmobius-redis-rb
   factory_girl_rails (= 1.4.0)
   faker (= 1.0.1)
   growl (= 1.0.3)
@@ -211,7 +208,6 @@ DEPENDENCIES
   rb-fsevent (= 0.9.1)
   rspec-rails (= 2.10.0)
   sass-rails (= 3.2.4)
-  session_tracker
   spork (= 0.9.0)
   sqlite3 (= 1.3.5)
   uglifier (= 1.2.3)

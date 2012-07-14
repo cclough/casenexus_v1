@@ -29,7 +29,7 @@
                 Plan
               #plan.slider
               .slider_value
-                = f.text_field :plan, placeholder: "1", class: "slider_input", tabindex: "-1"
+                = f.text_field :plan, value: "1", class: "slider_input", tabindex: "-1"
               .case_block_desc
                 Brief instructions on how to score and comment
               .field
@@ -39,7 +39,7 @@
                 Structure
               #struc.slider
               .slider_value
-              = f.text_field :struc, placeholder: "1", class: "slider_input", tabindex: "-1"
+              = f.text_field :struc, value: "1", class: "slider_input", tabindex: "-1"
               .case_block_desc
                 Brief instructions on how to score and comment  
               .field
@@ -49,7 +49,7 @@
                 Communication
               #comms.slider
               .slider_value
-              = f.text_field :comms, placeholder: "1", class: "slider_input", tabindex: "-1"
+              = f.text_field :comms, value: "1", class: "slider_input", tabindex: "-1"
               .case_block_desc
                 Brief instructions on how to score and comment
               .field
@@ -60,7 +60,7 @@
                 Analytical/Problem Solving
               #analytic.slider
               .slider_value
-              = f.text_field :analytic, placeholder: "1", class: "slider_input", tabindex: "-1"
+              = f.text_field :analytic, value: "1", class: "slider_input", tabindex: "-1"
               .case_block_desc
                 Brief instructions on how to score and comment
               .field
@@ -70,7 +70,7 @@
                 Conclusion/Solution
               #conc.slider
               .slider_value
-              = f.text_field :conc, placeholder: "1", class: "slider_input", tabindex: "-1"
+              = f.text_field :conc, value: "1", class: "slider_input", tabindex: "-1"
               .case_block_desc
                 Brief instructions on how to score and comment
               .field
@@ -97,8 +97,8 @@
       max: 10,
       value: 1,
       slide: function(event, ui) {
-        $("input[name=case\[" + $(this).attr("id") + "\]").val(ui.value);
-        $("input[name=case\[" + $(this).attr("id") + "\]").css( 'color', '#6db9ff' )
+        $("#case_" + $(this).attr("id")).val(ui.value);
+        $("#case_" + $(this).attr("id")).css( 'color', '#6db9ff' )
       }
     });
   });

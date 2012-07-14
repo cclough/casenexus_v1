@@ -9,19 +9,18 @@ class MessagesController < ApplicationController
 
   def create
 
-    # @message = current_user.messages.build(params[:message])
+    @message = Message.new(params[:message])
+    # @case.marker_id = current_user.user_id
 
-    # respond_to do |format|
-    #   if @message.save
-          # UserMailer.message_email(@user).deliver
-    #     # flash[:success] = "Micropost created!"
-    #     format.html { redirect_to @message, notice: 'Notification sent.' }  
-    #     format.js  
-    #   else
-    #     format.html { render action: "new" }  
-    #     format.js  
-    #   end
-    # end
+    if @message.save
+
+      user_target = User.find(@message.user_id)
+      UserMailer.message_email(user_target).deliver
+      flash[:success] = "Message sent!"
+      redirect_to users_path
+    else
+      render 'new'
+    end
   end
 
 end

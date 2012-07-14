@@ -26,15 +26,15 @@ class CasesController < ApplicationController
 	end
 
 	def create
-    @case = Case.new(params[:case])
-    # @case.marker_id = current_user.user_id
+	    @case = Case.new(params[:case])
+	    # @case.marker_id = current_user.user_id
 
-  	if @case.save
-  		flash[:success] = "Feedback sent!"
-  		redirect_to cases_path
-  	else
-  		render 'new'
-  	end
+	  	if @case.save
+	  		flash[:success] = "Feedback sent!"
+	  		redirect_to cases_path
+	  	else
+	  		render 'new'
+	  	end
 	end
 
 end
