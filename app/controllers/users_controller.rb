@@ -22,10 +22,6 @@ class UsersController < ApplicationController
   def roulette
   end
 
-  def list
-    @users = User.paginate(page: params[:page])
-  end
-
   def show
   	@user = User.find(params[:id])
     @message = Message.new
