@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120714144403) do
+ActiveRecord::Schema.define(:version => 20120725195119) do
 
   create_table "cases", :force => true do |t|
     t.integer  "user_id"
@@ -54,17 +54,39 @@ ActiveRecord::Schema.define(:version => 20120714144403) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.string   "password_digest"
     t.string   "remember_token"
-    t.boolean  "admin",           :default => false
+    t.boolean  "admin",            :default => false
     t.string   "country"
     t.string   "city"
     t.float    "lat"
     t.float    "lng"
-    t.boolean  "email_admin",     :default => true
-    t.boolean  "email_users",     :default => true
+    t.boolean  "email_admin",      :default => true
+    t.boolean  "email_users",      :default => true
+    t.string   "skill"
+    t.string   "education1"
+    t.string   "education2"
+    t.string   "education3"
+    t.string   "experience1"
+    t.string   "experience2"
+    t.string   "experience3"
+    t.string   "skype"
+    t.string   "linkedin"
+    t.integer  "num"
+    t.date     "education1_from"
+    t.date     "education1_to"
+    t.date     "education2_from"
+    t.date     "education2_to"
+    t.date     "education3_from"
+    t.date     "education3_to"
+    t.date     "experience1_from"
+    t.date     "experience1_to"
+    t.date     "experience2_from"
+    t.date     "experience2_to"
+    t.date     "experience3_from"
+    t.date     "experience3_to"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

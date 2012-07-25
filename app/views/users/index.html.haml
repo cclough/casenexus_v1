@@ -1,10 +1,5 @@
 - provide(:title, 'Map')
 
-:javascript
-  $(document).ready( function() {
-    load_map;
-  } );
-
 %script(type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false")
 
 %body(onload="load_map();")
@@ -25,6 +20,3 @@
     
   .span3
     #user
-.row
-  .span12
-    / = @usersonline

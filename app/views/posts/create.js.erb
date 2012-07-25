@@ -1,7 +1,9 @@
 $("#post_list").fadeOut('fast', function() {
 
-      $('#post_list').load('/posts', function() {
-           $("#post_list").fadeIn('fast');
-      });
+	$.get('/posts', function(data) {
+	  $("#post_list").html(data);
+	});
 
+	$("#post_list").fadeIn('fast');
+	
 });

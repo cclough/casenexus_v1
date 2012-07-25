@@ -2,11 +2,12 @@
 %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"}
 :javascript
   var socket = io.connect('http://localhost:8080');
+  var block_array = new Array();
 
   // on connection to server, ask for user's name with an anonymous callback
   socket.on('connect', function(){
   	// call the server-side function 'adduser' and send one parameter (value of prompt)
-  	socket.emit('adduser', prompt("What's your name?"));
+  	socket.emit('adduser', '#{current_user.name}');
   });
 
   //listener, whenever the server emits 'updatechat', this updates the chat body
@@ -17,9 +18,30 @@
   // listener, whenever the server emits 'updateusers', this updates the username list
   socket.on('updateusers', function(data) {
   	$('#users').empty();
+
+    var i = 0
+
   	$.each(data, function(key, value) {
-  		$('#users').append('' + key + '<br/>');
+
+      //this function gives -1 if something is not in an array
+      // if (jQuery.inArray(key, block_array) = -1) {
+      //     $('#block_' + j).fadeOut('slow');
+      //     $('#block_' + j).remove();
+      // } else {
+
+      //     block_array.push(key);
+      // }
+
+      //block_array = [];
+
+          $('#users').append('<div id=block_'+i+' class="block_r">' + key + '</div>');
+          $('#block_' + i).fadeIn('slow');
+
+      i++
+
   	});
+
+
   });
 
   //on load of page
@@ -41,11 +63,12 @@
   	});
   });
 
+
 %row
   %span12
-    %div{:style => "overflow:scroll-y;float:left;width:200px;height:200px;"}
+    %div{:style => "overflow:scroll-y;float:left;width:100%;height:200px;"}
       %b USERS
       #users
-    %div{:style => "overflow:scroll-y;height:200px;"}
+    %div{:style => "overflow:scroll-y;height:200px;clear:both;"}
       %b LOG
       #conversation

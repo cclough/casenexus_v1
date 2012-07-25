@@ -27,19 +27,105 @@ namespace :db do
 					 lat: 51.501128232665856,
 					 lng: -0.14241188764572144,
 					 country: "UK",
-					 city: "London")
+					 city: "Cambridge",
+           skill: "Beginner",
+           # education1: "Imperial",
+           # education2: "Oxford",
+           # education3: "Cambridge",
+           # experience1: "MRC-T",
+           # experience2: "WHO",
+           # experience3: "Candesic",
+
+           # experience1_from: "2008",
+           # experience1_to: "2009",
+           # experience2_from: "2009",
+           # experience2_to: "2010",
+           # experience3_from: "2010",
+           # experience3_to: "2011",
+
+           # education1_from: "2005",
+           # education1_to: "2009",
+           # education2_from: "2009",
+           # education2_to: "2010",
+           # education3_from: "2011",
+           # education3_to: "2012",
+
+           skype: "christianclough",
+           linkedin: "christian.clough",
+           num: 25)
 		admin.toggle!(:admin)
-		99.times do |n|
+    admin2 = User.create!(name: "Christian Clough",
+           email: "christian.clough@gmail.com",
+           password: "numbnuts",
+           password_confirmation: "numbnuts",
+           lat: 51.901128232665856,
+           lng: -0.54241188764572144,
+           country: "UK",
+           city: "Oxford",
+           skill: "God-like",
+           # education1: "Imperial",
+           # education2: "Oxford",
+           # education3: "Cambridge",
+           # experience1: "MRC-T",
+           # experience2: "WHO",
+           # experience3: "Candesic",
+
+           # experience1_from: "2008",
+           # experience1_to: "2009",
+           # experience2_from: "2009",
+           # experience2_to: "2010",
+           # experience3_from: "2010",
+           # experience3_to: "2011",
+
+           # education1_from: "2005",
+           # education1_to: "2009",
+           # education2_from: "2009",
+           # education2_to: "2010",
+           # education3_from: "2011",
+           # education3_to: "2012",
+
+           skype: "christianclough",
+           linkedin: "christian.clough",
+           num: 15)
+    admin2.toggle!(:admin)
+		98.times do |n|
 			name = Faker::Name.name
 			email = "test#{n+1}@casenexus.com"
 			password = "password"
 			lat = -90 + rand(180)
 			lng = -180 + rand(360)
-			country = Faker::Address.country
-			city = Faker::Address.city
-			User.create!(name: name, email: email, password: password,
+			country = "US"
+			city = "Boston"
+      skill = "Intermediate"
+      education1 = "Imperial"
+      education2 = "Oxford"
+      education3 = "Cambridge"
+      experience1 = "MRC-T"
+      experience2 = "WHO"
+      experience3 = "Candesic"
+
+      education1_to = "Imperial"
+      education1_from = "Oxford"
+      education2_to = "Cambridge"
+      education2_from = "Cambridge"
+      education3_to = "Cambridge"
+      education3_from = "Cambridge"
+
+      experience1_to = "Imperial"
+      experience1_from = "Oxford"
+      experience2_to = "Cambridge"
+      experience2_from = "Cambridge"
+      experience3_to = "Cambridge"
+      experience3_from = "Cambridge"
+
+      skype = "christianclough"
+      linkedin = "christian.clough"
+      num = 15
+			User.create!(name: name, email: email, 
+               password: password,
 						   password_confirmation: password,
-						   lat: lat, lng: lng, country: country, city: city)
+						   lat: lat, lng: lng, country: country,
+               city: city, skill: skill)
 		end
 
 		User.all.each do |user|
@@ -77,9 +163,6 @@ namespace :db do
                               :content => Faker::Lorem.sentence(5))
       end
     end
-
-
-
 
 	end
 end

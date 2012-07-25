@@ -7,6 +7,10 @@ class UsersController < ApplicationController
   def index
     @post = current_user.posts.build
     @posts = Post.all
+    @countries = User.find(:all, :order => 'country').uniq{|x| x.country}
+    @cities = User.find(:all, :order => 'city').uniq{|x| x.city}
+    @skills = User.find(:all, :order => 'skill').uniq{|x| x.skill}
+
 
     # @notify = ""
     # @usersonline = SessionTracker.new("user", $redis).active_users
@@ -48,6 +52,9 @@ class UsersController < ApplicationController
   end
 
   def edit
+  end
+
+  def extend
   end
 
   def update

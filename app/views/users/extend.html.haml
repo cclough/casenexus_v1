@@ -1,0 +1,24 @@
+- provide(:title, 'Further Info')
+
+%h1 Further Info
+.row
+  .span5
+    = form_for(@user) do |f|
+      = render 'shared/error_messages', object: @user
+
+
+      = f.label :skype
+      = f.text_field :skype
+      = f.label :linkedin
+      = f.text_field :linkedin
+
+      = f.label :skill
+      = f.text_field :skill
+
+      = f.label :num
+      = f.text_field :num
+
+      %br
+      = f.submit "Save changes", class: "btn btn-large btn-primary"
+  .span7
+

@@ -318,3 +318,26 @@ aside {
   margin-top:-7px;
   margin-bottom:5px;
 }
+
+/* roulette */
+
+.block_r {
+
+  width: 125px;
+  height: 75px;
+  margin: 10px;
+  border: 1px solid gray;
+  -moz-box-shadow: 2px 2px 7px #888;
+  -webkit-box-shadow: 2px 2px 7px #888;
+  box-shadow: 2px 2px 7px #888;
+  -moz-border-radius:15px;
+  border-radius: 15px;
+  float:left;
+  display:none;
+  padding-top:50px;
+  text-align: center;
+  &:hover {
+    background-color: $grayLighter;
+  }
+}
+

@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   before_filter :signed_in_user
   
   def index
-    @posts = Post.all
+    @posts = Post.find(params[:country])
+
     respond_to do |format|
       format.html { render :layout => false }
     end  
