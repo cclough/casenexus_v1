@@ -1,12 +1,22 @@
 class PostsController < ApplicationController
-  before_filter :signed_in_user
+  before_filter :signed_in_user, only: [:map, :index, :edit, :update]
+  before_filter :correct_user, only: [:edit, :update]
+  before_filter :admin_user, only: :destroy
+  # include notifications instance var
+  before_filter :show_messages
   
-  def index
-    @posts = Post.find(params[:country])
+  # helper method for post sorting
+  helper_method :sort_column, :sort_direction
 
-    respond_to do |format|
-      format.html { render :layout => false }
-    end  
+  def index
+    # posts = Post.all
+
+    @posts = Post.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page])
+
+
+    # respond_to do |format|
+    #   format.html { render :layout => false }
+    # end  
   end
 
   def create
@@ -23,6 +33,16 @@ class PostsController < ApplicationController
         format.js  
       end
     end
+  end
+
+  private
+  
+  def sort_column
+    Post.column_names.include?(params[:sort]) ? params[:sort] : "user_id"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
 end

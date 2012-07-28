@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120725195119) do
+ActiveRecord::Schema.define(:version => 20120728122914) do
 
   create_table "cases", :force => true do |t|
     t.integer  "user_id"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20120725195119) do
     t.date     "experience2_to"
     t.date     "experience3_from"
     t.date     "experience3_to"
+    t.boolean  "completed",        :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

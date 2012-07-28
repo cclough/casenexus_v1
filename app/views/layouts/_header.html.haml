@@ -14,13 +14,15 @@
               N
               %span.caret
             %ul.dropdown-menu(style="height:300px;width:300px;overflow:auto;")
-              / - if @messages.count > 0
-              /   - @messages.each do |message|
-              /     %li
-              /       = link_to message.user.name, message.user
-              /       = message.content
-              / - else
-              /   %p No messages      
+
+              / Build message list for notifcations icon
+              - if @messages.count > 0
+                - @messages.each do |message|
+                  %li
+                    = link_to message.user.name, message.user
+                    = message.content
+              - else
+                %p No messages      
               %li.divider
               %li
                 = link_to "See all", '/messages'

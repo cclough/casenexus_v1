@@ -2,8 +2,6 @@ namespace :db do
 	desc "Fill database with sample data"
 	task populate: :environment do
 
-
-
     def randomDate(params={})
       years_back = params[:year_range] || 5
       latest_year  = params [:year_latest] || 0
@@ -20,41 +18,7 @@ namespace :db do
       date
     end
 
-		admin = User.create!(name: "Example User",
-					 email: "example@railstutorial.org",
-					 password: "foobar",
-					 password_confirmation: "foobar",
-					 lat: 51.501128232665856,
-					 lng: -0.14241188764572144,
-					 country: "UK",
-					 city: "Cambridge",
-           skill: "Beginner",
-           # education1: "Imperial",
-           # education2: "Oxford",
-           # education3: "Cambridge",
-           # experience1: "MRC-T",
-           # experience2: "WHO",
-           # experience3: "Candesic",
-
-           # experience1_from: "2008",
-           # experience1_to: "2009",
-           # experience2_from: "2009",
-           # experience2_to: "2010",
-           # experience3_from: "2010",
-           # experience3_to: "2011",
-
-           # education1_from: "2005",
-           # education1_to: "2009",
-           # education2_from: "2009",
-           # education2_to: "2010",
-           # education3_from: "2011",
-           # education3_to: "2012",
-
-           skype: "christianclough",
-           linkedin: "christian.clough",
-           num: 25)
-		admin.toggle!(:admin)
-    admin2 = User.create!(name: "Christian Clough",
+    admin = User.create!(name: "Christian Clough",
            email: "christian.clough@gmail.com",
            password: "numbnuts",
            password_confirmation: "numbnuts",
@@ -63,31 +27,34 @@ namespace :db do
            country: "UK",
            city: "Oxford",
            skill: "God-like",
-           # education1: "Imperial",
-           # education2: "Oxford",
-           # education3: "Cambridge",
-           # experience1: "MRC-T",
-           # experience2: "WHO",
-           # experience3: "Candesic",
-
-           # experience1_from: "2008",
-           # experience1_to: "2009",
-           # experience2_from: "2009",
-           # experience2_to: "2010",
-           # experience3_from: "2010",
-           # experience3_to: "2011",
-
-           # education1_from: "2005",
-           # education1_to: "2009",
-           # education2_from: "2009",
-           # education2_to: "2010",
-           # education3_from: "2011",
-           # education3_to: "2012",
 
            skype: "christianclough",
            linkedin: "christian.clough",
-           num: 15)
-    admin2.toggle!(:admin)
+           num: 15,
+
+           education1: "Imperial",
+           education2: "Oxford",
+           education3: "Cambridge",
+           experience1: "MRC-T",
+           experience2: "WHO",
+           experience3: "Candesic",
+
+           education1_from: randomDate(:year_range => 3, :year_latest => 0),
+           education1_to: randomDate(:year_range => 3, :year_latest => 0),
+           education2_from: randomDate(:year_range => 3, :year_latest => 0),
+           education2_to: randomDate(:year_range => 3, :year_latest => 0),
+           education3_from: randomDate(:year_range => 3, :year_latest => 0),
+           education3_to: randomDate(:year_range => 3, :year_latest => 0),
+
+           experience1_from: randomDate(:year_range => 3, :year_latest => 0),
+           experience1_to: randomDate(:year_range => 3, :year_latest => 0),
+           experience2_from: randomDate(:year_range => 3, :year_latest => 0),
+           experience2_to: randomDate(:year_range => 3, :year_latest => 0),
+           experience3_from: randomDate(:year_range => 3, :year_latest => 0),
+           experience3_to: randomDate(:year_range => 3, :year_latest => 0))
+
+    admin.toggle!(:admin)
+
 		98.times do |n|
 			name = Faker::Name.name
 			email = "test#{n+1}@casenexus.com"
@@ -97,6 +64,11 @@ namespace :db do
 			country = "US"
 			city = "Boston"
       skill = "Intermediate"
+
+      skype = "christianclough"
+      linkedin = "christian.clough"
+      num = 15
+
       education1 = "Imperial"
       education2 = "Oxford"
       education3 = "Cambridge"
@@ -104,28 +76,36 @@ namespace :db do
       experience2 = "WHO"
       experience3 = "Candesic"
 
-      education1_to = "Imperial"
-      education1_from = "Oxford"
-      education2_to = "Cambridge"
-      education2_from = "Cambridge"
-      education3_to = "Cambridge"
-      education3_from = "Cambridge"
+      education1_to = randomDate(:year_range => 3, :year_latest => 0)
+      education1_from = randomDate(:year_range => 3, :year_latest => 0)
+      education2_to = randomDate(:year_range => 3, :year_latest => 0)
+      education2_from = randomDate(:year_range => 3, :year_latest => 0)
+      education3_to = randomDate(:year_range => 3, :year_latest => 0)
+      education3_from = randomDate(:year_range => 3, :year_latest => 0)
 
-      experience1_to = "Imperial"
-      experience1_from = "Oxford"
-      experience2_to = "Cambridge"
-      experience2_from = "Cambridge"
-      experience3_to = "Cambridge"
-      experience3_from = "Cambridge"
-
-      skype = "christianclough"
-      linkedin = "christian.clough"
-      num = 15
+      experience1_to = randomDate(:year_range => 3, :year_latest => 0)
+      experience1_from = randomDate(:year_range => 3, :year_latest => 0)
+      experience2_to = randomDate(:year_range => 3, :year_latest => 0)
+      experience2_from = randomDate(:year_range => 3, :year_latest => 0)
+      experience3_to = randomDate(:year_range => 3, :year_latest => 0)
+      experience3_from = randomDate(:year_range => 3, :year_latest => 0)
 			User.create!(name: name, email: email, 
                password: password,
 						   password_confirmation: password,
 						   lat: lat, lng: lng, country: country,
-               city: city, skill: skill)
+               city: city, skill: skill, 
+               skype: skype, linkedin: linkedin, num: num,
+               education1: education1, education2: education2,
+               education3: education3, experience1: experience1,
+               experience2: experience2, experience3: experience3,
+               education1_from: education1_from, education1_to: education1_to,
+               education2_from: education2_from, education2_to: education2_to,
+               education3_from: education3_from, education3_to: education3_to,
+               experience1_from: education1_from, experience1_to: education1_to,
+               experience2_from: education2_from, experience2_to: education2_to,
+               experience3_from: education3_from, experience3_to: education3_to,
+               )
+
 		end
 
 		User.all.each do |user|

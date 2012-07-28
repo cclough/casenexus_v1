@@ -17,7 +17,7 @@
         - n = 0
         - @countries.each do |country|
 
-          %li(onclick="getposts();")
+          %li.filter_item(onclick="getposts();")
             = link_to country.country, "#"
 
           - n = n + 1

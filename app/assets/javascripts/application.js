@@ -16,3 +16,28 @@
 //= require jquery.ui.all
 //= require bootstrap
 //= require_tree .
+
+$(function() {
+	$("#posts th a, #posts .pagination a").live("click", function() {
+		$.getScript(this.href);
+		return false;
+	});
+
+	// $("#posts_search").submit(function() {
+	// 	$.get(this.action, $(this).serialize(), null, "script");
+	// 	return false;
+
+	// });
+
+	$("#posts_search input").keyup(function() {
+		$.get($("#posts_search").attr("action"), $("#posts_search").serialize(), null, "script");
+		return false;
+	});
+
+	$("#post_filter li.filter_item").mouseover(function() {
+		$.get($("#posts_search").attr("action"), $("#posts_search").serialize(), null, "script");
+		return false;
+	});
+
+});
+

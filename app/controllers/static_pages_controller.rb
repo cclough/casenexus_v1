@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+    before_filter :show_messages
+
   def home
  	if signed_in?
 		redirect_to users_path
