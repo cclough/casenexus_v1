@@ -26,7 +26,11 @@ $(function() {
 	// $("#posts_search").submit(function() {
 	// 	$.get(this.action, $(this).serialize(), null, "script");
 	// 	return false;
+	// });
 
+	// $("#posts_search").submit(function() {
+	// 	$.get(this.action, $(this).serialize(), null, "script");
+	// 	return false;
 	// });
 
 	$("#posts_search input").keyup(function() {
@@ -34,10 +38,10 @@ $(function() {
 		return false;
 	});
 
-	$("#post_filter li.filter_item").mouseover(function() {
-		$.get($("#posts_search").attr("action"), $("#posts_search").serialize(), null, "script");
-		return false;
-	});
+	// $("#post_filter li.filter_item").mouseover(function() {
+	// 	$.get($("#posts_search").attr("action"), $("#posts_search").serialize(), null, "script");
+	// 	return false;
+	// });
 
 });
 

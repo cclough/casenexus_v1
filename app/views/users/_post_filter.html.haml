@@ -8,19 +8,30 @@
 %ul.filter
 
   %li
+    / = collection_select(:search, :search, @countries, :country, :country, {:prompt => true})
+    / .control-group
+    /   %label.control-label{:for => "filter_country"} Country
+    /   .controls
+    /     %select#filter_country
+
+    /       - @countries.each do |country|
+
+    /         %option
+    /           = country.country
+
+
+  %li
     .btn-group
       %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
         Country
         %span.caret
       %ul.dropdown-menu
 
-        - n = 0
         - @countries.each do |country|
 
           %li.filter_item(onclick="getposts();")
             = link_to country.country, "#"
 
-          - n = n + 1
   %li
     .btn-group
       %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
@@ -28,13 +39,11 @@
         %span.caret
       %ul.dropdown-menu
 
-        - n = 0
         - @cities.each do |city|
 
           %li{onclick: "getposts();"}
             = link_to city.city, "#"
 
-          - n = n + 1
   %li
     .btn-group
       %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
@@ -42,10 +51,7 @@
         %span.caret
       %ul.dropdown-menu
 
-        - n = 0
         - @skills.each do |skill|
 
           %li{onclick: "getposts();"}
             = link_to skill.skill, "#"
-
-          - n = n + 1

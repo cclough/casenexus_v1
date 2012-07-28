@@ -1,12 +1,12 @@
 = hidden_field_tag :direction, params[:direction]
 = hidden_field_tag :sort, params[:sort]
-%table.pretty
+%table.posts
   %tr
     %th= sortable "user_id"
     %th= sortable "content"
   - for post in @posts
-    %tr
-      %td.price= post.user_id
+    %tr{onclick: "google.maps.event.trigger(markerArray[" + post.user_id.to_s + "],'click');"}
+      %td= post.user_id
       %td= post.content
 
 = will_paginate @posts

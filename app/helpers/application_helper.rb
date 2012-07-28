@@ -10,8 +10,6 @@ module ApplicationHelper
 		end
 	end
 
-
-
 	# for post list sorting
 	def sortable(column, title = nil)
  		title ||= column.titleize

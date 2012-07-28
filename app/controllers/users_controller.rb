@@ -11,25 +11,23 @@ class UsersController < ApplicationController
 
   def index
 
-    #vars for post list and new post
+    # for new post
     @post = current_user.posts.build
-    # @posts = Post.all
- 
 
+    # load posts for post list; includes sort function
     @posts = Post.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page])
 
-   
     # populate post filter drop downs
     @countries = User.find(:all, :order => 'country').uniq{|x| x.country}
     @cities = User.find(:all, :order => 'city').uniq{|x| x.city}
     @skills = User.find(:all, :order => 'skill').uniq{|x| x.skill}
 
-    #map marker array
-    @markers = User.all
-
+    # load json of map markers, including only user id, lat & lng
     respond_to do |format|
       format.html
-      format.json { render json: @markers } #need to make this so only lat and lng are included!
+      format.json { render json: User.all.map {|m|
+                  { :id => m.id, :lat => m.lat, :lng => m.lng } }}
+
     end
 
   end
@@ -37,6 +35,7 @@ class UsersController < ApplicationController
   def roulette
   end
 
+  # user profile on map page
   def show
   	@user = User.find(params[:id])
     @message = Message.new
@@ -46,11 +45,13 @@ class UsersController < ApplicationController
       format.html { render :layout => false }
      end  
   end
-  
+
+  # load registration view  
   def new
     @user = User.new
   end
 
+  # create user in model
   def create
     @user = User.new(params[:user])
   	if @user.save
@@ -66,12 +67,11 @@ class UsersController < ApplicationController
   	end
   end
 
+  # load edit profile view
   def edit
   end
 
-  def extend
-  end
-
+  # change details in model
   def update
     if @user.update_attributes(params[:user])
       sign_in @user
@@ -82,6 +82,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # delete user
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User destroyed"
@@ -90,6 +91,7 @@ class UsersController < ApplicationController
 
   private
 
+  # standard signed_in user check
   def signed_in_user
     unless signed_in?
       store_location
@@ -97,11 +99,13 @@ class UsersController < ApplicationController
     end
   end
 
+  # check correct_user to make sure users can't access other's info
   def correct_user
     @user = User.find(params[:id])
     redirect_to root_path unless current_user?(@user)
   end
 
+  # check if admin user for admin function (e.g. delete posts; not used currently)
   def admin_user
     redirect_to root_path unless current_user.admin?
   end

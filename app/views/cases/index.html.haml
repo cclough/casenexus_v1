@@ -4,7 +4,7 @@
     = render 'nav'
 
   .span9
-    %ol.posts
+    %ol.cases
       - if @cases.count > 0
         - @cases.each do |c|
           /<a href="<%= "/cases/" + c.id.to_s %>><%= c.subject =></a>

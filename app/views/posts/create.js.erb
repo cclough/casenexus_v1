@@ -1,9 +1,11 @@
-$("#post_list").fadeOut('fast', function() {
+$("#posts").fadeOut('fast', function() {
 
 	$.get('/posts', function(data) {
-	  $("#post_list").html(data);
+	  $("#posts").html(data);
 	});
 
-	$("#post_list").fadeIn('fast');
+	$("#posts").fadeIn('fast');
 	
 });
+
+// $("#posts").html("<%= escape_javascript(render("posts")) %>")
