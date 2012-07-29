@@ -31,8 +31,9 @@ function load_map() {
 	//} else {
 	    lat_start = 51.501128232665856;
 	    lng_start = -0.14241188764572144;
-	    // lat_start = ' current_user.lat ';
-	    // lng_start = ' current_user.lng ';
+	    // apply rails < percent equals brackets below to work
+	    // lat_start = 'current_user.lat';
+	    // lng_start = 'current_user.lng';
 	//}
 
   	var mapOptions = {
@@ -108,10 +109,10 @@ function bindInfo(marker, map, uid) {
 
 function showInSidePanel(uid) {
 
-  $("#user").fadeOut('fast', function() {
+  $("#mappanel_user").fadeOut('slow', function() {
 
         $('#user').load('/users/' + uid, function() {
-             $("#user").fadeIn('fast');
+             $("#mappanel_user").fadeIn('slow');
         });
 
   });

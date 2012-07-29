@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   def index
     # posts = Post.all
 
-    @posts = Post.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page])
+    @posts = Post.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 20, :page => params[:page])
 
 
     # respond_to do |format|

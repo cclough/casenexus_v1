@@ -18,28 +18,27 @@
 //= require_tree .
 
 $(function() {
+
+	// ajax pagination
 	$("#posts th a, #posts .pagination a").live("click", function() {
 		$.getScript(this.href);
 		return false;
 	});
 
-	// $("#posts_search").submit(function() {
-	// 	$.get(this.action, $(this).serialize(), null, "script");
-	// 	return false;
-	// });
+	// initial post load
+	$.get($("#posts_search").attr("action"), $("#posts_search").serialize(), null, "script");
 
-	// $("#posts_search").submit(function() {
-	// 	$.get(this.action, $(this).serialize(), null, "script");
-	// 	return false;
-	// });
-
+	// RAILS CASTS RECOMMENDS USING 'LIVE SEARCH GEM'
 	$("#posts_search input").keyup(function() {
 		$.get($("#posts_search").attr("action"), $("#posts_search").serialize(), null, "script");
 		return false;
 	});
 
-	// $("#post_filter li.filter_item").mouseover(function() {
-	// 	$.get($("#posts_search").attr("action"), $("#posts_search").serialize(), null, "script");
+
+
+	// ajax load posts on click submit button
+	// $("#posts_search").submit(function() {
+	// 	$.get(this.action, $(this).serialize(), null, "script");
 	// 	return false;
 	// });
 

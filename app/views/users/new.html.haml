@@ -33,7 +33,7 @@
       %br
       = f.submit "Create my account", class: "btn btn-large btn-primary"
   .span7
-    #map.map{:style => "height:450px; width:100%"}
+    #map_new.map{:style => "height:450px; width:100%"}
 
 
 %script{:src => "//maps.googleapis.com/maps/api/js?sensor=false", :type => "text/javascript"}
@@ -58,7 +58,7 @@
   function load_geocode() {
   
     var latLng = new google.maps.LatLng(51,0);
-    var map = new google.maps.Map(document.getElementById('map'), {
+    var map = new google.maps.Map(document.getElementById('map_new'), {
       zoom: 12,
       center: latLng,
       mapTypeId: google.maps.MapTypeId.ROADMAP,

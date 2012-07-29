@@ -3,9 +3,10 @@
 %body(onload="load_geocode();")
 
 %h1 Update your profile
-.row
-  .span5
-    = form_for(@user) do |f|
+= form_for(@user) do |f|
+  .row
+    .span4
+
       = render 'shared/error_messages', object: @user
       = f.label :name
       = f.text_field :name
@@ -33,13 +34,82 @@
 
       %br
       = f.submit "Save changes", class: "btn btn-large btn-primary"
-    - gravatar_for @user
-    %a{:href => "http://gravatar.com/emails", :target => "_blank"} change
-  .span7
-    #map.map{:style => "height:450px; width:100%"}
+
+      - gravatar_for @user
+      %a{:href => "http://gravatar.com/emails", :target => "_blank"} change
+    .span4
+      #map_edit.map{:style => "height:450px; width:100%"}
+
+    .span4
+      .row
+        .span2
+          Education
+        .span1
+          From
+        .span1
+          To
+      .row
+        .span2
+          = f.text_field :education1, placeholder: "Education 1"
+        .span1
+          = f.text_field :education1_from, placeholder: "Education 1", class: "datepicker"
+        .span1
+          = f.text_field :education1_to, placeholder: "Education 1", class: "datepicker"
+      .row 
+        .span2
+          = f.text_field :education2, placeholder: "Education 2"
+        .span1
+          = f.text_field :education2_from, placeholder: "Education 2", class: "datepicker"
+        .span1
+          = f.text_field :education2_to, placeholder: "Education 2", class: "datepicker"
+      .row
+        .span2
+          = f.text_field :education3, placeholder: "Education 3"
+        .span1
+          = f.text_field :education3_from, placeholder: "Education 3", class: "datepicker"
+        .span1
+          = f.text_field :education3_to, placeholder: "Education 3", class: "datepicker"
+      .row
+        .span2
+          Professional Experience
+        .span1
+          From
+        .span1
+          To
+      .row
+        .span2
+          = f.text_field :experience1, placeholder: "experience 1"
+        .span1
+          = f.text_field :experience1_from, placeholder: "experience 1", class: "datepicker"
+        .span1
+          = f.text_field :experience1_to, placeholder: "experience 1", class: "datepicker"
+      .row 
+        .span2
+          = f.text_field :experience2, placeholder: "experience 2"
+        .span1
+          = f.text_field :experience2_from, placeholder: "experience 2", class: "datepicker"
+        .span1
+          = f.text_field :experience2_to, placeholder: "experience 2", class: "datepicker"
+      .row
+        .span2
+          = f.text_field :experience3, placeholder: "experience 3"
+        .span1
+          = f.text_field :experience3_from, placeholder: "experience 3", class: "datepicker"
+        .span1
+          = f.text_field :experience3_to, placeholder: "experience 3", class: "datepicker"
+
+      = f.label :skype
+      = f.text_field :skype
+      = f.label :linkedin
+      = f.text_field :linkedin
+
+      = f.label :skill
+      = f.text_field :skill
+      = f.label :num
+      = f.text_field :num
+
 
 %script{:src => "//maps.googleapis.com/maps/api/js?sensor=false", :type => "text/javascript"}
-
 
 
 :javascript
@@ -60,7 +130,7 @@
   function load_geocode() {
   
     var latLng = new google.maps.LatLng("#{@user.lat}",#{@user.lng});
-    var map = new google.maps.Map(document.getElementById('map'), {
+    var map = new google.maps.Map(document.getElementById('map_edit'), {
       zoom: 12,
       center: latLng,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -95,3 +165,7 @@
   function updateMarkerAddress(str) {
     document.getElementById('loc').value = str;
   }
+
+  $(function() {
+    $(".datepicker").datepicker();
+  });

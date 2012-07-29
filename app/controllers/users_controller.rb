@@ -14,9 +14,6 @@ class UsersController < ApplicationController
     # for new post
     @post = current_user.posts.build
 
-    # load posts for post list; includes sort function
-    @posts = Post.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page])
-
     # populate post filter drop downs
     @countries = User.find(:all, :order => 'country').uniq{|x| x.country}
     @cities = User.find(:all, :order => 'city').uniq{|x| x.city}

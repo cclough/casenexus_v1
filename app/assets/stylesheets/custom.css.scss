@@ -18,9 +18,9 @@ body {
 section {
   overflow: auto;
 }
-textarea {
-  resize: vertical;
-}
+// textarea {
+//   resize: vertical;
+// }
 
 .center {
   text-align: center;
@@ -105,6 +105,17 @@ footer {
   @include box_sizing;
 }
 
+#flash_application {
+
+  position: absolute;
+  top: 50px;
+  margin-left:20%;
+  margin-right:20%;
+  width:60%;
+  z-index:200;
+
+}
+
 
 /* maps */
 
@@ -115,33 +126,31 @@ footer {
 
 #map {
   position:absolute;
-  left:0px;
-  top:40px;
-  z-index:0;
-  width:100%;
-  height:100%;
+  left: 0px;
+  top: 40px;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .mappanel {
   position:absolute;
-  background-color:white;
-  padding:20px;
-  margin:20px;
-  z-index:20;
+  background-color: white;
+  padding: 20px;
+  z-index: 1;
 }
 
 #mappanel_posts {
-
   left:100px;
-  top:40px;
+  top:100px;
   width:300px;
-
 }
 
 #mappanel_user {
-  right:0px;
-  top:40px;
+  right:30px;
+  top:100px;
   width:200px;
+  display:none;
 }
 
 /* sidebar */
@@ -251,6 +260,10 @@ input, textarea, select, .uneditable-input {
   }
 }
 
+#posts{
+  overflow:auto;
+  height:300px;
+}
 table.posts {
   border-collapse: collapse;
 }
