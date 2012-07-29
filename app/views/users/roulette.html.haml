@@ -1,7 +1,7 @@
-%script{:src => "http://localhost:8080/socket.io/socket.io.js"}
+%script{:src => "https://radiant-shore-5325.herokuapp.com:8080/socket.io/socket.io.js"}
 %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"}
 :javascript
-  var socket = io.connect('http://localhost:8080');
+  var socket = io.connect('https://radiant-shore-5325.herokuapp.com:8080');
   var block_array = new Array();
 
   // on connection to server, ask for user's name with an anonymous callback
