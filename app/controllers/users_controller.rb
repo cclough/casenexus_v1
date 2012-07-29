@@ -6,9 +6,6 @@ class UsersController < ApplicationController
   # include notifications instance var
   before_filter :show_messages
 
-  # helper method for post sorting
-  helper_method :sort_column, :sort_direction
-
   def index
 
     # for new post
@@ -107,12 +104,4 @@ class UsersController < ApplicationController
     redirect_to root_path unless current_user.admin?
   end
 
-  # post sorting param grabbers
-  def sort_column
-    Post.column_names.include?(params[:sort]) ? params[:sort] : "user_id"
-  end
-  
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-  end
 end
