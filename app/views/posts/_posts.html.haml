@@ -2,10 +2,12 @@
 = hidden_field_tag :sort, params[:sort]
 %table.posts
   %tr
+    %th= sortable "created_at"
     %th= sortable "user_id"
     %th= sortable "content"
   - for post in @posts
     %tr{onclick: "google.maps.event.trigger(markerArray[" + post.user_id.to_s + "],'click');"}
+      %td= post.created_at.strftime("%Y-%m-%d %H:%M")
       %td= post.user_id
       %td= post.content
 

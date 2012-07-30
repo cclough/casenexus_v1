@@ -25,7 +25,7 @@ $(function() {
 		return false;
 	});
 
-	// initial post load
+	// initial post load NEED TO REPLACE THIS WITH CLEANER ACTION?
 	$.get($("#posts_search").attr("action"), $("#posts_search").serialize(), null, "script");
 
 	// RAILS CASTS RECOMMENDS USING 'LIVE SEARCH GEM'
@@ -33,8 +33,6 @@ $(function() {
 		$.get($("#posts_search").attr("action"), $("#posts_search").serialize(), null, "script");
 		return false;
 	});
-
-
 
 	// ajax load posts on click submit button
 	// $("#posts_search").submit(function() {

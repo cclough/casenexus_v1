@@ -1,11 +1,2 @@
-$("#posts").fadeOut('fast', function() {
-
-	$.get('/posts', function(data) {
-	  $("#posts").html(data);
-	});
-
-	$("#posts").fadeIn('fast');
-	
-});
-
-// $("#posts").html("<%= escape_javascript(render("posts")) %>")
+// refresh posts - NEED TO REPLACE THIS WITH CLEANER ACTION?
+$.get($("#posts_search").attr("action"), $("#posts_search").serialize(), null, "script");

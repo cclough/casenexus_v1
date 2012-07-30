@@ -18,6 +18,9 @@ io.configure(function () {
 });
 
 
+
+
+
 io.sockets.on('connection', function (socket) {
 
 	// when the client emits 'sendchat', this listens and executes
