@@ -18,13 +18,12 @@
                 / Build message list for notifcations icon
                 - if @messages_nav.count > 0
                   - @messages_nav.each do |message_nav|
-                    %li
-                      %a{:href => message_nav.user,
-                         :style => "width:300px;word-wrap: break-word;"}
-                        = message_nav.user.name
-                        %br
-                        = message_nav.content
-                      / = link_to message.user.name + message.content, 
+                    %a{:href => message_nav.user,
+                       :style => "width:300px;word-wrap: break-word;"}
+                      = message_nav.user.name
+                      %br
+                      = message_nav.content
+                    / = link_to message.user.name + message.content, 
                        
                 - else
                   %p No messages      

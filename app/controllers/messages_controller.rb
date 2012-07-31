@@ -8,12 +8,18 @@ class MessagesController < ApplicationController
 
 
 	def index
+
+    #  get this to sort descending and paginate? 
 		@messages = current_user.messages.all
+    # .order('created_at desc').paginate(:per_page => 10, :page => params[:page])
+
+
 	end
 
   def create
 
     @message = Message.new(params[:message])
+    # encode current user_id
     # @case.marker_id = current_user.user_id
 
     if @message.save
