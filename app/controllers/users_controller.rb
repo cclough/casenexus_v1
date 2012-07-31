@@ -27,6 +27,7 @@ class UsersController < ApplicationController
   end
 
   def roulette
+    # @online = 
   end
 
   # user profile on map page

@@ -72,3 +72,7 @@
     %div{:style => "overflow:scroll-y;height:200px;clear:both;"}
       %b LOG
       #conversation
+
+%row
+  %span12
+    = SessionTracker.new("user", $redis).active_users_data(3, Time.now)
