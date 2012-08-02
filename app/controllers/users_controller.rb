@@ -21,13 +21,8 @@ class UsersController < ApplicationController
       format.html
       format.json { render json: User.all.map {|m|
                   { :id => m.id, :lat => m.lat, :lng => m.lng } }}
-
     end
 
-  end
-
-  def roulette
-    # @online = 
   end
 
   # user profile on map page
@@ -64,6 +59,18 @@ class UsersController < ApplicationController
 
   # load edit profile view
   def edit
+
+    # remind that skype username is required to use the roulette
+    if current_user.skype.blank?
+      flash.now[:notice] = "To use the roulette your must enter your skype username"
+    end
+
+    # check if profile is complete according to compeleted boolean 
+    # (STILL NEED TO DECIDE ON BEST WAY TO DO THIS)
+    if current_user.completed?
+      flash.now[:notice] = "Complete the rest of your profile"
+    end
+
   end
 
   # change details in model

@@ -176,10 +176,7 @@ aside {
   }
 }
 
-.gravatar {
-  float:left;
-  margin-right: 10px;
-}
+
 
 /* forms */
 
@@ -238,10 +235,6 @@ input, textarea, select, .uneditable-input {
 // }
 // .timestamp {
 //   color: $grayLight;
-// }
-// .gravatar {
-//   float: left;
-//   margin-right: 10px;
 // }
 // aside {
 //   textarea {
@@ -396,24 +389,38 @@ table.posts {
 
 /* roulette */
 
-.block_r {
+.r_block {
 
-  width: 125px;
-  height: 75px;
+  width: 250px;
+  height: 250px;
   margin: 10px;
   border: 1px solid gray;
+  float: left;
+  &:hover {
+    background-color: $grayLighter;
+  }
   -moz-box-shadow: 2px 2px 7px #888;
   -webkit-box-shadow: 2px 2px 7px #888;
   box-shadow: 2px 2px 7px #888;
   -moz-border-radius:15px;
   border-radius: 15px;
-  float:left;
-  display:none;
-  padding-top:50px;
-  text-align: center;
-  &:hover {
-    background-color: $grayLighter;
-  }
+
+}
+
+
+
+.r_grid {
+  list-style-type: none;
+}
+
+.r_user {
+  border: 0px solid black;
+  width: 100%;
+  list-style-type: none;
+  position:relative;
+  margin:0px;
+  top:30px;
+  margin:10px;
 }
 
 

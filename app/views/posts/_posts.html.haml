@@ -1,12 +1,19 @@
+
+/ ensure direction and sort order persists
 = hidden_field_tag :direction, params[:direction]
 = hidden_field_tag :sort, params[:sort]
 
 %table.posts
   %tr
     %th(style="width:60px;")
+      / column heading - click to sort
       / = sortable "Sort by Date"
     %th
+
+  / loop through posts
   - for post in @posts
+
+    / make entire row trigger marker click
     %tr{onclick: "google.maps.event.trigger(markerArray[" + post.user_id.to_s + "],'click');"}
       %td= post.created_at.strftime("%m/%d/%Y")
       %td

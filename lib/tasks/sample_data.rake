@@ -55,6 +55,43 @@ namespace :db do
 
     admin.toggle!(:admin)
 
+    admin2 = User.create!(name: "Robin Clough",
+           email: "robin.clough@gmail.com",
+           password: "numbnuts",
+           password_confirmation: "numbnuts",
+           lat: 51.201128232665856,
+           lng: -0.54241188764572144,
+           country: "UK",
+           city: "Oxford",
+           skill: "God-like",
+
+           skype: "robinclough",
+           linkedin: "robin.clough",
+           num: 15,
+
+           education1: "Imperial",
+           education2: "Oxford",
+           education3: "Cambridge",
+           experience1: "MRC-T",
+           experience2: "WHO",
+           experience3: "Candesic",
+
+           education1_from: randomDate(:year_range => 3, :year_latest => 0),
+           education1_to: randomDate(:year_range => 3, :year_latest => 0),
+           education2_from: randomDate(:year_range => 3, :year_latest => 0),
+           education2_to: randomDate(:year_range => 3, :year_latest => 0),
+           education3_from: randomDate(:year_range => 3, :year_latest => 0),
+           education3_to: randomDate(:year_range => 3, :year_latest => 0),
+
+           experience1_from: randomDate(:year_range => 3, :year_latest => 0),
+           experience1_to: randomDate(:year_range => 3, :year_latest => 0),
+           experience2_from: randomDate(:year_range => 3, :year_latest => 0),
+           experience2_to: randomDate(:year_range => 3, :year_latest => 0),
+           experience3_from: randomDate(:year_range => 3, :year_latest => 0),
+           experience3_to: randomDate(:year_range => 3, :year_latest => 0))
+
+    admin2.toggle!(:admin)
+
 		98.times do |n|
 			name = Faker::Name.name
 			email = "test#{n+1}@casenexus.com"

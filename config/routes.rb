@@ -1,13 +1,12 @@
-SampleApp::Application.routes.draw do
+Casenexus::Application.routes.draw do
   resources :users
   resources :posts
   resources :cases
   resources :messages
   resources :sessions, only: [:new, :create, :destroy]
+  resources :roulette, only: [:index]
   
   root to: 'static_pages#home'
-
-  match '/roulette', to: 'users#roulette'
 
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'
