@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
 	# to load messages through session
 	def show_messages
-		@messages_nav = Message.all(:limit => 5) 
+		@messages_nav = Message.all(:limit => 5)
 		# .order('created_at desc')
 	end
 

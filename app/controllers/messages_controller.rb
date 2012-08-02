@@ -13,8 +13,14 @@ class MessagesController < ApplicationController
 		@messages = current_user.messages.all
     # .order('created_at desc').paginate(:per_page => 10, :page => params[:page])
 
-
 	end
+
+  def show
+    @message = Message.find(params[:id])
+
+    # get sender name from sender_id field
+    @message_sender = User.find_by_id(@message.sender_id)
+  end
 
   def create
 
