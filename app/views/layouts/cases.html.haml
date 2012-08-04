@@ -1,0 +1,16 @@
+= content_for :content do
+  .row
+    %aside.span3
+      %ul.case_nav
+        %li
+          = link_to "Analysis", "/analysis"
+        %li
+          = link_to "Send feedback", "/cases/new"
+        %li
+          = link_to "Request feedback", "/request"
+        %li
+          = link_to "Cases", "/cases"
+    .span9
+      = yield
+
+= render :template => 'layouts/application'

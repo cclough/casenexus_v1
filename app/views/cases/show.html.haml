@@ -1,96 +1,91 @@
 - provide(:title, 'Case')
 
+%h1 A Case you did...
+.row(style="margin-bottom:15px;")
+  .span4
+
+    .row
+      .span2
+        %p
+          Marker id:
+      .span2
+        = @case.marker_id
+    .row
+      .span2
+        %p
+          Date:
+      .span2
+        = @case.date
+    .row
+      .span2
+        %p
+          Subject:
+      .span2
+        = @case.subject
+    .row
+      .span2
+        %p
+          Source:
+      .span2
+        = @case.source
+    .row
+      .span2
+        %p
+          Submitted:
+      .span2
+        = @case.created_at
+
+  .span5
+    #chartdiv{:style => "width: 100%; height: 250px;"}
+
 .row
-  %aside.span3
-    = render 'nav'
-
-  .span9
-    %h1 A Case you did...
-    .row(style="margin-bottom:15px;")
-      .span4
-
-        .row
-          .span2
-            %p
-              Marker id:
-          .span2
-            = @case.marker_id
-        .row
-          .span2
-            %p
-              Date:
-          .span2
-            = @case.date
-        .row
-          .span2
-            %p
-              Subject:
-          .span2
-            = @case.subject
-        .row
-          .span2
-            %p
-              Source:
-          .span2
-            = @case.source
-        .row
-          .span2
-            %p
-              Submitted:
-          .span2
-            = @case.created_at
-
-      .span5
-        #chartdiv{:style => "width: 100%; height: 250px;"}
-
-    .row
-      .span4
-        .case_block_title
-          Plan
-        .case_score
-          = @case.plan
-        .case_comment
-          = @case.plan_s
-      .span5
-        .case_block_title
-          Analytical/Problem-solving      
-        .case_score
-          = @case.analytic
-        .case_comment
-          = @case.analytic_s
-    .row
-      .span4      
-        .case_block_title
-          Structure
-        .case_score
-          = @case.struc
-        .case_comment
-          = @case.struc_s
-      .span5
-        .case_block_title
-          Conclusion/Solution       
-        .case_score
-          = @case.conc
-        .case_comment
-          = @case.conc_s
-    .row
-      .span4
-        .case_block_title
-          Communication/Presentation       
-        .case_score
-          = @case.comms
-        .case_comment
-          = @case.comms_s
-      .span5
-        .case_block_title
-          Further Comment  
-        .case_comment
-          = @case.comment
-    .row
-      .span4
-        .case_comment
-          = image_tag('art/paper.jpg')
-          = @case.notes
+  .span4
+    .case_block_title
+      Plan
+    .case_score
+      = @case.plan
+    .case_comment
+      = @case.plan_s
+  .span5
+    .case_block_title
+      Analytical/Problem-solving      
+    .case_score
+      = @case.analytic
+    .case_comment
+      = @case.analytic_s
+.row
+  .span4      
+    .case_block_title
+      Structure
+    .case_score
+      = @case.struc
+    .case_comment
+      = @case.struc_s
+  .span5
+    .case_block_title
+      Conclusion/Solution       
+    .case_score
+      = @case.conc
+    .case_comment
+      = @case.conc_s
+.row
+  .span4
+    .case_block_title
+      Communication/Presentation       
+    .case_score
+      = @case.comms
+    .case_comment
+      = @case.comms_s
+  .span5
+    .case_block_title
+      Further Comment  
+    .case_comment
+      = @case.comment
+.row
+  .span4
+    .case_comment
+      = image_tag('art/paper.jpg')
+      = @case.notes
 
 
 
@@ -99,36 +94,34 @@
   var chart;
 
   var chartData = #{@chart_data};
- 
+
   AmCharts.ready(function () {
-    // RADAR CHART
-    chart = new AmCharts.AmRadarChart();
-    chart.dataProvider = chartData;
-    chart.categoryField = "criteria";
-    chart.startDuration = 0;
+  // RADAR CHART
+  chart = new AmCharts.AmRadarChart();
+  chart.dataProvider = chartData;
+  chart.categoryField = "criteria";
+  chart.startDuration = 0;
 
-    // VALUE AXIS
-    var valueAxis = new AmCharts.ValueAxis();
-    valueAxis.gridType = "circles";
-    valueAxis.fillAlpha = 0.05;
-    valueAxis.fillColor = "#000000"
-    valueAxis.axisAlpha = 0.2;
-    valueAxis.gridAlpha = 0;
-    valueAxis.fontWeight = "bold"
-    valueAxis.minimum = 0;
-    chart.addValueAxis(valueAxis);
+  // VALUE AXIS
+  var valueAxis = new AmCharts.ValueAxis();
+  valueAxis.gridType = "circles";
+  valueAxis.fillAlpha = 0.05;
+  valueAxis.fillColor = "#000000"
+  valueAxis.axisAlpha = 0.2;
+  valueAxis.gridAlpha = 0;
+  valueAxis.fontWeight = "bold"
+  valueAxis.minimum = 0;
+  chart.addValueAxis(valueAxis);
 
-    // GRAPH
-    var graph = new AmCharts.AmGraph();
-    graph.lineColor = "#98cdff"
-    graph.fillAlphas = 0.4;
-    graph.bullet = "round"
-    graph.valueField = "score"
-    graph.balloonText = "[[category]]: [[value]] m/s"
-    chart.addGraph(graph);
+  // GRAPH
+  var graph = new AmCharts.AmGraph();
+  graph.lineColor = "#98cdff"
+  graph.fillAlphas = 0.4;
+  graph.bullet = "round"
+  graph.valueField = "score"
+  graph.balloonText = "[[category]]: [[value]] m/s"
+  chart.addGraph(graph);
 
-    // WRITE
-    chart.write("chartdiv");
+  // WRITE
+  chart.write("chartdiv");
   });
-
-

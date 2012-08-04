@@ -6,6 +6,7 @@ class CasesController < ApplicationController
   before_filter :show_messages
 
 	def index
+
 		@cases = Case.all
 	end
 

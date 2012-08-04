@@ -1,4 +1,6 @@
 Casenexus::Application.routes.draw do
+
+  # need to set tighter 'onlys' for these
   resources :users
   resources :posts
   resources :cases
@@ -16,6 +18,7 @@ Casenexus::Application.routes.draw do
   match '/about', to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
 
+  # cases custom actions routes - HOW DO I SET THESE TO BE WITHIN /cases/ ???
   match '/analysis' => 'cases#analysis'
   match '/request' => 'cases#request'
 

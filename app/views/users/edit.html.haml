@@ -1,169 +1,171 @@
 - provide(:title, 'Edit user')
 
-%body(onload="load_geocode();")
+= content_for :content do
 
-%h1 Update your profile
-= form_for(@user) do |f|
-  .row
-    .span4
+  %body(onload="load_geocode();")
 
-      = render 'shared/error_messages', object: @user
-      = f.label :name
-      = f.text_field :name
-      = f.label :email
-      = f.text_field :email
-      = f.label :password
-      = f.password_field :password
-      = f.label :password_confirmation, "Confirm Password"
-      = f.password_field :password_confirmation
+  %h1 Update your profile
+  = form_for(@user) do |f|
+    .row
+      .span4
 
-      = f.label :lat, "Latitude"
-      = f.text_field :lat, id: "lat"
-      = f.label :lng, "Longitude"
-      = f.text_field :lng, id: "lng"
-      = f.label :country, "Country"
-      = f.text_field :country, id: "country"
-      = f.label :city, "City"
-      = f.text_field :city, id: "city"
+        = render 'shared/error_messages', object: @user
+        = f.label :name
+        = f.text_field :name
+        = f.label :email
+        = f.text_field :email
+        = f.label :password
+        = f.password_field :password
+        = f.label :password_confirmation, "Confirm Password"
+        = f.password_field :password_confirmation
 
-      = f.label :email_admin, "Receive case interview advice email letter"
-      = f.check_box :email_admin
+        = f.label :lat, "Latitude"
+        = f.text_field :lat, id: "lat"
+        = f.label :lng, "Longitude"
+        = f.text_field :lng, id: "lng"
+        = f.label :country, "Country"
+        = f.text_field :country, id: "country"
+        = f.label :city, "City"
+        = f.text_field :city, id: "city"
 
-      = f.label :email_users, "Send notifications from users to your email"
-      = f.check_box :email_users
+        = f.label :email_admin, "Receive case interview advice email letter"
+        = f.check_box :email_admin
 
-      %br
-      = f.submit "Save changes", class: "btn btn-large btn-primary"
+        = f.label :email_users, "Send notifications from users to your email"
+        = f.check_box :email_users
 
-    .span4
-      #map_edit.map{:style => "height:450px; width:100%"}
+        %br
+        = f.submit "Save changes", class: "btn btn-large btn-primary"
 
-    .span4
-      .row
-        .span2
-          Education
-        .span1
-          From
-        .span1
-          To
-      .row
-        .span2
-          = f.text_field :education1, placeholder: "Education 1"
-        .span1
-          = f.text_field :education1_from, placeholder: "Education 1", class: "datepicker"
-        .span1
-          = f.text_field :education1_to, placeholder: "Education 1", class: "datepicker"
-      .row 
-        .span2
-          = f.text_field :education2, placeholder: "Education 2"
-        .span1
-          = f.text_field :education2_from, placeholder: "Education 2", class: "datepicker"
-        .span1
-          = f.text_field :education2_to, placeholder: "Education 2", class: "datepicker"
-      .row
-        .span2
-          = f.text_field :education3, placeholder: "Education 3"
-        .span1
-          = f.text_field :education3_from, placeholder: "Education 3", class: "datepicker"
-        .span1
-          = f.text_field :education3_to, placeholder: "Education 3", class: "datepicker"
-      .row
-        .span2
-          Professional Experience
-        .span1
-          From
-        .span1
-          To
-      .row
-        .span2
-          = f.text_field :experience1, placeholder: "experience 1"
-        .span1
-          = f.text_field :experience1_from, placeholder: "experience 1", class: "datepicker"
-        .span1
-          = f.text_field :experience1_to, placeholder: "experience 1", class: "datepicker"
-      .row 
-        .span2
-          = f.text_field :experience2, placeholder: "experience 2"
-        .span1
-          = f.text_field :experience2_from, placeholder: "experience 2", class: "datepicker"
-        .span1
-          = f.text_field :experience2_to, placeholder: "experience 2", class: "datepicker"
-      .row
-        .span2
-          = f.text_field :experience3, placeholder: "experience 3"
-        .span1
-          = f.text_field :experience3_from, placeholder: "experience 3", class: "datepicker"
-        .span1
-          = f.text_field :experience3_to, placeholder: "experience 3", class: "datepicker"
+      .span4
+        #map_edit.map{:style => "height:450px; width:100%"}
 
-      = f.label :skype
-      = f.text_field :skype
-      = f.label :linkedin
-      = f.text_field :linkedin
+      .span4
+        .row
+          .span2
+            Education
+          .span1
+            From
+          .span1
+            To
+        .row
+          .span2
+            = f.text_field :education1, placeholder: "Education 1"
+          .span1
+            = f.text_field :education1_from, placeholder: "Education 1", class: "datepicker"
+          .span1
+            = f.text_field :education1_to, placeholder: "Education 1", class: "datepicker"
+        .row 
+          .span2
+            = f.text_field :education2, placeholder: "Education 2"
+          .span1
+            = f.text_field :education2_from, placeholder: "Education 2", class: "datepicker"
+          .span1
+            = f.text_field :education2_to, placeholder: "Education 2", class: "datepicker"
+        .row
+          .span2
+            = f.text_field :education3, placeholder: "Education 3"
+          .span1
+            = f.text_field :education3_from, placeholder: "Education 3", class: "datepicker"
+          .span1
+            = f.text_field :education3_to, placeholder: "Education 3", class: "datepicker"
+        .row
+          .span2
+            Professional Experience
+          .span1
+            From
+          .span1
+            To
+        .row
+          .span2
+            = f.text_field :experience1, placeholder: "experience 1"
+          .span1
+            = f.text_field :experience1_from, placeholder: "experience 1", class: "datepicker"
+          .span1
+            = f.text_field :experience1_to, placeholder: "experience 1", class: "datepicker"
+        .row 
+          .span2
+            = f.text_field :experience2, placeholder: "experience 2"
+          .span1
+            = f.text_field :experience2_from, placeholder: "experience 2", class: "datepicker"
+          .span1
+            = f.text_field :experience2_to, placeholder: "experience 2", class: "datepicker"
+        .row
+          .span2
+            = f.text_field :experience3, placeholder: "experience 3"
+          .span1
+            = f.text_field :experience3_from, placeholder: "experience 3", class: "datepicker"
+          .span1
+            = f.text_field :experience3_to, placeholder: "experience 3", class: "datepicker"
 
-      = f.label :skill
-      = f.text_field :skill
-      = f.label :num
-      = f.text_field :num
+        = f.label :skype
+        = f.text_field :skype
+        = f.label :linkedin
+        = f.text_field :linkedin
+
+        = f.label :skill
+        = f.text_field :skill
+        = f.label :num
+        = f.text_field :num
 
 
-%script{:src => "//maps.googleapis.com/maps/api/js?sensor=false", :type => "text/javascript"}
+  %script{:src => "//maps.googleapis.com/maps/api/js?sensor=false", :type => "text/javascript"}
 
 
-:javascript
-  var geocoder = new google.maps.Geocoder();
-  
-  function geocodePosition(pos) {
-    geocoder.geocode({
-      latLng: pos
-    }, function(responses) {
-      if (responses && responses.length > 0) {
-        updateMarkerAddress(responses[0].formatted_address);
-      } else {
-        updateMarkerAddress('Cannot determine address at this location.');
-      }
-    });
-  }
+  :javascript
+    var geocoder = new google.maps.Geocoder();
     
-  function load_geocode() {
-  
-    var latLng = new google.maps.LatLng("#{@user.lat}",#{@user.lng});
-    var map = new google.maps.Map(document.getElementById('map_edit'), {
-      zoom: 12,
-      center: latLng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      streetViewControl: false,
-      mapTypeControl: false
-    });
-    var marker = new google.maps.Marker({
-      position: latLng,
-      title: 'Point A',
-      map: map,
-      draggable: true
-    });
-  
-    // Update current position info.
-  
-    google.maps.event.addListener(marker, 'drag', function() {
-      updateMarkerPosition(marker.getPosition());
-    });
+    function geocodePosition(pos) {
+      geocoder.geocode({
+        latLng: pos
+      }, function(responses) {
+        if (responses && responses.length > 0) {
+          updateMarkerAddress(responses[0].formatted_address);
+        } else {
+          updateMarkerAddress('Cannot determine address at this location.');
+        }
+      });
+    }
+      
+    function load_geocode() {
     
-    google.maps.event.addListener(marker, 'dragend', function() {
-      geocodePosition(marker.getPosition());
-    }); 
-  }
+      var latLng = new google.maps.LatLng("#{@user.lat}",#{@user.lng});
+      var map = new google.maps.Map(document.getElementById('map_edit'), {
+        zoom: 12,
+        center: latLng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        streetViewControl: false,
+        mapTypeControl: false
+      });
+      var marker = new google.maps.Marker({
+        position: latLng,
+        title: 'Point A',
+        map: map,
+        draggable: true
+      });
+    
+      // Update current position info.
+    
+      google.maps.event.addListener(marker, 'drag', function() {
+        updateMarkerPosition(marker.getPosition());
+      });
+      
+      google.maps.event.addListener(marker, 'dragend', function() {
+        geocodePosition(marker.getPosition());
+      }); 
+    }
 
-  function updateMarkerPosition(latLng) {
-  
-  document.getElementById('lat').value = latLng.lat(); 
-  document.getElementById('lng').value = latLng.lng();
-  
-  }
-  
-  function updateMarkerAddress(str) {
-    document.getElementById('loc').value = str;
-  }
+    function updateMarkerPosition(latLng) {
+    
+    document.getElementById('lat').value = latLng.lat(); 
+    document.getElementById('lng').value = latLng.lng();
+    
+    }
+    
+    function updateMarkerAddress(str) {
+      document.getElementById('loc').value = str;
+    }
 
-  $(function() {
-    $(".datepicker").datepicker();
-  });
+    $(function() {
+      $(".datepicker").datepicker();
+    });

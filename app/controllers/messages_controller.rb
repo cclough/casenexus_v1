@@ -6,14 +6,16 @@ class MessagesController < ApplicationController
   # include notifications instance var
   before_filter :show_messages
 
-
 	def index
 
     #  get this to sort descending and paginate? 
 		@messages = current_user.messages.all
-    # .order('created_at desc').paginate(:per_page => 10, :page => params[:page])
 
 	end
+
+  def sent
+    # @messages = Message.find_by_sender_id
+  end
 
   def show
     @message = Message.find(params[:id])

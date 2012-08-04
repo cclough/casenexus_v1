@@ -1,12 +1,7 @@
 - provide(:title, "Message From " + @message_sender.name)
 
-.row
-  %aside.span3
-    = render 'nav'
-
-  .span9
-    %h1
-      Message from
-      = @message_sender.name
-    %br
-      = @message.content
+%h1
+  Message from
+  = @message_sender.name
+%br
+  = @message.content

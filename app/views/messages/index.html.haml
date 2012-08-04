@@ -11,5 +11,6 @@
               = link_to message.content, "/messages/" + message.id.to_s
             %span.timestamp
               #{time_ago_in_words(message.created_at)} ago.
+
       - else
         %p You have no messages

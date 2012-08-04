@@ -4,9 +4,14 @@ class ApplicationController < ActionController::Base
   # load all session methods
   include SessionsHelper
 
-	# to load messages through session
+	# to load messages throughout session
 	def show_messages
-		@messages_nav = Message.all(:limit => 5)
+
+		# check if signed_in
+		if signed_in?
+			@messages_nav = current_user.messages.all(:limit => 5)
+			@messages_count = current_user.messages.all.count
+		end
 		# .order('created_at desc')
 	end
 

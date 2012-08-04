@@ -1,19 +1,15 @@
-- provide(:title, 'Your cases')
-.row
-  %aside.span3
-    = render 'nav'
+- provide(:title, 'Your Cases')
 
-  .span9
-    %ol.cases
-      - if @cases.count > 0
-        - @cases.each do |c|
-          /<a href="<%= "/cases/" + c.id.to_s %>><%= c.subject =></a>
-          %li
-            %span.user
-              = link_to c.email, "#"
-            %span.content
-              = link_to c.subject, "/cases/" + c.id.to_s
-            %span.timestamp
-              #{time_ago_in_words(c.created_at)} ago.
-      - else
-        %p You have no cases
+%ol.cases
+  - if @cases.count > 0
+    - @cases.each do |c|
+      /<a href="<%= "/cases/" + c.id.to_s %>><%= c.subject =></a>
+      %li
+        %span.user
+          = link_to c.email, "#"
+        %span.content
+          = link_to c.subject, "/cases/" + c.id.to_s
+        %span.timestamp
+          #{time_ago_in_words(c.created_at)} ago.
+  - else
+    %p You have no cases

@@ -1,35 +1,36 @@
 - provide(:title, 'Map')
 
+= content_for :content do
 
-%script(type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false")
+  %body(onload="load_map();")
 
-%body(onload="load_map();")
+  #map.map
 
-#map.map
+  #mappanel_posts.mappanel
+    #post_form
+      = render 'posts/post_form'
 
-#mappanel_posts.mappanel
-  #post_form
-    = render 'posts/post_form'
+    = form_tag posts_path, :method => 'get', :id => "posts_search" do
 
-  = form_tag posts_path, :method => 'get', :id => "posts_search" do
+      / AJAX POST FILTER SYSTEM
+      / TO BE RE-VISITED LATER WITH EXPERT HELP
+      / #post_filter
+      /   = render 'posfilter'
 
-    / AJAX POST FILTER SYSTEM
-    / TO BE RE-VISITED LATER WITH EXPERT HELP
-    / #post_filter
-    /   = render 'posfilter'
+      / #filter_form(style="display:none;")
+      / = collection_select(nil, :search, @countries, :country, :country, {:prompt => true})
+      / = collection_select(nil, :search, @cities, :city, :city, {:prompt => true})
+      / = collection_select(nil, :search, @skills, :skill, :skill, {:prompt => true})
+      / TO BE RE-VISITED LATER WITH EXPERT HELP
 
-    / #filter_form(style="display:none;")
-    / = collection_select(nil, :search, @countries, :country, :country, {:prompt => true})
-    / = collection_select(nil, :search, @cities, :city, :city, {:prompt => true})
-    / = collection_select(nil, :search, @skills, :skill, :skill, {:prompt => true})
-    / TO BE RE-VISITED LATER WITH EXPERT HELP
+      %p
+        = text_field_tag :search, params[:search]
+        / = submit_tag "Search", :name => nil
 
-    %p
-      = text_field_tag :search, params[:search]
-      / = submit_tag "Search", :name => nil
+      #posts
+        / =render 'posts'
 
-    #posts
-      / =render 'posts'
+  #mappanel_user.mappanel
+    #user
 
-#mappanel_user.mappanel
-  #user
+  %script(type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false")
