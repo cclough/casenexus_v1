@@ -5,7 +5,7 @@
         -if @onlineusers
           - @onlineusers.each do |t|
 
-            -@onlineuser = User.find_by_remember_token(t)
+            - @onlineuser = User.find_by_remember_token(t)
 
             %li.r_block
 

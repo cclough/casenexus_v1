@@ -124,6 +124,8 @@ footer {
   max-width: none;
 }
 
+/* Map Page */
+
 #map {
   position:absolute;
   left: 0px;
@@ -149,11 +151,27 @@ footer {
 #mappanel_user {
   right:30px;
   top:100px;
-  width:200px;
+  width:250px;
   display:none;
+  padding:5px;
 }
 
-/* sidebar */
+.m_user {
+  margin: 0px;
+  li {
+    list-style-type: none;
+    &.header{
+      border-bottom: 1px solid $grayLighter;
+      font-weight:bold;   
+    }
+    &.name{
+      margin-bottom: 20px;
+    }
+  }
+}
+
+
+/* sidebar WHAT THE HELL IS THIS FOR? */
 aside {
   section {
     padding: 10px 0;
@@ -175,7 +193,6 @@ aside {
     } 
   }
 }
-
 
 
 /* forms */

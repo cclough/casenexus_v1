@@ -9,6 +9,8 @@
           %li= link_to "Roulette", '/roulette'
         %ul.nav.pull-right
           %li= link_to "Help", help_path
+
+          / Messages pull down
           %li#fat-menu.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               N
@@ -29,9 +31,11 @@
               %li.divider
               %li
                 = link_to "See all", '/messages'
+
+          / Profile pull-down
           %li#fat-menu.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-              Account
+              = "@" + @user_name
               %span.caret
             %ul.dropdown-menu
               %li= link_to "Your Feedback", "/cases"
@@ -40,6 +44,7 @@
               %li
                 = link_to "Sign out", signout_path, method: "delete"
       -else
+        / if not signed in...
         %ul.nav.pull-right
           %li= link_to "Home", root_path
           %li= link_to "Help", help_path

@@ -5,7 +5,7 @@ class RouletteController < ApplicationController
     before_filter :admin_user, only: :destroy
 
     # include notifications instance var
-    before_filter :show_messages
+    before_filter :session_data
 
     # start session_Tracker
     before_filter :track_active_sessions

@@ -1,47 +1,77 @@
-%section
-  %h3
-    = @user.name
-    %br
-    = @user.id
-
-%section(style="margin-top:30px;")
-  %p
-    City:
+%ul.m_user
+  %li.name
+    %h3
+      = @user.name
+      = @user.id
+  %li.header
+    City
+  %li
     = @user.city
-  %p
-    Country:
+
+  %li.header
+    Country
+  %li
     = @user.country
 
-%section
-  %p Education:
-  %p Experience:
+  %li.header
+    Education
+  %li
+    = @user.education1
+    %br/
+    = @user.education2
+    %br/
+    = @user.education3
 
-%section
-  %p Interview skill:
-  %p # Cases done:
+  %li.header
+    Experience
+  %li
+    = @user.experience1
+    %br/
+    = @user.experience2
+    %br/
+    = @user.experience3
 
-%section
-  %p Last login:
+  %li.header
+    Skill:
+  %li
+    = @user.skill
 
-%section
-  %p Skype username:
+  %li.header
+    Number of Cases:
+  %li
+    = @user.num
 
-/ %a{:href => "xx?add"}
-/   %img{:alt => "xx's status", :height => "16", :src => "http://mystatus.skype.com/smallicon/xx", :style => "margin-right:30px;", :width => "16"}
+  %li.header
+    LinkedIn:
+  %li
+    / linkedin button
+    = link_to image_tag("icons/linkedin.png", alt: "View xx's profile on LinkedIn", height: "15", width: "20", border:"0") + "LinkedIn", 'http://uk.linkedin.com/in/xx'
 
-= link_to image_tag("icons/linkedin.png", alt: "View xx's profile on LinkedIn", height: "15", width: "20", border:"0") + "LinkedIn", 'http://uk.linkedin.com/in/xx'
+  %li.header
+    Skype:
+  %li
+    / skype button
+    %a{:href => "#{@user.skype}?add"}
+      %img{:alt => "#{@user.skype}'s status", :height => "16", :src => "http://mystatus.skype.com/smallicon/#{@user.skype}", :width => "16"}
+  %li
+    / send feedback button
+    = link_to "Send feedback", 'signup_path', class: "btn btn-large btn btn-primary"
 
-%section(style="margin-top:30px;")
-  = link_to "Send feedback", 'signup_path', class: "btn btn-large btn btn-primary"
+  %li.header
+    Send feedback:
+  %li
+    / notify form
+    %a#notify_show.btn.btn-large{:href => "#"}
+      Notify     
+      %span.caret
 
-%section(style="margin-top:30px;")
-  %a#notify_show.btn.btn-large{:href => "#"}
-    Notify     
-    %span.caret
-%section
-  #notify_form(style="display:none;margin-top:30px;")
-    = render 'messages/notify_form'
+    #notify_form(style="display:none;")
+      = render 'messages/notify_form'
 
+
+
+
+/ notify form jquery show
 :javascript
   $('#notify_show').click(function() {
     $('#notify_form').show('slow');

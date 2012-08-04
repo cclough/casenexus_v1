@@ -3,8 +3,9 @@ class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:map, :index, :edit, :update]
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user, only: :destroy
-  # include notifications instance var
-  before_filter :show_messages
+  
+  # include all user session data e.g. messages and username
+  before_filter :session_data
 
   def index
 
@@ -16,7 +17,7 @@ class UsersController < ApplicationController
     # @cities = User.find(:all, :order => 'city').uniq{|x| x.city}
     # @skills = User.find(:all, :order => 'skill').uniq{|x| x.skill}
 
-    # load json of map markers, including only user id, lat & lng
+    # load json of map markers, inc. only user id, lat & lng
     respond_to do |format|
       format.html
       format.json { render json: User.all.map {|m|

@@ -7,8 +7,7 @@
   #map.map
 
   #mappanel_posts.mappanel
-    #post_form
-      = render 'posts/post_form'
+    = render 'posts/post_form'
 
     = form_tag posts_path, :method => 'get', :id => "posts_search" do
 

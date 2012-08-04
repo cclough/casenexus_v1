@@ -10,19 +10,20 @@
   %body
     = render 'layouts/header'
     #flash_application
-      - flash.each do |key, value|
-        / fade in function doesn't seem to work yet
-        %div{:class => "alert alert-#{key} fade in"}
-          / inserts close button
-          %a.close{"data-dismiss" => "alert", :href => "#"} ×
-          = value
-
-          ////// some nice buttons for flashes - to be implemented later
-          / %p
-          /   %a.btn.btn-danger{:href => "#"} Take this action
-          /   %a.btn{:href => "#"} Or do this
+      / - flash.each do |key, value|
+      /   / fade in function doesn't seem to work yet
+      /   %div{:class => "alert alert-#{key} fade in"}
+      /     / inserts close button
+      /     %a.close{"data-dismiss" => "alert", :href => "#"} ×
+      /     = value
+      = render :partial => 'layouts/flash' , :locals => { :flash => flash }
+      ////// some nice buttons for flashes - to be implemented later
+      / %p
+      /   %a.btn.btn-danger{:href => "#"} Take this action
+      /   %a.btn{:href => "#"} Or do this
           
     .container
+
       ////// footer commented out for now
       / = render 'layouts/footer'
 

@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-    before_filter :show_messages
+    before_filter :session_data
 
   def home
  	if signed_in?

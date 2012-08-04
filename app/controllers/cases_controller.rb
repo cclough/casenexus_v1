@@ -3,7 +3,7 @@ class CasesController < ApplicationController
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user, only: :destroy
   # include notifications instance var
-  before_filter :show_messages
+  before_filter :session_data
 
 	def index
 
