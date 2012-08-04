@@ -116,6 +116,11 @@ footer {
 
 }
 
+#flash_posts {
+  display: none;
+}
+
+
 
 /* maps */
 
@@ -127,7 +132,7 @@ footer {
 /* Map Page */
 
 #map {
-  position:absolute;
+  position: absolute;
   left: 0px;
   top: 40px;
   z-index: 0;
@@ -136,24 +141,29 @@ footer {
 }
 
 .mappanel {
-  position:absolute;
+  position: absolute;
   background-color: white;
   padding: 20px;
   z-index: 1;
 }
 
 #mappanel_posts {
-  left:100px;
-  top:100px;
-  width:300px;
+  left: 100px;
+  top: 100px;
+  width: 300px;
 }
 
 #mappanel_user {
-  right:30px;
-  top:100px;
-  width:250px;
-  display:none;
-  padding:5px;
+  right: 30px;
+  top: 100px;
+  width: 250px;
+  display: none;
+  padding: 5px;
+}
+
+#mappanel_user_close {
+  border: 0;
+  background-color: white;
 }
 
 .m_user {

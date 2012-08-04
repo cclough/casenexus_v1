@@ -21,7 +21,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        flash.now[:notice] = 'post created!'
+        flash.now[:success] = 'your post has been sent for approval!'
         format.js
       else
         format.html { render action: "new" }  

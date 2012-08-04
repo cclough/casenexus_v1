@@ -30,6 +30,10 @@
         / =render 'posts'
 
   #mappanel_user.mappanel
+    / close button, .close is from T-BS
+    / WHAT'S THE RAILS WAY TO DO THIS 'ONCLICK?'
+    %button#mappanel_user_close.close(onclick="$('#mappanel_user').fadeOut('slow')") ×
     #user
 
   %script(type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false")
+

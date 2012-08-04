@@ -1,6 +1,10 @@
 // refresh posts - NEED TO REPLACE THIS WITH CLEANER ACTION?
 $.get($("#posts_search").attr("action"), $("#posts_search").serialize(), null, "script");
 
-// $('#post_form').hide('slow');
+//hide form, remove form, load flash html, show flash
+$('#post_form').hide('slow', function () {
+	$('#post_form').remove();
+	$("#flash_posts").html("<%= escape_javascript(render :partial => 'layouts/flash' , :locals => { :flash => flash }).html_safe %>");
+	$("#flash_posts").show("fast");
+});
 
-$("#flash_posts").html("<%= escape_javascript(render :partial => 'layouts/flash' , :locals => { :flash => flash_posts }).html_safe %>");
