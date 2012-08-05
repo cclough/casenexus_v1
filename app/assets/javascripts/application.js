@@ -25,6 +25,7 @@ $(function() {
 		return false;
 	});
 
+	// PUT THIS IN POSTS INDEX.JS.ERB???
 	// initial post load NEED TO REPLACE THIS WITH CLEANER ACTION?
 	$.get($("#posts_search").attr("action"), $("#posts_search").serialize(), null, "script");
 
@@ -39,6 +40,10 @@ $(function() {
 	// 	$.get(this.action, $(this).serialize(), null, "script");
 	// 	return false;
 	// });
+
+	// random background color generator
+	var bgcolorlist = new Array("#DFDFFF", "#FFFFBF", "#80FF80", "#EAEAFF", "#C9FFA8", "#F7F7F7", "#DDDD00")
+	document.body.style.background = bgcolorlist[Math.floor(Math.random()*bgcolorlist.length)]
 
 });
 

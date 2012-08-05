@@ -13,9 +13,10 @@ $grayMediumLight: #eaeaea;
 
 html {
   overflow-y: scroll;
+
 }
 body {
-  padding-top: 60px;
+  padding-top: 40px;
 }
 section {
   overflow: auto;
@@ -29,6 +30,26 @@ textarea {
   text-align: center;
   h1 {
     margin-bottom: 10px;
+  }
+}
+
+/* framework */
+.container {
+  &.main{
+    background: url(https://si0.twimg.com/a/1339096274/t1/img/wash-white-30.png);
+  }
+}
+
+.panel{
+  background: white;
+  margin:20px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 1px solid $grayMediumLight;
+  padding:10px;
+  &.type1{
+    background-color: #FCFCFC;
   }
 }
 
@@ -178,7 +199,7 @@ input, textarea, select, .uneditable-input {
 #map {
   position: absolute;
   left: 0px;
-  top: 40px;
+  top: 0px;
   z-index: 0;
   width: 100%;
   height: 100%;
@@ -294,7 +315,7 @@ table.posts {
     padding:5px;
     color: black;
     &:hover {
-      color: gray;
+      background-color: $grayLighter;
       text-decoration: none;
     }
   }

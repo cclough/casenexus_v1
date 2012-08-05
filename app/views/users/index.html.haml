@@ -22,10 +22,10 @@
       / = collection_select(nil, :search, @skills, :skill, :skill, {:prompt => true})
       / TO BE RE-VISITED LATER WITH EXPERT HELP
 
-      %p
+      %p(style="margin-top:50px;")
         = text_field_tag :search, params[:search]
         / = submit_tag "Search", :name => nil
-
+        
       #posts
         / =render 'posts'
 

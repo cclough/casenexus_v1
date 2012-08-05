@@ -13,14 +13,14 @@
     = render 'layouts/header'
 
     / flash div 
-    #flash_application
+    #flash_application(style="margin-top:0px;")
       = render :partial => 'layouts/flash' , :locals => { :flash => flash }
       ////// some nice buttons for flashes - to be implemented later
       / %p
       /   %a.btn.btn-danger{:href => "#"} Take this action
       /   %a.btn{:href => "#"} Or do this
-          
-    .container
+
+    .container.main
 
       ////// to see request text
       / <haml:loud> debug(params) if Rails.env.development? </haml:loud>

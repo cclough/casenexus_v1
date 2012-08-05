@@ -1,30 +1,30 @@
 - provide(:title, 'Your Progress')
+
 %h1 Your progress
-.row(style="margin-bottom:15px;")
-  .span4
-    .row
-      .span2
-        %p
-          Total case #
-      .span2
-        50
-    .row
-      .span2
-        %p
-          Date of first case
-      .span2
-        1st Jan 2012
-    .row
-      .span2
-        %p
-          "...some metrics..."
-      .span2
-        "...xxx...""
-  .span5
-    #chartdiv_radar{:style => "width: 100%; height: 300px;"}
 
 .row
-  .span9
+  .span3
+    %table
+      %tr
+        %td
+          Total case #
+        %td
+          50
+      %tr
+        %td
+          Date of first case
+        %td
+          1st Jan 2012
+      %tr
+        %td
+          "...some metrics..."
+        %td
+          "...xxx..."
+  .span5
+    #chartdiv_radar{:style => "height: 300px;"}
+
+.row
+  .span8
     #chartdiv_area{:style => "width:100%; height:350px;"}
 
 
