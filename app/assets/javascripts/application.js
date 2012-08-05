@@ -42,7 +42,7 @@ $(function() {
 	// });
 
 	// random background color generator
-	var bgcolorlist = new Array("#DFDFFF", "#FFFFBF", "#80FF80", "#EAEAFF", "#C9FFA8", "#F7F7F7", "#DDDD00")
+	var bgcolorlist = new Array("#FFFFBF", "#93ff93", "#C9FFA8","#9bd6ff", "#feabc3", "#b46cfd", "#fdcf6c");
 	document.body.style.background = bgcolorlist[Math.floor(Math.random()*bgcolorlist.length)]
 
 });

@@ -2,17 +2,18 @@
 = content_for :content do
   .row
     .span7
-      .center.hero-unit
-        %h1 Welcome to casenexus.com
+      .panel
+        .center.hero-unit
+          %h1 Welcome to casenexus.com
 
     .span5
-
-      = form_for(:session, url: sessions_path) do |f|
-        = f.label :email
-        = f.text_field :email
-        = f.label :password
-        = f.password_field :password
-        = f.submit "Sign in", class: "btn btn-primary pull-right"
+      .panel.type1
+        = form_for(:session, url: sessions_path) do |f|
+          = f.label :email
+          = f.text_field :email
+          = f.label :password
+          = f.password_field :password
+          = f.submit "Sign in", class: "btn btn-primary pull-right"
 
       .center
         %p

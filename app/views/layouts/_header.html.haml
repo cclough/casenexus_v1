@@ -1,26 +1,41 @@
 %header.navbar.navbar-fixed-top
   .navbar-inner
     .container
-      = link_to "casenexus.com", users_path, id: "logo"
+      - if signed_in?
+        = link_to "casenexus.com", users_path, id: "logo"
+      - else
+        = link_to "casenexus.com", "/", id: "logo"
       %nav
-
       - if signed_in?
         %ul.nav.pull-left
-          %li= link_to "Users", users_path
-          %li= link_to "Roulette", '/roulette'
-          %li= link_to "Help", help_path
+          / MAP: pushpin or globe or picture or road or map-marker
+          %li.divider-vertical
+          %li
+            = link_to raw("<i class='icon-globe icon-large'></i> Users"), users_path
+          / ROULETTE: or refresh
+          %li
+            = link_to raw("<i class='icon-random icon-large'></i> Roulette"), '/roulette'
+
+          / Divider
+          %li.divider-vertical
+          
+          / HELP: info-sign or question-sign or book
+          %li
+            = link_to raw("<i class='icon-info-sign icon-large'></i> Help"), help_path
 
         %ul.nav.pull-right
 
           / Messages pull down
           %li#fat-menu.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-              %i.icon-comment.icon-white.icon-large
+              / messages icon + message count
+              %i.icon-comment.icon-white.icon-large 
+              = "(" + @messages_count.to_s + ")"
               %span.caret
             %ul.dropdown-menu
               %li
                 / Build message list for notifcations icon
-                - if @messages_nav.count > 0
+                - if @messages_count > 0
                   - @messages_nav.each do |message|
                     %a{:href => "/messages/" + message.id.to_s ,
                        :style => ""}
@@ -37,6 +52,9 @@
               %li
                 = link_to "See all", '/messages'
 
+          / Divider
+          %li.divider-vertical
+
           / Profile pull-down
           %li#fat-menu.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
@@ -50,11 +68,5 @@
               %li= link_to raw("<i class=icon-bolt></i> Sign out"), signout_path, method: "delete"
 
       -else
-
-        / if not signed in...
         %ul.nav.pull-left
-          %li= link_to "Home", root_path
-          %li= link_to "Help", help_path
-
-        / %ul.nav.pull-right
-        /   %li= link_to "Sign in", signin_path
+          %li.divider-vertical

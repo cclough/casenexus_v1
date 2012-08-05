@@ -36,6 +36,7 @@ textarea {
 /* framework */
 .container {
   &.main{
+    /* replace with local copy! */
     background: url(https://si0.twimg.com/a/1339096274/t1/img/wash-white-30.png);
   }
 }
@@ -43,11 +44,13 @@ textarea {
 .panel{
   background: white;
   margin:20px;
+  border: 1px solid $grayLight;
+  padding:10px;
+
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  border: 1px solid $grayMediumLight;
-  padding:10px;
+
   &.type1{
     background-color: #FCFCFC;
   }
