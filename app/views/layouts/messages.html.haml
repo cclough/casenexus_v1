@@ -1,12 +1,11 @@
 = content_for :content do
   .row
     %aside.span3
-      %ul.case_nav
+      %ul.nav_pages
         %li
           = link_to "Inbox (#{@messages_count})", "/messages"
         %li
           = link_to "Sent", "/messages#sent"
-
     .span9
       = yield
 

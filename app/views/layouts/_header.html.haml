@@ -19,12 +19,15 @@
               %li
                 / Build message list for notifcations icon
                 - if @messages_nav.count > 0
-                  - @messages_nav.each do |message_nav|
-                    %a{:href => "/messages/" + message_nav.id.to_s ,
+                  - @messages_nav.each do |message|
+                    %a{:href => "/messages/" + message.id.to_s ,
                        :style => ""}
-                      = User.find_by_id(message_nav.sender_id).name
+                      %b
+                        = User.find_by_id(message.sender_id).name
+                      = time_ago_in_words(message.created_at)
                       %br
-                      = message_nav.content
+                      %p(style="font-size:90%;")
+                        = message.content.truncate(35, :separator => ' ')
 
                 - else
                   %p No messages      

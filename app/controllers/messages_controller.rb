@@ -9,8 +9,8 @@ class MessagesController < ApplicationController
 	def index
 
     #  get this to sort descending and paginate? 
-		@messages = current_user.messages.all
-
+		@messages = current_user.messages.paginate(per_page: 10, page: 
+                params[:page], order: "created_at DESC")
 	end
 
   def sent
@@ -27,23 +27,27 @@ class MessagesController < ApplicationController
   def create
 
     @message = Message.new(params[:message])
-    # encode current user_id
-    # @case.marker_id = current_user.user_id
 
-    if @message.save
+    # respond_to .js enables ajax create
+    respond_to do |format|
 
-      # get User object from id supplied
-      user_target = User.find(@message.user_id)
+      if @message.save
 
-      # send message via email to target user
-      UserMailer.message_email(user_target).deliver
+        # get User object from id supplied
+        user_target = User.find(@message.user_id)
+        # send message via email to target user
+        UserMailer.message_email(user_target).deliver
 
-      flash[:success] = "Message sent!"
-      redirect_to users_path
-    else
-      render 'new'
+        flash.now[:success] = 'Message sent!'
+        format.js
+      else
+        # do I need the .html line below?
+        format.html { render action: "new" }  
+        format.js  
+      end
+
     end
-    
+
   end
 
 end

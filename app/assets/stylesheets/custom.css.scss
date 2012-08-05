@@ -8,7 +8,9 @@ $grayMediumLight: #eaeaea;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* universal */
+
+/******** universal ***********/
+
 html {
   overflow-y: scroll;
 }
@@ -18,9 +20,10 @@ body {
 section {
   overflow: auto;
 }
-// textarea {
-//   resize: vertical;
-// }
+
+textarea {
+  resize: vertical;
+}
 
 .center {
   text-align: center;
@@ -29,7 +32,8 @@ section {
   }
 }
 
-/* typography */
+/*********** typography ***********/
+
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
@@ -55,7 +59,8 @@ p {
   line-height: 1.7em;
 }
 
-/* header */
+/************ header ***********/
+
 #logo {
   float: left;
   margin-right: 10px;
@@ -71,7 +76,8 @@ p {
   }
 }
 
-/* footer */
+/************ footer *************/
+
 footer {
   margin-top: 45px;
   padding-top: 5px;
@@ -95,7 +101,7 @@ footer {
   }
 }
 
-/* miscellaneous */
+/********** miscellaneous **********/
 
 .debug_dump {
   clear: both;
@@ -120,68 +126,8 @@ footer {
   display: none;
 }
 
+/******** sidebar WHAT THE HELL IS THIS FOR? ******/
 
-
-/* maps */
-
-
-.map img {
-  max-width: none;
-}
-
-/* Map Page */
-
-#map {
-  position: absolute;
-  left: 0px;
-  top: 40px;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.mappanel {
-  position: absolute;
-  background-color: white;
-  padding: 20px;
-  z-index: 1;
-}
-
-#mappanel_posts {
-  left: 100px;
-  top: 100px;
-  width: 300px;
-}
-
-#mappanel_user {
-  right: 30px;
-  top: 100px;
-  width: 250px;
-  display: none;
-  padding: 5px;
-}
-
-#mappanel_user_close {
-  border: 0;
-  background-color: white;
-}
-
-.m_user {
-  margin: 0px;
-  li {
-    list-style-type: none;
-    &.header{
-      border-bottom: 1px solid $grayLighter;
-      font-weight:bold;   
-    }
-    &.name{
-      margin-bottom: 20px;
-    }
-  }
-}
-
-
-/* sidebar WHAT THE HELL IS THIS FOR? */
 aside {
   section {
     padding: 10px 0;
@@ -204,8 +150,7 @@ aside {
   }
 }
 
-
-/* forms */
+/************* forms *************/
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
@@ -228,47 +173,75 @@ input, textarea, select, .uneditable-input {
   @extend .error;
 }
 
-/* users index */
+/************** Map Page **************/
 
-// .users {
-//   list-style: none;
-//   margin: 0;
-//   li {
-//     overflow: auto;
-//     padding: 10px 0;
-//     border-top: 1px solid $grayLighter;
-//     &:last-child {
-//       border-bottom: 1px solid $grayLighter
-//     }
-//   }
+#map {
+  position: absolute;
+  left: 0px;
+  top: 40px;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
 
-// }
+.panel_m {
+  position: absolute;
+  background-color: white;
+  padding: 20px;
+  z-index: 1;
+}
 
-/* posts */
+#panel_m_posts {
+  left: 100px;
+  top: 100px;
+  width: 300px;
+}
 
-// .posts {
-//   list-style: none;
-//   margin: 10px 0 0 0;
-//   li {
-//     padding: 10px 3px;
-//     border-top: 1px solid #e8e8e8;
-//     &:hover {
-//       border: 1px solid #e8e8e8;
-//     }
-//   }
-// }
-// .content {
-//   display: block;
-// }
-// .timestamp {
-//   color: $grayLight;
-// }
-// aside {
-//   textarea {
-//     height: 100px;
-//     margin-bottom: 5px;
-//   }
-// }
+#panel_m_user {
+  right: 30px;
+  top: 100px;
+  width: 250px;
+  display: none;
+  padding: 5px;
+}
+
+#m_user_close {
+  border: 0;
+  background-color: white;
+}
+
+.m_user {
+  margin: 0px;
+  li {
+    list-style-type: none;
+    &.header{
+      border-bottom: 1px solid $grayLighter;
+      font-weight:bold;   
+    }
+    &.name{
+      margin-bottom: 20px;
+    }
+  }
+}
+
+
+/* maps all */
+
+.map img {
+  max-width: none;
+}
+
+
+
+/********** posts *****NEED TO TIDY?******/
+
+
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
+  }
+}
 
 .filter {
   list-style: none;
@@ -284,6 +257,7 @@ input, textarea, select, .uneditable-input {
   overflow:auto;
   height:300px;
 }
+
 table.posts {
   border-collapse: collapse;
   width:100%;
@@ -312,10 +286,49 @@ table.posts {
 }
 
 
-/**** cases ****/
+/*********** Template **********/
+
+.nav_pages {
+  list-style: none;
+  li {
+    padding:5px;
+    color: black;
+    &:hover {
+      color: gray;
+      text-decoration: none;
+    }
+  }
+}
 
 
-/* case index * /
+/************ messages ************/
+
+
+/* message index */
+
+.messages {
+  list-style: none;
+  margin: 10px 0 0 0;
+  li {
+    padding: 10px 3px;
+    border-top: 1px solid #e8e8e8;
+    &:hover {
+      background-color: $grayLighter;
+    }
+    .content {
+      display: block;
+    }
+    .timestamp {
+      color: $grayLight;
+    }
+  }
+
+}
+
+/************ cases ************/
+
+
+/* case index */
 
 .cases {
   list-style: none;
@@ -324,16 +337,18 @@ table.posts {
     padding: 10px 3px;
     border-top: 1px solid #e8e8e8;
     &:hover {
-      border: 1px solid #e8e8e8;
+      background-color: $grayLighter;
+    }
+    .content {
+      display: block;
+    }
+    .timestamp {
+      color: $grayLight;
     }
   }
+
 }
-.content {
-  display: block;
-}
-.timestamp {
-  color: $grayLight;
-}
+
 
 /* case show */
 
@@ -355,17 +370,6 @@ table.posts {
 
 /* case form */
 
-.case_nav {
-  list-style: none;
-  li {
-    padding:5px;
-    color: black;
-    &:hover {
-      color: gray;
-      text-decoration: none;
-    }
-  }
-}
 .case_form {
   textarea {
     height: 50px;
@@ -414,7 +418,7 @@ table.posts {
   margin-bottom:5px;
 }
 
-/* roulette */
+/************* roulette **************/
 
 .r_block {
 
@@ -433,7 +437,6 @@ table.posts {
   border-radius: 15px;
 
 }
-
 
 
 .r_grid {

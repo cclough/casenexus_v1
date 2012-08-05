@@ -9,10 +9,9 @@
     = render 'layouts/shim'
 
   %body
-    / header
     = render 'layouts/header'
 
-    / flash div 
+    / flash div
     #flash_application
       = render :partial => 'layouts/flash' , :locals => { :flash => flash }
       ////// some nice buttons for flashes - to be implemented later
@@ -21,13 +20,6 @@
       /   %a.btn{:href => "#"} Or do this
           
     .container
-
-      ////// to see request text
-      / <haml:loud> debug(params) if Rails.env.development? </haml:loud>
-
       ///// :content now specified in all view - anoying, but enables nested views for 
       ///// e.g. messages, feedback controllers
       = yield :content
-
-      / footer
-      = render 'layouts/footer'

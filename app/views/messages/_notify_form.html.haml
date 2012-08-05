@@ -1,9 +1,0 @@
-= form_for(@message, remote: true) do |f|
-  = render 'shared/error_messages', object: @message
-  .field
-    = f.text_area :content, placeholder: "Send message...", style: "height:100px;"
-    = f.hidden_field :user_id, :value => @user.id
-    = f.hidden_field :sender_id, :value => current_user.id
-  = f.submit "Notify", class: "btn btn-large btn-primary"
-
-  / current_user.relationships.build(followed_id: @user.id)

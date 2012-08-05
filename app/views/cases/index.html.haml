@@ -1,5 +1,7 @@
 - provide(:title, 'Your Cases')
 
+= will_paginate @cases
+
 %ol.cases
   - if @cases.count > 0
     - @cases.each do |c|
@@ -13,3 +15,5 @@
           #{time_ago_in_words(c.created_at)} ago.
   - else
     %p You have no cases
+
+= will_paginate @cases

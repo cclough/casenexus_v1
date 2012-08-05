@@ -19,10 +19,11 @@ class UsersController < ApplicationController
 
     # load json of map markers, inc. only user id, lat & lng
     respond_to do |format|
-      format.html
+      format.html { render layout: 'map' }
       format.json { render json: User.all.map {|m|
-                  { :id => m.id, :lat => m.lat, :lng => m.lng } }}
+                  { id: m.id, lat: m.lat, lng: m.lng } }}
     end
+
 
   end
 

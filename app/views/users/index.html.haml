@@ -6,7 +6,7 @@
 
   #map.map
 
-  #mappanel_posts.mappanel
+  #panel_m_posts.panel_m
     = render 'posts/post_form'
 
     = form_tag posts_path, :method => 'get', :id => "posts_search" do
@@ -29,10 +29,10 @@
       #posts
         / =render 'posts'
 
-  #mappanel_user.mappanel
+  #panel_m_user.panel_m
     / close button, .close is from T-BS
     / WHAT'S THE RAILS WAY TO DO THIS 'ONCLICK?'
-    %button#mappanel_user_close.close(onclick="$('#mappanel_user').fadeOut('slow')") ×
+    %button#m_user_close.close(onclick="$('#panel_m_user').fadeOut('slow')") ×
     #user
 
   %script(type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false")

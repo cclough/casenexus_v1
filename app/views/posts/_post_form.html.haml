@@ -1,10 +1,14 @@
-#flash_posts
-
 / render new post form, remote AJAX enabled
 
-#post_form
-  = form_for(@post, remote: true) do |f|
-    = render 'shared/error_messages', object: @post
+= form_for(@post, remote: true) do |f|
+
+  #flash_posts
+
+  = render 'shared/error_messages', object: @post
+
+  #post_form
+
     .field
       = f.text_area :content, placeholder: "Compose new post...", :rows => 3
-    = f.submit "Post", class: "btn btn-large btn-primary"
+
+    = f.submit "Post", class: "btn btn-inverse pull-right"

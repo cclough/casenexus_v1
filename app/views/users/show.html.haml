@@ -53,27 +53,31 @@
     / skype button
     %a{:href => "#{@user.skype}?add"}
       %img{:alt => "#{@user.skype}'s status", :height => "16", :src => "http://mystatus.skype.com/smallicon/#{@user.skype}", :width => "16"}
-  %li
-    / send feedback button
-    = link_to "Send feedback", 'signup_path', class: "btn btn-large btn btn-primary"
 
   %li.header
-    Send feedback:
+    Actions:
   %li
-    / notify form
-    %a#notify_show.btn.btn-large{:href => "#"}
-      Notify     
+
+    / send message button
+    %a#message_show.btn{:href => "#"}
+      Send Message    
       %span.caret
 
-    #notify_form(style="display:none;")
-      = render 'messages/notify_form'
+    / send feedback button
+    = link_to "Send feedback", 'signup_path', class: "btn btn-inverse"
+
+    / new message form
+    = render 'messages/message_form'
 
 
-
-
-/ notify form jquery show
+/ message form jquery show
 :javascript
-  $('#notify_show').click(function() {
-    $('#notify_form').show('slow');
+  $('#message_show').click(function() {
+
+    $('#message_form').toggle('slow', function() {
+      $('#message_field').val('');
+    });
+
   });
 
+/ message[content]

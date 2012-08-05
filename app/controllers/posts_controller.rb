@@ -11,7 +11,8 @@ class PostsController < ApplicationController
 
   def index
     # get all posts, paginated, ordered, and matching any search params
-    @posts = Post.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 20, :page => params[:page])
+    @posts = Post.search(params[:search]).order(sort_column + " " + 
+             sort_direction).paginate(per_page: 20, page: params[:page])
   end
 
   def create
@@ -19,11 +20,13 @@ class PostsController < ApplicationController
     # new post var for post form
     @post = current_user.posts.build(params[:post])
 
+    # respond_to .js enables ajax create
     respond_to do |format|
       if @post.save
         flash.now[:success] = 'your post has been sent for approval!'
         format.js
       else
+        # do I need the .html line below?
         format.html { render action: "new" }  
         format.js  
       end

@@ -2,12 +2,14 @@ class CasesController < ApplicationController
   before_filter :signed_in_user, only: [:map, :index, :edit, :update]
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user, only: :destroy
+
   # include notifications instance var
   before_filter :session_data
 
 	def index
 
-		@cases = Case.all
+		@cases = Case.paginate(per_page: 10, page: 
+			     params[:page], order: "created_at DESC")
 	end
 
 	def analysis
