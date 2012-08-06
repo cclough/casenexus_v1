@@ -91,6 +91,41 @@ namespace :db do
            experience3_to: randomDate(:year_range => 3, :year_latest => 0))
 
     admin2.toggle!(:admin)
+    
+    designer = User.create!(name: "Design Pro",
+           email: "design@design.com",
+           password: "design",
+           password_confirmation: "design",
+           lat: 51.221128232665856,
+           lng: -0.54241188764572144,
+           country: "UK",
+           city: "Oxford",
+           skill: "God-like",
+
+           skype: "greatdesign",
+           linkedin: "great.design",
+           num: 15,
+
+           education1: "Imperial",
+           education2: "Oxford",
+           education3: "Cambridge",
+           experience1: "MRC-T",
+           experience2: "WHO",
+           experience3: "Candesic",
+
+           education1_from: randomDate(:year_range => 3, :year_latest => 0),
+           education1_to: randomDate(:year_range => 3, :year_latest => 0),
+           education2_from: randomDate(:year_range => 3, :year_latest => 0),
+           education2_to: randomDate(:year_range => 3, :year_latest => 0),
+           education3_from: randomDate(:year_range => 3, :year_latest => 0),
+           education3_to: randomDate(:year_range => 3, :year_latest => 0),
+
+           experience1_from: randomDate(:year_range => 3, :year_latest => 0),
+           experience1_to: randomDate(:year_range => 3, :year_latest => 0),
+           experience2_from: randomDate(:year_range => 3, :year_latest => 0),
+           experience2_to: randomDate(:year_range => 3, :year_latest => 0),
+           experience3_from: randomDate(:year_range => 3, :year_latest => 0),
+           experience3_to: randomDate(:year_range => 3, :year_latest => 0))
 
 		98.times do |n|
 			name = Faker::Name.name
