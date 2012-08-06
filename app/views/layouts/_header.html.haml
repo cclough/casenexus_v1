@@ -17,7 +17,7 @@
             = link_to raw("<i class='icon-random icon-large'></i> Roulette"), '/roulette'
 
           / Divider
-          %li.divider-vertical
+          / %li.divider-vertical
           
           / HELP: info-sign or question-sign or book
           %li
@@ -29,7 +29,7 @@
           %li#fat-menu.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               / messages icon + message count
-              %i.icon-comment.icon-white.icon-large 
+              %i.icon-comments.icon-white.icon-large 
               = "(" + @messages_count.to_s + ")"
               %span.caret
             %ul.dropdown-menu
@@ -51,9 +51,6 @@
               %li.divider
               %li
                 = link_to "See all", '/messages'
-
-          / Divider
-          %li.divider-vertical
 
           / Profile pull-down
           %li#fat-menu.dropdown

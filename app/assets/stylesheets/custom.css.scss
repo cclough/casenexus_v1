@@ -1,5 +1,18 @@
 @import "bootstrap";
 
+/////////////////HACKS////////////////////
+
+// FIELD HEIGHT SHRUNK TO 18px
+// NB BTN-INVERSE STARTED WORKING AT THE SAME TIME
+input[type="text"], input[type="password"] {
+  height:30px;
+}
+
+/* to fix TBS button overspills... */
+/* input[type=submit]{ */
+
+//////////////////HACKS///////////////////
+
 /* mixins, variables, etc. */
 $grayMediumLight: #eaeaea;
 
@@ -33,11 +46,12 @@ textarea {
   }
 }
 
+
 /* framework */
 .container {
   &.main{
     /* replace with local copy! */
-    background: url(https://si0.twimg.com/a/1339096274/t1/img/wash-white-30.png);
+    background: url(white-wash.png);
   }
 }
 
@@ -53,6 +67,14 @@ textarea {
 
   &.type1{
     background-color: #FCFCFC;
+  }
+
+  &.side {
+    margin-right: 0px;
+  }
+
+  &.content{
+    margin-left: 0px;
   }
 }
 
@@ -210,23 +232,22 @@ input, textarea, select, .uneditable-input {
 
 .panel_m {
   position: absolute;
-  background-color: white;
-  padding: 20px;
   z-index: 1;
+  background: url(white-wash.png);
+
 }
 
 #panel_m_posts {
   left: 100px;
   top: 100px;
-  width: 300px;
+  width: 400px;
 }
 
 #panel_m_user {
   right: 30px;
   top: 100px;
-  width: 250px;
+  width: 300px;
   display: none;
-  padding: 5px;
 }
 
 #m_user_close {
@@ -399,7 +420,7 @@ table.posts {
     height: 50px;
     margin-bottom: 5px;
     /* margin-top: -12px; */
-    width:300px;
+    width: 300px;
   }
 }
 
@@ -450,7 +471,6 @@ table.posts {
   height: 250px;
   margin: 10px;
   border: 1px solid gray;
-  float: left;
   &:hover {
     background-color: $grayLighter;
   }
@@ -477,4 +497,32 @@ table.posts {
   margin:10px;
 }
 
+/* Paginate Theme */
 
+.nexus_pagination {
+  background: #f1f1f1;
+  border: 1px solid #e5e5e5;
+  text-align: center;
+  padding: 5px;
+  cursor: default; }
+  .nexus_pagination a, .nexus_pagination span {
+    padding: 0.2em 0.3em; }
+  .nexus_pagination .disabled {
+    color: #aaaaaa; }
+  .nexus_pagination .current {
+    font-style: normal;
+    font-weight: bold;
+    background-color: #bebebe;
+    display: inline-block;
+    width: 1.4em;
+    height: 1.4em;
+    line-height: 1.5;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    border-radius: 1em;
+    text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px; }
+  .nexus_pagination a {
+    text-decoration: none;
+    color: black; }
+    .nexus_pagination a:hover, .nexus_pagination a:focus {
+      text-decoration: underline; }

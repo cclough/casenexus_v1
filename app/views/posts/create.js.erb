@@ -5,6 +5,6 @@ $.get($("#posts_search").attr("action"), $("#posts_search").serialize(), null, "
 $('#post_form').hide('slow', function () {
 	$('#post_form').remove();
 	$("#flash_posts").html("<%= escape_javascript(render :partial => 'layouts/flash' , :locals => { :flash => flash }).html_safe %>");
-	$("#flash_posts").show("fast");
+	$("#flash_posts").fadeIn("slow");
 });
 

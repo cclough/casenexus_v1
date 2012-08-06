@@ -19,8 +19,10 @@
 
 $(function() {
 
+	/////////////////// MAP PAGE AJAX ////////SHOULDNT I BREAK THESE UP?/////////
+
 	// ajax pagination
-	$("#posts th a, #posts .pagination a").live("click", function() {
+	$("#posts th a, #posts .nexus_pagination a").live("click", function() {
 		$.getScript(this.href);
 		return false;
 	});
@@ -35,11 +37,7 @@ $(function() {
 		return false;
 	});
 
-	// ajax load posts on click submit button
-	// $("#posts_search").submit(function() {
-	// 	$.get(this.action, $(this).serialize(), null, "script");
-	// 	return false;
-	// });
+	/////////////////// THROUGHOUT SITE /////////////////
 
 	// random background color generator
 	var bgcolorlist = new Array("#FFFFBF", "#93ff93", "#C9FFA8","#9bd6ff", "#feabc3", "#b46cfd", "#fdcf6c");

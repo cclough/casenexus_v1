@@ -1,6 +1,6 @@
 - provide(:title, 'Your Cases')
 
-= will_paginate @cases
+= will_paginate @cases, class: "nexus_pagination", :inner_window => 2, :outer_window => 2
 
 %ol.cases
   - if @cases.count > 0
@@ -16,4 +16,4 @@
   - else
     %p You have no cases
 
-= will_paginate @cases
+= will_paginate @cases, class: "nexus_pagination", :inner_window => 2, :outer_window => 2

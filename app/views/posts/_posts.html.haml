@@ -1,3 +1,4 @@
+= will_paginate @posts, class: "nexus_pagination", :inner_window => 1, :outer_window => 0
 
 / ensure direction and sort order persists
 = hidden_field_tag :direction, params[:direction]
@@ -20,3 +21,4 @@
         = post.user.name
         .post_content
           = post.content
+

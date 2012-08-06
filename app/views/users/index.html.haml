@@ -7,33 +7,34 @@
   #map.map
 
   #panel_m_posts.panel_m
-    = render 'posts/post_form'
+    .panel.type1
+      = render 'posts/post_form'
 
-    = form_tag posts_path, :method => 'get', :id => "posts_search" do
+    .panel
+      = form_tag posts_path, :method => 'get', :id => "posts_search" do
 
-      / AJAX POST FILTER SYSTEM
-      / TO BE RE-VISITED LATER WITH EXPERT HELP
-      / #post_filter
-      /   = render 'posfilter'
+        = text_field_tag :search, params[:search], placeholder: "Search posts..."
 
-      / #filter_form(style="display:none;")
-      / = collection_select(nil, :search, @countries, :country, :country, {:prompt => true})
-      / = collection_select(nil, :search, @cities, :city, :city, {:prompt => true})
-      / = collection_select(nil, :search, @skills, :skill, :skill, {:prompt => true})
-      / TO BE RE-VISITED LATER WITH EXPERT HELP
-
-      %p(style="margin-top:50px;")
-        = text_field_tag :search, params[:search]
-        / = submit_tag "Search", :name => nil
-        
       #posts
-        / =render 'posts'
+        / posts are rendered in javascript
 
   #panel_m_user.panel_m
-    / close button, .close is from T-BS
-    / WHAT'S THE RAILS WAY TO DO THIS 'ONCLICK?'
-    %button#m_user_close.close(onclick="$('#panel_m_user').fadeOut('slow')") ×
-    #user
+    .panel
+      / close button, .close is from T-BS
+      / WHAT'S THE RAILS WAY TO DO THIS 'ONCLICK?'
+      %button#m_user_close.close(onclick="$('#panel_m_user').fadeOut('slow')") ×
+      #user
 
   %script(type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false")
 
+
+// AJAX POST FILTER SYSTEM
+// TO BE RE-VISITED LATER WITH EXPERT HELP
+// #post_filter
+//   = render 'posfilter'
+
+// #filter_form(style="display:none;")
+// = collection_select(nil, :search, @countries, :country, :country, {:prompt => true})
+// = collection_select(nil, :search, @cities, :city, :city, {:prompt => true})
+// = collection_select(nil, :search, @skills, :skill, :skill, {:prompt => true})
+// TO BE RE-VISITED LATER WITH EXPERT HELP

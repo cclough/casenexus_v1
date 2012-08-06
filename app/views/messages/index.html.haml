@@ -1,6 +1,6 @@
 - provide(:title, 'Your notifications')
 
-= will_paginate @messages
+= will_paginate @messages, class: "nexus_pagination", :inner_window => 2, :outer_window => 2
 
 %ul.messages
   - if @messages.count > 0
@@ -16,4 +16,4 @@
   - else
     %p You have no messages
 
-= will_paginate @messages
+= will_paginate @messages, class: "nexus_pagination", :inner_window => 2, :outer_window => 2

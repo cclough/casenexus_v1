@@ -13,4 +13,6 @@
       = f.hidden_field :user_id, :value => @user.id
       = f.hidden_field :sender_id, :value => current_user.id
 
-    = f.submit "Send", class: "btn btn-inverse pull-right"
+    %button.btn.btn-primary.btn-inverse.pull-right{:type => "submit"}
+      %i.icon-comment
+      Send

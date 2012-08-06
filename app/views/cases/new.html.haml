@@ -3,6 +3,7 @@
 %h1 Send Case Feedback
 = form_for(@case) do |f|
   = render 'shared/error_messages', object: @case
+
   .case_form
     .row(style="margin-bottom:15px;")
       .span4
@@ -12,7 +13,7 @@
           = f.text_field :email, placeholder: "Partner email", tabindex: "2"
         .field_text         
           = f.text_field :date, placeholder: "Date", id: "datepicker", tabindex: "3"
-      .span5
+      .span4
         .field
           = f.text_area :subject, placeholder: "Subject", tabindex: "4"
         .field_text         
@@ -50,7 +51,7 @@
             Brief instructions on how to score and comment
           .field
             = f.text_area :comms_s, placeholder: "Comment...", tabindex: "10"
-      .span5
+      .span4
         #case_block
           .case_block_title
             Analytical/Problem Solving
@@ -73,12 +74,12 @@
             = f.text_area :conc_s, placeholder: "Comment...", tabindex: "9"
 
     .row
-      .span9
+      .span8
         .field
           = f.text_area :comment, placeholder: "Any further comments", :style=>'width: 620px;', tabindex: "11"
 
         = f.hidden_field :marker_id, :value => current_user.id
-        = f.submit "Submit", class: "btn btn-large btn-inverse", :style=>'float: right;margin-right:80px;', tabindex: "12"
+        = f.submit "Submit", class: "btn btn-large btn-inverse pull-right", tabindex: "12"
 
 :javascript
   //$(document).ready(function(){

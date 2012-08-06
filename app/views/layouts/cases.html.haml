@@ -1,7 +1,7 @@
 = content_for :content do
   .row
     %aside.span3
-      .panel.type1
+      .panel.type1.side
         %ul.nav_pages
           %li
             = link_to raw("<i class=icon-bar-chart icon-large></i> Analysis"), "/analysis"
@@ -12,7 +12,7 @@
           %li
             = link_to "Cases", "/cases"
     .span9
-      .panel
+      .panel.content
         = yield
 
 = render :template => 'layouts/application'
