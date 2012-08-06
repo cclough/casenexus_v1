@@ -8,7 +8,7 @@
   = form_for(@user) do |f|
     .row
       .span4
-        .panel.type1
+        .panel.type1.side
 
           = render 'shared/error_messages', object: @user
           = f.label :name
@@ -20,95 +20,108 @@
           = f.label :password_confirmation, "Confirm Password"
           = f.password_field :password_confirmation
 
-          = f.label :lat, "Latitude"
-          = f.text_field :lat, id: "lat"
-          = f.label :lng, "Longitude"
-          = f.text_field :lng, id: "lng"
           = f.label :country, "Country"
           = f.text_field :country, id: "country"
           = f.label :city, "City"
           = f.text_field :city, id: "city"
-
-          = f.label :email_admin, "Receive case interview advice email letter"
-          = f.check_box :email_admin
-
-          = f.label :email_users, "Send notifications from users to your email"
-          = f.check_box :email_users
+          .row
+            .span2
+              = f.label :email_admin, "Receive case interview advice email letter"
+            .span1
+              = f.check_box :email_admin
+          .row
+            .span2
+              = f.label :email_users, "Send notifications from users to your email"
+            .span1
+              = f.check_box :email_users
 
           %br
-          = f.submit "Save changes", class: "btn btn-large btn-primary"
+          = f.submit "Save changes", class: "btn btn-large btn-inverse"
 
-      .span3
-        #map_edit.map{:style => "height:450px; width:100%"}
 
-      .span5
-        .panel.type1
-          .row
-            .span2
-              Education
-            .span1
-              From
-            .span1
-              To
-          .row
-            .span2
-              = f.text_field :education1, placeholder: "Education 1"
-            .span1
-              = f.text_field :education1_from, placeholder: "Education 1", class: "datepicker"
-            .span1
-              = f.text_field :education1_to, placeholder: "Education 1", class: "datepicker"
-          .row 
-            .span2
-              = f.text_field :education2, placeholder: "Education 2"
-            .span1
-              = f.text_field :education2_from, placeholder: "Education 2", class: "datepicker"
-            .span1
-              = f.text_field :education2_to, placeholder: "Education 2", class: "datepicker"
-          .row
-            .span2
-              = f.text_field :education3, placeholder: "Education 3"
-            .span1
-              = f.text_field :education3_from, placeholder: "Education 3", class: "datepicker"
-            .span1
-              = f.text_field :education3_to, placeholder: "Education 3", class: "datepicker"
-          .row
-            .span2
-              Professional Experience
-            .span1
-              From
-            .span1
-              To
-          .row
-            .span2
-              = f.text_field :experience1, placeholder: "experience 1"
-            .span1
-              = f.text_field :experience1_from, placeholder: "experience 1", class: "datepicker"
-            .span1
-              = f.text_field :experience1_to, placeholder: "experience 1", class: "datepicker"
-          .row 
-            .span2
-              = f.text_field :experience2, placeholder: "experience 2"
-            .span1
-              = f.text_field :experience2_from, placeholder: "experience 2", class: "datepicker"
-            .span1
-              = f.text_field :experience2_to, placeholder: "experience 2", class: "datepicker"
-          .row
-            .span2
-              = f.text_field :experience3, placeholder: "experience 3"
-            .span1
-              = f.text_field :experience3_from, placeholder: "experience 3", class: "datepicker"
-            .span1
-              = f.text_field :experience3_to, placeholder: "experience 3", class: "datepicker"
+      .span8
+        .row
+          .span8
+            #map_edit.map{:style => "height:325px; width:100%; margin-right:-20px;"}
 
-          = f.label :skype
-          = f.text_field :skype
-          = f.label :linkedin
-          = f.text_field :linkedin
+        .row
+          .span7
+            .panel.content.other(style="height:30px;")
+              .span3
+                = f.text_field :lat, id: "lat"
+              .span3
+                = f.text_field :lng, id: "lng"
 
-          = f.label :skill
-          = f.text_field :skill
-          = f.label :num
-          = f.text_field :num
+        .row
+          .span5
+            .panel.type1.content.side
+              .row
+                .span2
+                  Education
+                .span1
+                  From
+                .span1
+                  To
+              .row
+                .span2
+                  = f.text_field :education1, placeholder: "Education 1"
+                .span1
+                  = f.text_field :education1_from, placeholder: "Education 1", class: "datepicker"
+                .span1
+                  = f.text_field :education1_to, placeholder: "Education 1", class: "datepicker"
+              .row 
+                .span2
+                  = f.text_field :education2, placeholder: "Education 2"
+                .span1
+                  = f.text_field :education2_from, placeholder: "Education 2", class: "datepicker"
+                .span1
+                  = f.text_field :education2_to, placeholder: "Education 2", class: "datepicker"
+              .row
+                .span2
+                  = f.text_field :education3, placeholder: "Education 3"
+                .span1
+                  = f.text_field :education3_from, placeholder: "Education 3", class: "datepicker"
+                .span1
+                  = f.text_field :education3_to, placeholder: "Education 3", class: "datepicker"
+              .row
+                .span2
+                  Professional Experience
+                .span1
+                  From
+                .span1
+                  To
+              .row
+                .span2
+                  = f.text_field :experience1, placeholder: "experience 1"
+                .span1
+                  = f.text_field :experience1_from, placeholder: "experience 1", class: "datepicker"
+                .span1
+                  = f.text_field :experience1_to, placeholder: "experience 1", class: "datepicker"
+              .row 
+                .span2
+                  = f.text_field :experience2, placeholder: "experience 2"
+                .span1
+                  = f.text_field :experience2_from, placeholder: "experience 2", class: "datepicker"
+                .span1
+                  = f.text_field :experience2_to, placeholder: "experience 2", class: "datepicker"
+              .row
+                .span2
+                  = f.text_field :experience3, placeholder: "experience 3"
+                .span1
+                  = f.text_field :experience3_from, placeholder: "experience 3", class: "datepicker"
+                .span1
+                  = f.text_field :experience3_to, placeholder: "experience 3", class: "datepicker"
+          .span3
+            .panel.type1.content
+              = f.label :skype
+              = f.text_field :skype
+              = f.label :linkedin
+              = f.text_field :linkedin
+
+              = f.label :skill
+              = f.text_field :skill
+              = f.label :num
+              = f.text_field :num
 
 
   %script{:src => "//maps.googleapis.com/maps/api/js?sensor=false", :type => "text/javascript"}
