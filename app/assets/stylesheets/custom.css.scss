@@ -270,13 +270,15 @@ input, textarea, select, .uneditable-input {
 
 #panel_m_posts {
   left: 100px;
-  top: 100px;
+  top: 20%;
+  bottom: 20%;
   width: 400px;
 }
 
 #panel_m_user {
   right: 30px;
-  top: 100px;
+  top: 20%;
+  bottom: 20%;
   width: 300px;
   display: none;
 }

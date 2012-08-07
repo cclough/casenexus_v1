@@ -60,12 +60,16 @@
 
     / send message button
     %a#message_show.btn.btn-inverse{:href => "#"}
+      %i.icon-comment.icon-white
       Message    
       %span.caret
 
     / send feedback button
-    = link_to "Send feedback", { controller: "cases", action: "new", target: @user.id }, class: "btn btn-inverse"
+    = link_to raw("<i class=\"icon-edit icon-white\"/>Send Feedback"), { controller: "cases", action: "new", target: @user.id }, class: "btn btn-inverse"
 
+
+
+  %li(style="margin-top:10px;")
     / new message form
     = render 'messages/message_form'
 
