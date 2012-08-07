@@ -42,15 +42,10 @@
       .span8
         .row
           .span8
-            #map_edit.map{:style => "height:325px; width:100%; margin-right:-20px;"}
-
-        .row
-          .span7
-            .panel.content.other(style="height:30px;")
-              .span3
-                = f.text_field :lat, id: "lat"
-              .span3
-                = f.text_field :lng, id: "lng"
+            #map_edit.map.panel_map_edit
+            .panel_latlng
+              = f.text_field :lat, id: "lat"
+              = f.text_field :lng, id: "lng"
 
         .row
           .span5
@@ -117,11 +112,6 @@
               = f.text_field :skype
               = f.label :linkedin
               = f.text_field :linkedin
-
-              = f.label :skill
-              = f.text_field :skill
-              = f.label :num
-              = f.text_field :num
 
 
   %script{:src => "//maps.googleapis.com/maps/api/js?sensor=false", :type => "text/javascript"}

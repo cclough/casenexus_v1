@@ -7,7 +7,7 @@
 // FIELD HEIGHT SHRUNK TO 18px
 // NB BTN-INVERSE STARTED WORKING AT THE SAME TIME
 input[type="text"], input[type="password"] {
-  height:30px;
+  height: 30px;
 }
 
 /* to fix TBS button overspills... */
@@ -292,8 +292,14 @@ input, textarea, select, .uneditable-input {
   width: 100px;
 }
 
-/********** posts *****NEED TO TIDY?******/
+.panel_map_edit {
+  height:325px;
+  width:97%;
+  margin-top:20px;
+  border: 1px solid $grayLight;
+}
 
+/********** posts *****NEED TO TIDY?******/
 
 
 // .filter {

@@ -107,6 +107,7 @@ GEM
     mime-types (1.19)
     multi_json (1.3.6)
     nokogiri (1.5.5)
+    opentok (0.0.7)
     pg (0.12.2)
     polyglot (0.3.3)
     rack (1.4.1)
@@ -205,6 +206,7 @@ DEPENDENCIES
   jquery-ui-rails
   launchy (= 2.1.0)
   mail
+  opentok
   pg
   rails (= 3.2.6)
   rb-fsevent (= 0.9.1)
