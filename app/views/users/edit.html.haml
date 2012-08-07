@@ -4,11 +4,14 @@
 
   %body(onload="load_geocode();")
 
-  %h1 Update your profile
+  .panel_title
+    %h3 Update your profile
+    %h5.subheader Change your profile settings
+
   = form_for(@user) do |f|
     .row
       .span4
-        .panel.type1.side
+        .panel.type1.kill_right
 
           = render 'shared/error_messages', object: @user
           = f.label :name
@@ -20,10 +23,10 @@
           = f.label :password_confirmation, "Confirm Password"
           = f.password_field :password_confirmation
 
-          = f.label :country, "Country"
-          = f.text_field :country, id: "country"
-          = f.label :city, "City"
-          = f.text_field :city, id: "city"
+          = f.label :skype
+          = f.text_field :skype
+          = f.label :linkedin
+          = f.text_field :linkedin
           .row
             .span2
               = f.label :email_admin, "Receive case interview advice email letter"
@@ -41,77 +44,82 @@
 
       .span8
         .row
-          .span8
-            #map_edit.map.panel_map_edit
-            .panel_latlng
+          .span2
+            .panel.type1.kill_left.kill_right
+              = f.label :country, "Country"
+              = f.text_field :country, id: "country"
+              = f.label :city, "City"
+              = f.text_field :city, id: "city"
               = f.text_field :lat, id: "lat"
               = f.text_field :lng, id: "lng"
+          .span6
+            #map_edit.map.panel_map_edit
 
         .row
-          .span5
-            .panel.type1.content.side
+          .span8
+            .panel.type1.content.kill_right.kill_left
               .row
-                .span2
-                  Education
-                .span1
-                  From
-                .span1
-                  To
-              .row
-                .span2
-                  = f.text_field :education1, placeholder: "Education 1"
-                .span1
-                  = f.text_field :education1_from, placeholder: "Education 1", class: "datepicker"
-                .span1
-                  = f.text_field :education1_to, placeholder: "Education 1", class: "datepicker"
-              .row 
-                .span2
-                  = f.text_field :education2, placeholder: "Education 2"
-                .span1
-                  = f.text_field :education2_from, placeholder: "Education 2", class: "datepicker"
-                .span1
-                  = f.text_field :education2_to, placeholder: "Education 2", class: "datepicker"
-              .row
-                .span2
-                  = f.text_field :education3, placeholder: "Education 3"
-                .span1
-                  = f.text_field :education3_from, placeholder: "Education 3", class: "datepicker"
-                .span1
-                  = f.text_field :education3_to, placeholder: "Education 3", class: "datepicker"
-              .row
-                .span2
-                  Professional Experience
-                .span1
-                  From
-                .span1
-                  To
-              .row
-                .span2
-                  = f.text_field :experience1, placeholder: "experience 1"
-                .span1
-                  = f.text_field :experience1_from, placeholder: "experience 1", class: "datepicker"
-                .span1
-                  = f.text_field :experience1_to, placeholder: "experience 1", class: "datepicker"
-              .row 
-                .span2
-                  = f.text_field :experience2, placeholder: "experience 2"
-                .span1
-                  = f.text_field :experience2_from, placeholder: "experience 2", class: "datepicker"
-                .span1
-                  = f.text_field :experience2_to, placeholder: "experience 2", class: "datepicker"
-              .row
-                .span2
-                  = f.text_field :experience3, placeholder: "experience 3"
-                .span1
-                  = f.text_field :experience3_from, placeholder: "experience 3", class: "datepicker"
-                .span1
-                  = f.text_field :experience3_to, placeholder: "experience 3", class: "datepicker"
-          .span3
-            .panel.type1.content
-              = f.label :skype
-              = f.text_field :skype
-              = f.label :linkedin
-              = f.text_field :linkedin
+                .span4
+                  %table(style="width:275px;")
+                    %tr
+                      %th
+                        Education
+                      %th.coldate
+                        From
+                      %th.coldate
+                        To
+                    %tr
+                      %td
+                        = f.text_field :education1, placeholder: "Education 1"
+                      %td
+                        = f.text_field :education1_from, placeholder: "Education 1", class: "datepicker"
+                      %td
+                        = f.text_field :education1_to, placeholder: "Education 1", class: "datepicker"
+                    %tr
+                      %td
+                        = f.text_field :education2, placeholder: "Education 2"
+                      %td
+                        = f.text_field :education2_from, placeholder: "Education 2", class: "datepicker"
+                      %td
+                        = f.text_field :education2_to, placeholder: "Education 2", class: "datepicker"
+                    %tr
+                      %td 
+                        = f.text_field :education3, placeholder: "Education 3"
+                      %td
+                        = f.text_field :education3_from, placeholder: "Education 3", class: "datepicker"
+                      %td
+                        = f.text_field :education3_to, placeholder: "Education 3", class: "datepicker"
+
+                .span3
+                  %table(style="width:275px;")
+                    %tr
+                      %th
+                        Professional Experience
+                      %th.coldate
+                        From
+                      %th.coldate
+                        To
+                    %tr
+                      %td
+                        = f.text_field :experience1, placeholder: "experience 1"
+                      %td
+                        = f.text_field :experience1_from, placeholder: "experience 1", class: "datepicker"
+                      %td
+                        = f.text_field :experience1_to, placeholder: "experience 1", class: "datepicker"
+                    %tr
+                      %td
+                        = f.text_field :experience2, placeholder: "experience 2"
+                      %td
+                        = f.text_field :experience2_from, placeholder: "experience 2", class: "datepicker"
+                      %td
+                        = f.text_field :experience2_to, placeholder: "experience 2", class: "datepicker"
+                    %tr
+                      %td
+                        = f.text_field :experience3, placeholder: "experience 3"
+                      %td
+                        = f.text_field :experience3_from, placeholder: "experience 3", class: "datepicker"
+                      %td
+                        = f.text_field :experience3_to, placeholder: "experience 3", class: "datepicker"
 
 
   %script{:src => "//maps.googleapis.com/maps/api/js?sensor=false", :type => "text/javascript"}

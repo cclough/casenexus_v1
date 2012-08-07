@@ -1,18 +1,26 @@
 = content_for :content do
+
+  .panel_title
+    %h3
+      =yield(:title)
+    %h5.subheader
+      =yield(:subtitle)
+
   .row
     %aside.span3
-      .panel.type1.side
+      .panel.type1.kill_right
         %ul.sidebar
           %li
+            = link_to "Cases", "/cases"
+          %li
             = link_to raw("<i class=icon-bar-chart icon-large></i> Analysis"), "/analysis"
+          %li.divider
           %li
             = link_to "Send feedback", "/cases/new"
           %li
             = link_to "Request feedback", "/request"
-          %li
-            = link_to "Cases", "/cases"
     .span9
-      .panel.content
+      .panel.kill_left
         = yield
 
 = render :template => 'layouts/application'

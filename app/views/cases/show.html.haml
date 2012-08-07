@@ -1,4 +1,5 @@
-- provide(:title, 'Case')
+- provide(:title, 'Case with ' + @case.marker_id.to_s)
+- provide(:subtitle, @case.subject)
 
 %h1 A Case you did...
 .row(style="margin-bottom:15px;")

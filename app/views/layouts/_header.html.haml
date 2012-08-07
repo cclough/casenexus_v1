@@ -47,7 +47,7 @@
                         = message.content.truncate(35, :separator => ' ')
 
                 - else
-                  %p No messages      
+                  = link_to "No Messages", '#'      
               %li.divider
               %li
                 = link_to "See all", '/messages'

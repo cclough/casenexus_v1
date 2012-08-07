@@ -22,6 +22,8 @@ Casenexus::Application.routes.draw do
   match '/analysis' => 'cases#analysis'
   match '/request' => 'cases#request'
 
+  match '/sent' => 'messages#sent'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

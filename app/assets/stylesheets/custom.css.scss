@@ -73,17 +73,31 @@ textarea {
     background-color: #FCFCFC;
   }
 
-  &.side {
+  &.kill_right {
     margin-right: 0px;
   }
 
-  &.content{
+  &.kill_left{
     margin-left: 0px;
   }
 
-  &.other{
+  &.kill_bottom{
     margin-bottom: 0px;
   }
+
+  &.kill_top{
+    margin-bottom: 0px;
+  }
+}
+
+.panel_title {
+
+  padding-top:10px;
+  padding-left:20px;
+  padding-bottom:10px;
+  border-bottom: 1px solid $grayLight;
+  line-height:3em;
+  background-color: $grayLighter;
 }
 
 /*********** typography ***********/
@@ -106,6 +120,11 @@ h2 {
   text-align: center;
   font-weight: normal;
   color: $grayLight;
+}
+
+h5{
+  color: $grayLight;
+  line-height:25px;
 }
 
 p {
@@ -227,6 +246,10 @@ input, textarea, select, .uneditable-input {
   @extend .error;
 }
 
+.coldate {
+  width: 60px;
+}
+
 /************** Map Page **************/
 
 #map {
@@ -286,10 +309,7 @@ input, textarea, select, .uneditable-input {
 
 
 .panel_latlng {
-  position: absolute;
-  right: 0px;
-  bottom: 0px;
-  width: 100px;
+  margin:auto;
 }
 
 .panel_map_edit {
@@ -475,6 +495,15 @@ table.posts {
   font-size:80%;
   margin-top:-7px;
   margin-bottom:5px;
+}
+
+.target_name {
+  padding-bottom:20px;
+  padding-top:10px;
+  font-size:200%;
+  font-weight:bold;
+  text-align:center;
+  width:100%;
 }
 
 /************* roulette **************/

@@ -52,7 +52,7 @@ class UsersController < ApplicationController
       UserMailer.welcome_email(@user).deliver
 
       sign_in @user
-  		flash[:success] = "Welcome to casenexus!"
+  		flash[:success] = "Welcome to casenexus.com"
   		redirect_to users_path
   	else
   		render 'new'
@@ -64,13 +64,13 @@ class UsersController < ApplicationController
 
     # remind that skype username is required to use the roulette
     if current_user.skype.blank?
-      flash.now[:notice] = "To use the roulette your must enter your skype username"
+      flash.now[:notice] = "<strong>Notice</strong> To use the roulette your must enter your skype username".html_safe
     end
 
     # check if profile is complete according to compeleted boolean 
     # (STILL NEED TO DECIDE ON BEST WAY TO DO THIS)
     if current_user.completed?
-      flash.now[:notice] = "Complete the rest of your profile"
+      flash.now[:notice] = "<strong>Notice</strong> Complete the rest of your profile".html_safe
     end
 
   end
@@ -79,7 +79,7 @@ class UsersController < ApplicationController
   def update
     if @user.update_attributes(params[:user])
       sign_in @user
-      flash[:success] = "Profile updated"
+      flash[:success] = '<strong>Success</strong> - Profile updated'.html_safe
       redirect_to users_path
     else
       render 'edit'

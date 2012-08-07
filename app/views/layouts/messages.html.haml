@@ -1,14 +1,21 @@
 = content_for :content do
+
+  .panel_title
+    %h3
+      =yield(:title)
+    %h5.subheader
+      =yield(:subtitle)
+
   .row
     %aside.span3
-      .panel.type1
+      .panel.type1.kill_right
         %ul.sidebar
           %li
             = link_to "Inbox (#{@messages_count})", "/messages"
           %li
-            = link_to "Sent", "/messages#sent"
+            = link_to "Sent", "/sent"
     .span9
-      .panel
+      .panel.kill_left
         = yield
 
 = render :template => 'layouts/application'

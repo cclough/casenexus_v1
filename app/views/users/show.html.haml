@@ -59,12 +59,12 @@
   %li
 
     / send message button
-    %a#message_show.btn{:href => "#"}
+    %a#message_show.btn.btn-inverse{:href => "#"}
       Message    
       %span.caret
 
     / send feedback button
-    = link_to "Send feedback", 'signup_path', class: "btn btn-inverse"
+    = link_to "Send feedback", { controller: "cases", action: "new", target: @user.id }, class: "btn btn-inverse"
 
     / new message form
     = render 'messages/message_form'
@@ -79,5 +79,3 @@
     });
 
   });
-
-/ message[content]

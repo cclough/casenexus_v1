@@ -8,13 +8,16 @@ class MessagesController < ApplicationController
 
 	def index
 
+    # build user messages, paginated, ordered
     #  get this to sort descending and paginate? 
 		@messages = current_user.messages.paginate(per_page: 10, page: 
                 params[:page], order: "created_at DESC")
 	end
 
   def sent
-    # @messages = Message.find_by_sender_id
+    # get sent messages
+    @sentmessages = Message.paginate(per_page: 10, page: 
+                params[:page], order: "created_at DESC").find_by_sender_id(current_user.id)
   end
 
   def show

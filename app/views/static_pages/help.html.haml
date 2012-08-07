@@ -1,6 +1,14 @@
 - provide(:title, 'Help')
+- provide(:subtitle, 'Info on how to use this site')
+
 
 = content_for :content do
+
+  .panel_title
+    %h3
+      =yield(:title)
+    %h5.subheader
+      =yield(:subtitle)
+
   .panel
-    %h1 Help
     %p this is the help page!

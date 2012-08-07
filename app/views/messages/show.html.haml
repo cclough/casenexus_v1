@@ -1,6 +1,7 @@
-- provide(:title, "Message From " + @message_sender.name)
+- provide(:title, "Message")
+- provide(:subtitle, "From " + @message_sender.name)
 
-%h1
+%h3
   Message from
   = @message_sender.name
 %br

@@ -8,7 +8,8 @@ class CasesController < ApplicationController
 
 	def index
 
-		@cases = Case.paginate(per_page: 10, page: 
+		# load in user's cases, paginated, ordered
+		@cases = current_user.cases.paginate(per_page: 10, page: 
 			     params[:page], order: "created_at DESC")
 	end
 
@@ -16,13 +17,24 @@ class CasesController < ApplicationController
 
 		# data for radar graph
 		@chart_data_radar = "[{criteria: \"Plan\", score: 9},
-									      {criteria: \"Analytical\", score: 9},
-									      {criteria: \"Structure\", score: 9},
-									      {criteria: \"Conclusion\", score: 9}]"
+							 {criteria: \"Analytical\", score: 9},
+							 {criteria: \"Structure\", score: 9},
+							 {criteria: \"Conclusion\", score: 9}]"
 	end
 
 	def new
 		@case = Case.new
+
+		# if target is set, pass the id to the form, if not, error and re-direct
+		if params[:target]
+			@target = User.find_by_id(params[:target])
+		else
+			flash[:error] = "<strong>Error</strong> You must use the map 
+							or the 'send feedback' page to select a 
+							user to send feedback to".html_safe
+			redirect_to users_path
+		end
+
 	end
 
 	def show
@@ -31,9 +43,9 @@ class CasesController < ApplicationController
 
 		# data for radar graph
 		@chart_data = "[{criteria: \"Plan\", score: "+@case.plan.to_s+"},
-									 {criteria: \"Analytical\", score: "+@case.analytic.to_s+"},
-									 {criteria: \"Structure\", score: "+@case.struc.to_s+"},
-									 {criteria: \"Conclusion\", score: "+@case.conc.to_s+"}]"
+					   {criteria: \"Analytical\", score: "+@case.analytic.to_s+"},
+					   {criteria: \"Structure\", score: "+@case.struc.to_s+"},
+				       {criteria: \"Conclusion\", score: "+@case.conc.to_s+"}]"
 	end
 
 	def create
