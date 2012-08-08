@@ -9,10 +9,13 @@ class ApplicationController < ActionController::Base
 
 		# check if signed_in
 		if signed_in?
-			@messages_nav = current_user.messages.order('created_at desc')
-							.all(:limit => 5)
-			@messages_count = current_user.messages.all.count
 			@user_name = current_user.name
+
+			@user_messages = current_user.messages.order('created_at desc')
+							.all(:limit => 5)
+			@user_messages_count = current_user.messages.all.count
+
+			@user_cases_count = current_user.cases.all.count
 		end
 		
 	end

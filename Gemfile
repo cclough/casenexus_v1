@@ -11,7 +11,6 @@ gem 'font-awesome-rails'
 gem 'redis'
 gem 'session_tracker'
 gem 'mail'
-gem 'opentok'
 
 group :development, :test do
   gem 'pg'

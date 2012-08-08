@@ -51,6 +51,7 @@ class UsersController < ApplicationController
       #send welcome email
       UserMailer.welcome_email(@user).deliver
 
+      # sign in the new user
       sign_in @user
   		flash[:success] = "Welcome to casenexus.com"
   		redirect_to users_path

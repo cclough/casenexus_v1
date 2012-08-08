@@ -15,19 +15,22 @@ class RouletteController < ApplicationController
         # number at the end defines minutes to look back
     end
 
-    def show
+    def random
 
+        # get array of users (remember token codes store in track_active_sessions func below)
         @onlineusers = SessionTracker.new("onlineuser", $redis).active_users_data(1, Time.now)
-        @onlineuser = 
+        # random select one of them
+        @selectonlineuser = @onlineusers[rand(@onlineusers.length)]
+        # get user object from remember token
+        # this is then used in the view
+        @onlineuser = User.find_by_remember_token(@selectonlineuser)
 
-        - rand(@onlineusers.length)
-
-        
-        - @onlineuser = User.find_by_remember_token(t)
+        respond_to do |format|
+          # don't load layout - make like a partial
+          format.html { render :layout => false }
+        end
 
     end
-
-
 
 
     # start sessiontracker gem(redis) on user arriving to controller

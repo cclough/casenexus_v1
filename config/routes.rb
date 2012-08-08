@@ -23,6 +23,8 @@ Casenexus::Application.routes.draw do
   match '/request' => 'cases#request'
 
   match '/sent' => 'messages#sent'
+
+  match '/random' => 'roulette#random'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

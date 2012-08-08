@@ -30,13 +30,13 @@
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               / messages icon + message count
               %i.icon-comments.icon-white.icon-large 
-              = "(" + @messages_count.to_s + ")"
+              = "(" + @user_messages_count.to_s + ")"
               %span.caret
             %ul.dropdown-menu
               %li
                 / Build message list for notifcations icon
-                - if @messages_count > 0
-                  - @messages_nav.each do |message|
+                - if @user_messages_count > 0
+                  - @user_messages.each do |message|
                     %a{:href => "/messages/" + message.id.to_s ,
                        :style => ""}
                       %b
@@ -57,6 +57,7 @@
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               %i.icon-user.icon-white.icon-large
               = @user_name
+              = "(" + @user_cases_count.to_s + ")"
               %span.caret
             %ul.dropdown-menu
               %li= link_to raw("<i class=icon-book></i> Your Feedback"), "/cases"

@@ -199,6 +199,14 @@ footer {
   display: none;
 }
 
+/* hide skype flash block */
+#skypedetectionswf{
+margin-left: -10000px;
+width: .001em;
+height: .001em;
+}
+
+
 /******** sidebar WHAT THE HELL IS THIS FOR? ******/
 
 aside {
@@ -522,6 +530,10 @@ table.posts {
   -moz-border-radius:15px;
   border-radius: 15px;
 
+}
+
+.r_container {
+  height:500px;
 }
 
 .r_grid {

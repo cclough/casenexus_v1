@@ -1,19 +1,26 @@
 = content_for :content do
   %row
-    %span12
-      .panel
-        %ul.r_grid
-          #window
-            = render 'show'
-
+    .span11
+      .panel.r_container.kill_left
         %a#next.btn-large.btn-inverse{:href => "#"}
           %i.icon-random.icon-white
           Next
+        #window.r_block
+          
 
-/ message form jquery show
-:javascript
-  $('#next').click(function() {
 
-    $('#window').load('show');
+  / load in /random user
+  :javascript
+    $('#next').click(function() {
 
-  });
+      $('#window').fadeOut('fast', function() {
+
+        $('#window').load('/random', function() {
+
+          $('#window').fadeIn('fast');
+
+        });
+      
+      });
+
+    });

@@ -2,7 +2,10 @@
   %li.name
     %h3
       = @user.name
-      = @user.id
+    %h5  
+      = "# Cases: " + @user.cases.all.count.to_s
+    id: 
+    = @user.id
   %li.header
     City
   %li
