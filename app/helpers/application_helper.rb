@@ -10,6 +10,7 @@ module ApplicationHelper
 		end
 	end
 
+	# DONT NEED THIS ANY MORE AS NOT DOING AJAX SORTING????
 	# for post list sorting
 	def sortable(column, title = nil)
  		title ||= column.titleize

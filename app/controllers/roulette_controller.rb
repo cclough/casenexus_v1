@@ -10,10 +10,29 @@ class RouletteController < ApplicationController
     # start session_Tracker
     before_filter :track_active_sessions
 
+    def index
+        # call in user data from session tracker gem (from redis)
+        # number at the end defines minutes to look back
+    end
+
+    def show
+
+        @onlineusers = SessionTracker.new("onlineuser", $redis).active_users_data(1, Time.now)
+        @onlineuser = 
+
+        - rand(@onlineusers.length)
+
+        
+        - @onlineuser = User.find_by_remember_token(t)
+
+    end
+
+
+
+
     # start sessiontracker gem(redis) on user arriving to controller
     # store remember token in redis (could change for email or params[:session]?)
     def track_active_sessions
-
       # first insist that the skype field is completed in a users profile
       if current_user.skype.blank?
         # if blank, flash an error to update their profile
@@ -27,15 +46,6 @@ class RouletteController < ApplicationController
       else
         SessionTracker.new("onlineuser", $redis).track(current_user.remember_token)
       end
-
-    end
-
-    def index
-
-        # call in user data from session tracker gem (from redis)
-        # number at the end defines minutes to look back
-        @onlineusers = SessionTracker.new("onlineuser", $redis).active_users_data(1, Time.now)
-
     end
 
 end

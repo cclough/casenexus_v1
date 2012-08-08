@@ -29,7 +29,6 @@ class CasesController < ApplicationController
 		@struc_avg = @user5cases.collect(&:struc).sum.to_f/@user5cases.length
 		@conc_avg = @user5cases.collect(&:conc).sum.to_f/@user5cases.length
 
-		
 		# load scores into json for radar chart
 		@chart_data_radar = "[{criteria: \"Plan\", score: " + @plan_avg.to_s + "},
 							 {criteria: \"Analytical\", score: " + @analytic_avg.to_s + "},
