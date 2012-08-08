@@ -15,11 +15,26 @@ class CasesController < ApplicationController
 
 	def analysis
 
-		# data for radar graph
-		@chart_data_radar = "[{criteria: \"Plan\", score: 9},
-							 {criteria: \"Analytical\", score: 9},
-							 {criteria: \"Structure\", score: 9},
-							 {criteria: \"Conclusion\", score: 9}]"
+		#### generate data for radar graph
+
+		# load current user into object
+		@user = User.find_by_id(current_user.id)
+
+		# get last 5 cases by user
+		@user5cases = @user.cases.limit(5).order('id desc')
+
+		# calculate average scores for 4 criteria, from last 5 cases
+		@plan_avg = @user5cases.collect(&:plan).sum.to_f/@user5cases.length
+		@analytic_avg = @user5cases.collect(&:analytic).sum.to_f/@user5cases.length
+		@struc_avg = @user5cases.collect(&:struc).sum.to_f/@user5cases.length
+		@conc_avg = @user5cases.collect(&:conc).sum.to_f/@user5cases.length
+
+		
+		# load scores into json for radar chart
+		@chart_data_radar = "[{criteria: \"Plan\", score: " + @plan_avg.to_s + "},
+							 {criteria: \"Analytical\", score: " + @analytic_avg.to_s + "},
+							 {criteria: \"Structure\", score: " + @struc_avg.to_s + "},
+							 {criteria: \"Conclusion\", score: " + @conc_avg.to_s + "}]"
 	end
 
 	def new

@@ -1,7 +1,5 @@
 - provide(:title, 'Your Progress')
-
-%h1 Your progress
-
+- provide(:subtitle, 'Analysis of all of the cases you have done')
 .row
   .span3
     %table
@@ -20,6 +18,7 @@
           "...some metrics..."
         %td
           "...xxx..."
+
   .span5
     #chartdiv_radar{:style => "height: 300px;"}
 
@@ -28,7 +27,7 @@
     #chartdiv_area{:style => "width:100%; height:350px;"}
 
 
-
+/ Radar Chart Javascript
 :javascript
   var chart_radar;
 
@@ -65,6 +64,8 @@
     chart.write("chartdiv_radar");
   });
 
+
+/ Progress graph javascript
 :javascript
             var chart_area;
 

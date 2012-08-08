@@ -264,22 +264,19 @@ input, textarea, select, .uneditable-input {
 .panel_m {
   position: absolute;
   z-index: 1;
+  top:20%;
   background: url(white-wash.png);
 
 }
 
 #panel_m_posts {
   left: 100px;
-  top: 20%;
-  bottom: 20%;
   width: 400px;
 }
 
 #panel_m_user {
   right: 30px;
-  top: 20%;
-  bottom: 20%;
-  width: 300px;
+  width: 320px;
   display: none;
 }
 
