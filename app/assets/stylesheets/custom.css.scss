@@ -149,6 +149,19 @@ p {
   }
 }
 
+.count {
+  font-size: 1.7em;
+  color: white;
+  letter-spacing: 1px;
+  padding-top: 7px;
+  /* font-weight: bold; */
+  line-height: 1;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
 /************ footer *************/
 
 footer {

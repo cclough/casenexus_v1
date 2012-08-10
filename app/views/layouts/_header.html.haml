@@ -8,17 +8,16 @@
       %nav
       - if signed_in?
         %ul.nav.pull-left
-          / MAP: pushpin or globe or picture or road or map-marker
+
           %li.divider-vertical
+
+          / MAP: pushpin or globe or picture or road or map-marker
           %li
             = link_to raw("<i class='icon-globe icon-large'></i> Users"), users_path
           / ROULETTE: or refresh
           %li
             = link_to raw("<i class='icon-random icon-large'></i> Roulette"), '/roulette'
 
-          / Divider
-          / %li.divider-vertical
-          
           / HELP: info-sign or question-sign or book
           %li
             = link_to raw("<i class='icon-info-sign icon-large'></i> Help"), help_path
@@ -57,14 +56,21 @@
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               %i.icon-user.icon-white.icon-large
               = @user_name
-              = "(" + @user_cases_count.to_s + ")"
               %span.caret
             %ul.dropdown-menu
-              %li= link_to raw("<i class=icon-book></i> Your Feedback"), "/cases"
               %li= link_to raw("<i class=icon-cogs></i> Settings"), edit_user_path(current_user)
               %li.divider
               %li= link_to raw("<i class=icon-bolt></i> Sign out"), signout_path, method: "delete"
-
+          %li.divider-vertical
+          %li#fat-menu.dropdown
+            %a.count.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              = @user_cases_count.to_s
+              %span.caret
+            %ul.dropdown-menu
+              %li= link_to raw("<i class=icon-book></i> Your Cases"), "/cases"
+              %li= link_to raw("<i class=icon-book></i> Analysis"), "/analysis"
       -else
         %ul.nav.pull-left
           %li.divider-vertical
+
+

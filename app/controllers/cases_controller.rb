@@ -18,22 +18,52 @@ class CasesController < ApplicationController
 		#### generate data for radar graph
 
 		# load current user into object
-		@user = User.find_by_id(current_user.id)
+		@user = current_user
 
-		# get last 5 cases by user
-		@user5cases = @user.cases.limit(5).order('id desc')
+		############# LAST 5 ##############
+		# LAST 5: get last 5 cases by user
+		@userCases_last5 = @user.cases.limit(5).order('id desc')
 
-		# calculate average scores for 4 criteria, from last 5 cases
-		@plan_avg = @user5cases.collect(&:plan).sum.to_f/@user5cases.length
-		@analytic_avg = @user5cases.collect(&:analytic).sum.to_f/@user5cases.length
-		@struc_avg = @user5cases.collect(&:struc).sum.to_f/@user5cases.length
-		@conc_avg = @user5cases.collect(&:conc).sum.to_f/@user5cases.length
+		# LAST 5: calculate average scores for 4 criteria, from last 5 cases
+		@plan_avg = @userCases_last5.collect(&:plan).sum.to_f/@userCases_last5.length
+		@analytic_avg = @userCases_last5.collect(&:analytic).sum.to_f/@userCases_last5.length
+		@struc_avg = @userCases_last5.collect(&:struc).sum.to_f/@userCases_last5.length
+		@conc_avg = @userCases_last5.collect(&:conc).sum.to_f/@userCases_last5.length
 
-		# load scores into json for radar chart
-		@chart_data_radar = "[{criteria: \"Plan\", score: " + @plan_avg.to_s + "},
+		# LAST 5: load scores into json for radar chart
+		@chartData_radar_last5 = "[{criteria: \"Plan\", score: " + @plan_avg.to_s + "},
 							 {criteria: \"Analytical\", score: " + @analytic_avg.to_s + "},
 							 {criteria: \"Structure\", score: " + @struc_avg.to_s + "},
 							 {criteria: \"Conclusion\", score: " + @conc_avg.to_s + "}]"
+
+		############# FIRST 5 ##############
+		# FIRST 5: get last 5 cases by user
+		@userCases_first5 = @user.cases.limit(5).order('id asc')
+
+		# FIRST 5: calculate average scores for 4 criteria, from last 5 cases
+		@plan_avg = @userCases_first5.collect(&:plan).sum.to_f/@userCases_first5.length
+		@analytic_avg = @userCases_first5.collect(&:analytic).sum.to_f/@userCases_first5.length
+		@struc_avg = @userCases_first5.collect(&:struc).sum.to_f/@userCases_first5.length
+		@conc_avg = @userCases_first5.collect(&:conc).sum.to_f/@userCases_first5.length
+
+		# FIRST 5: load scores into json for radar chart
+		@chartData_radar_first5 = "[{criteria: \"Plan\", score: " + @plan_avg.to_s + "},
+							 {criteria: \"Analytical\", score: " + @analytic_avg.to_s + "},
+							 {criteria: \"Structure\", score: " + @struc_avg.to_s + "},
+							 {criteria: \"Conclusion\", score: " + @conc_avg.to_s + "}]"
+
+		#### generate data for progress chart
+
+		# this could likely be done a lot better! .to_json?
+		
+        respond_to do |format|
+      		format.html
+      		# this is model stuff ...defining an action in the model...?
+			format.json { render json: current_user.cases.order('date asc').map {|c|
+						{ date: c.date.strftime("%Y-%m-%d"), plan: c.plan, analytic: c.analytic, 
+						struc: c.struc, conc: c.conc } }}
+    	end
+
 	end
 
 	def new
@@ -53,7 +83,6 @@ class CasesController < ApplicationController
 
 	def show
 		@case = Case.find(params[:id])
-		# @countries = Country.find(:all)
 
 		# data for radar graph
 		@chart_data = "[{criteria: \"Plan\", score: "+@case.plan.to_s+"},
@@ -72,6 +101,18 @@ class CasesController < ApplicationController
 	  	else
 	  		render 'new'
 	  	end
+	end
+
+
+	private
+
+	# amchart date converter	
+    def parseDate(dateString)
+
+    	@dateArray = dateString.split("-")
+		var date = Date(@dateArray[0].to_i, @dateArray[1].to_i - 1, @dateArray[2].to_i)
+    	return date
+
 	end
 
 end
