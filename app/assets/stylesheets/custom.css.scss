@@ -385,21 +385,6 @@ table.posts {
 }
 
 
-/*********** Template **********/
-
-.sidebar {
-  list-style: none;
-  li {
-    padding:5px;
-    color: black;
-    &:hover {
-      background-color: $grayLighter;
-      text-decoration: none;
-    }
-  }
-}
-
-
 /************ messages ************/
 
 

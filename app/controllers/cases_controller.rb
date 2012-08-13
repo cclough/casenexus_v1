@@ -30,31 +30,24 @@ class CasesController < ApplicationController
 		@struc_avg = @userCases_last5.collect(&:struc).sum.to_f/@userCases_last5.length
 		@conc_avg = @userCases_last5.collect(&:conc).sum.to_f/@userCases_last5.length
 
-		# LAST 5: load scores into json for radar chart
-		@chartData_radar_last5 = "[{criteria: \"Plan\", score: " + @plan_avg.to_s + "},
-							 {criteria: \"Analytical\", score: " + @analytic_avg.to_s + "},
-							 {criteria: \"Structure\", score: " + @struc_avg.to_s + "},
-							 {criteria: \"Conclusion\", score: " + @conc_avg.to_s + "}]"
 
 		############# FIRST 5 ##############
 		# FIRST 5: get last 5 cases by user
 		@userCases_first5 = @user.cases.limit(5).order('id asc')
 
 		# FIRST 5: calculate average scores for 4 criteria, from last 5 cases
-		@plan_avg = @userCases_first5.collect(&:plan).sum.to_f/@userCases_first5.length
-		@analytic_avg = @userCases_first5.collect(&:analytic).sum.to_f/@userCases_first5.length
-		@struc_avg = @userCases_first5.collect(&:struc).sum.to_f/@userCases_first5.length
-		@conc_avg = @userCases_first5.collect(&:conc).sum.to_f/@userCases_first5.length
+		@plan_avg_first5 = @userCases_first5.collect(&:plan).sum.to_f/@userCases_first5.length
+		@analytic_avg_first5 = @userCases_first5.collect(&:analytic).sum.to_f/@userCases_first5.length
+		@struc_avg_first5 = @userCases_first5.collect(&:struc).sum.to_f/@userCases_first5.length
+		@conc_avg_first5 = @userCases_first5.collect(&:conc).sum.to_f/@userCases_first5.length
 
-		# FIRST 5: load scores into json for radar chart
-		@chartData_radar_first5 = "[{criteria: \"Plan\", score: " + @plan_avg.to_s + "},
-							 {criteria: \"Analytical\", score: " + @analytic_avg.to_s + "},
-							 {criteria: \"Structure\", score: " + @struc_avg.to_s + "},
-							 {criteria: \"Conclusion\", score: " + @conc_avg.to_s + "}]"
+		# LAST 5: load scores into json for radar chart
+		@chartData_radar = "[{criteria: \"Plan\", last5: " + @plan_avg.to_s + ", first5: " + @plan_avg_first5.to_s + "},
+							 {criteria: \"Analytical\", last5: " + @analytic_avg.to_s + ", first5: " + @plan_avg_first5.to_s + "},
+							 {criteria: \"Structure\", last5: " + @struc_avg.to_s + ", first5: " + @plan_avg_first5.to_s + "},
+							 {criteria: \"Conclusion\", last5: " + @conc_avg.to_s + ", first5: " + @plan_avg_first5.to_s + "}]"
 
 		#### generate data for progress chart
-
-		# this could likely be done a lot better! .to_json?
 		
         respond_to do |format|
       		format.html

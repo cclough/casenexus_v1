@@ -7,20 +7,8 @@
       =yield(:subtitle)
 
   .row
-    %aside.span3
-      .panel.type1.kill_right
-        %ul.sidebar
-          %li
-            = link_to "Cases", "/cases"
-          %li
-            = link_to raw("<i class=icon-bar-chart icon-large></i> Analysis"), "/analysis"
-          %li.divider
-          %li
-            = link_to "Send feedback", "/cases/new"
-          %li
-            = link_to "Request feedback", "/request"
-    .span9
-      .panel.kill_left
+    .span12
+      .panel
         = yield
 
 = render :template => 'layouts/application'

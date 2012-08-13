@@ -7,15 +7,8 @@
       =yield(:subtitle)
 
   .row
-    %aside.span3
-      .panel.type1.kill_right
-        %ul.sidebar
-          %li
-            = link_to "Inbox (#{@user_messages_count})", "/messages"
-          %li
-            = link_to "Sent", "/sent"
-    .span9
-      .panel.kill_left
+    .span12
+      .panel
         = yield
 
 = render :template => 'layouts/application'

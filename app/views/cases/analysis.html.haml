@@ -20,12 +20,12 @@
         %td
           "...xxx..."
 
-  .span5
-    #chartdiv_radar{:style => "height: 300px;"}
+  .span8
+    #chart_radar{:style => "height: 300px;"}
 
 .row
-  .span8
-    #chartdiv_area{:style => "width:100%; height:350px;"}
+  .span11
+    #chart_progress{:style => "width:100%; height:350px;"}
 
 
 / Radar Chart Javascript
@@ -34,42 +34,35 @@
   var chart_radar;
 
   // load data from rails variable (defined in controller)
-  var chartData_radar_last5 = #{@chartData_radar_last5};
-  var chartData_radar_first5 = #{@chartData_radar_first5};
+  var chartData_radar = #{@chartData_radar};
 
   // Draw AM Radar Chart
   AmCharts.ready(function () {
     // RADAR CHART
     chart = new AmCharts.AmRadarChart();
-    chart.dataProvider = chartData_radar_last5;
+    chart.dataProvider = chartData_radar;
     chart.categoryField = "criteria";
     chart.startDuration = 0;
 
     // GRAPH
     var graph = new AmCharts.AmGraph();
-    graph.lineColor = "#98cdff"
-    graph.fillAlphas = 0.4;
+    graph.title = "First 5";
+    graph.lineColor = "#bdd523"
+    graph.fillAlphas = 0.2;
     graph.bullet = "round"
-    graph.valueField = "score"
+    graph.valueField = "first5"
     graph.balloonText = "[[category]]: [[value]] m/s"
     chart.addGraph(graph);
-
-
-    // RADAR CHART
-    chart = new AmCharts.AmRadarChart();
-    chart.dataProvider = chartData_radar_first5;
-    chart.categoryField = "criteria";
-    chart.startDuration = 0;
 
     // GRAPH
     var graph = new AmCharts.AmGraph();
+    graph.title = "Last 5";
     graph.lineColor = "#98cdff"
-    graph.fillAlphas = 0.4;
+    graph.fillAlphas = 0.2;
     graph.bullet = "round"
-    graph.valueField = "score"
+    graph.valueField = "last5"
     graph.balloonText = "[[category]]: [[value]] m/s"
     chart.addGraph(graph);
-
 
     // VALUE AXIS
     var valueAxis = new AmCharts.ValueAxis();
@@ -82,11 +75,17 @@
     valueAxis.minimum = 0;
     chart.addValueAxis(valueAxis);
 
+    var legend = new AmCharts.AmLegend();
+    legend.position = "bottom";
+    legend.align = "center";
+    legend.rollOverGraphAlpha = "0.1";
+    legend.horizontalGap = "0";
+    legend.spacing = "5";
+    chart.addLegend(legend);
+
     // WRITE
-    chart.write("chartdiv_radar");
+    chart.write("chart_radar");
   });
-
-
 
 
 
@@ -118,8 +117,6 @@
         backgroundAlpha: 0.15
     };
     chart.dataProvider = chartData_progress;
-    chart.marginTop = 10;
-    chart.marginRight = 30;
     chart.categoryField = "date";
 
     // AXES
@@ -181,7 +178,10 @@
 
     // LEGEND
     var legend = new AmCharts.AmLegend();
-    legend.position = "top";
+    legend.position = "bottom";
+    legend.rollOverGraphAlpha = "0.3";
+    legend.horizontalGap = "0";
+    legend.spacing = "0";
     chart.addLegend(legend);
 
     // CURSOR
@@ -191,7 +191,7 @@
     chart.addChartCursor(chartCursor);
 
     // WRITE
-    chart.write("chartdiv_area");
+    chart.write("chart_progress");
       
   });
 
@@ -208,3 +208,6 @@
     return date;
   }
 
+
+//change chart.dataProvider??
+//chart.validateData()
