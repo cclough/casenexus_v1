@@ -1,0 +1,36 @@
+/ sample modal content
+#post_new_modal.modal.hide.fade
+  = form_for(@post, remote: true) do |f|
+    .modal-header
+      %button.close{"data-dismiss" => "modal", :type => "button"} ×
+      %h3 Posting on Casenexus
+
+    .modal-body
+      %p
+        We ask users to introduce themselves, summarising their current application status.
+      %p
+        A Typical post might be:
+
+      %blockquote
+        %p Looking for US based experienced case partners & consultants willing to give me practice cases. Have done more than 100 cases, should be able to give you detailed feedback. Located central time in the US. Available weekdays 6 am – 8 am cst, 6:30 pm – 10 pm cst & anytime weekends. Please email me at abyh88 AT gmail.com if interested. Looking to practice over skype or phone.
+        %small David
+
+      %h4 Ready?
+
+
+    / render new post form, remote AJAX enabled
+
+    #post_form_container
+
+      #flash_posts
+        = render 'shared/error_messages', object: @post
+
+      #post_form
+        .field
+          = f.text_area :content, placeholder: "Compose new post...", :rows => 3
+
+    .modal-footer
+      %a.btn{"data-dismiss" => "modal", :href => "#"} Close
+      %button.btn.btn-primary{:href => "#",:type => "submit"}
+        %i.icon-arrow-right.icon-white
+        Post

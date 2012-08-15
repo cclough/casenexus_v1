@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   def index
     # get all posts, paginated, ordered, and matching any search params
     @posts = Post.search(params[:search]).order(sort_column + " " + 
-             sort_direction).paginate(per_page: 20, page: params[:page])
+             sort_direction).paginate(per_page: 7, page: params[:page])
   end
 
   def create

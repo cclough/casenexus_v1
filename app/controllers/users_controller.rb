@@ -24,7 +24,6 @@ class UsersController < ApplicationController
                   { id: m.id, lat: m.lat, lng: m.lng } }}
     end
 
-
   end
 
   # user profile on map page

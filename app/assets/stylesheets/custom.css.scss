@@ -16,7 +16,6 @@ input[type="text"], input[type="password"] {
 //////////////////HACKS///////////////////
 
 
-
 /* mixins, variables, etc. */
 $grayMediumLight: #eaeaea;
 
@@ -219,6 +218,86 @@ width: .001em;
 height: .001em;
 }
 
+.avatar {
+  width: 25px;
+  height: 25px;
+}
+
+
+/********** posts *****NEED TO TIDY?******/
+
+
+#posts{
+  height: 420px;
+  padding: 0px;
+  margin: 0px;
+}
+
+#post_list{
+  height: 390px;
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+}
+
+.post_content {
+  color: grayLight;
+}
+
+.post_avatar_block{
+  width: 50px;
+  height: 50px;
+  border-right: 1px solid $grayLighter;
+}
+
+.post_content_block{
+  text-align:left;
+  padding-left:3px;
+}
+
+.post_block {
+  width: 336px;
+  height: 50px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding: 0px;
+  display: none;
+
+}
+
+#posts_search{
+  margin:0px;
+}
+
+#post_form_container{
+  width:400px;
+  margin-left: auto;
+  margin-right: auto;
+  height:120px;
+  /* border: 1px solid black; */
+}
+
+.posts_buttons {
+  height:40px;
+}
+
+
+/* might want to get rid of all of this TH stuff! */
+.posts th .current {
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.posts th .asc {
+  background-image: url(up_arrow.gif);
+}
+
+.posts th .desc {
+  background-image: url(down_arrow.gif);
+}
+
 
 /******** sidebar WHAT THE HELL IS THIS FOR? ******/
 
@@ -285,17 +364,18 @@ input, textarea, select, .uneditable-input {
 .panel_m {
   position: absolute;
   z-index: 1;
-  top:20%;
   background: url(white-wash.png);
 
 }
 
 #panel_m_posts {
+  top: 10%;
   left: 100px;
   width: 400px;
 }
 
 #panel_m_user {
+  top: 20%;
   right: 30px;
   width: 320px;
   display: none;
@@ -327,7 +407,7 @@ input, textarea, select, .uneditable-input {
   max-width: none;
 }
 
-
+/* being used? */
 .panel_latlng {
   margin:auto;
 }
@@ -339,50 +419,6 @@ input, textarea, select, .uneditable-input {
   border: 1px solid $grayLight;
 }
 
-/********** posts *****NEED TO TIDY?******/
-
-
-// .filter {
-//   list-style: none;
-//   height: 30px;
-//   li {
-//     float:left;
-//     padding: 2px;
-//     li { clear: both; }
-//   }
-// }
-
-#posts{
-  overflow:auto;
-  height:300px;
-}
-
-table.posts {
-  border-collapse: collapse;
-  width:100%;
-}
-
-.posts td, .posts th {
-  padding: 3px 4px;
-  border-bottom: solid 1px #AAA;
-}
-
-.post_content {
-  color: grayLight;
-}
-
-.posts th .current {
-  background-repeat: no-repeat;
-  background-position: right center;
-}
-
-.posts th .asc {
-  background-image: url(up_arrow.gif);
-}
-
-.posts th .desc {
-  background-image: url(down_arrow.gif);
-}
 
 
 /************ messages ************/

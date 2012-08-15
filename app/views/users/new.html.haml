@@ -5,40 +5,42 @@
   %body(onload="load_geocode();")
 
   %h1 Sign up
-  .row
-    .span5
-      = form_for(@user) do |f|
-        = render 'shared/error_messages', object: @user
-        = f.label :name
-        = f.text_field :name
-        = f.label :email
-        = f.text_field :email
-        = f.label :password
-        = f.password_field :password
-        = f.label :password_confirmation, "Confirm Password"
-        = f.password_field :password_confirmation
+  
+  = form_for(@user) do |f|
+  
+    .row
+      .span5
+        .panel.kill_left.kill_right
 
-        = f.label :lat, "Latitude"
-        = f.text_field :lat, id: "lat"
-        = f.label :lng, "Longitude"
-        = f.text_field :lng, id: "lng"
-        = f.label :country, "Country"
-        = f.text_field :country
-        = f.label :city, "City"
-        = f.text_field :city
+          = render 'shared/error_messages', object: @user
+          = f.label :name
+          = f.text_field :name
+          = f.label :email
+          = f.text_field :email
+          = f.label :password
+          = f.password_field :password
+          = f.label :password_confirmation, "Confirm Password"
+          = f.password_field :password_confirmation
 
-        = f.label :email_admin, "Receive case interview advice email letter"
-        = f.check_box :email_admin
+          = f.label :email_admin, "Receive case interview advice email letter"
+          = f.check_box :email_admin
 
-        = f.label :email_users, "Send notifications from users to your email"
-        = f.check_box :email_users
-        %br
-        = f.submit "Create my account", class: "btn btn-large btn-primary"
-    .span7
-      #map_new.map{:style => "height:450px; width:100%"}
+          = f.label :email_users, "Send notifications from users to your email"
+          = f.check_box :email_users
+          %br
+          = f.submit "Create my account", class: "btn btn-large btn-inverse"
+      .span7
+        #map_new.map{:style => "height:450px; width:100%"}
 
+        .panel.type1.kill_left.kill_right
+          = f.label :country, "Country"
+          = f.text_field :country, id: "country"
+          = f.label :city, "City"
+          = f.text_field :city, id: "city"
+          = f.text_field :lat, id: "lat"
+          = f.text_field :lng, id: "lng"
 
-  %script{:src => "//maps.googleapis.com/maps/api/js?sensor=false", :type => "text/javascript"}
+    %script{:src => "//maps.googleapis.com/maps/api/js?sensor=false", :type => "text/javascript"}
 
 
 

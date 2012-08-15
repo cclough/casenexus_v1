@@ -25,8 +25,8 @@
       ////// to see request text
       / <haml:loud> debug(params) if Rails.env.development? </haml:loud>
 
-      ///// :content now specified in all view - anoying, but enables nested views for 
-      ///// e.g. messages, feedback controllers
+      / :content now specified in all view - anoying, but enables nested views for 
+      / e.g. messages, feedback controllers
       = yield :content
 
       / footer

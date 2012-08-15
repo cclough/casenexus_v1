@@ -2,39 +2,47 @@
 
 = content_for :content do
 
-  %body(onload="load_map();")
+  / need to define these for map.js.erb - not ideal, but best way I can find
+  :javascript
+    var user_lat = "#{current_user.lat}";
+    var user_lng = "#{current_user.lng}";
+
+    // loads map when rest of page is 'ready', consider changing to asynchronously load
+    $(function() {
+      load_map();
+    });
 
   #map.map
 
+  / POSTS Panel
   #panel_m_posts.panel_m
-    .panel.type1
-      = render 'posts/post_form'
 
     .panel
-      = form_tag posts_path, :method => 'get', :id => "posts_search" do
+      .posts_buttons
 
+        / post.new modal trigger
+        %a.btn.btn-inverse.pull-right{"data-toggle" => "modal", :href => "#post_new_modal"}
+          %i.icon-comment.icon-white
+          Write your post
+
+      / post search form
+      = form_tag posts_path, :method => 'get', :id => "posts_search" do
+        / search field
         = text_field_tag :search, params[:search], placeholder: "Search posts..."
 
       #posts
-        / posts are rendered in javascript
+        / posts are rendered in index.js.erb
 
+  / USER Panel
   #panel_m_user.panel_m
     .panel
-      / close button, .close is from T-BS
-      / WHAT'S THE RAILS WAY TO DO THIS 'ONCLICK?'
-      %button#m_user_close.close(onclick="$('#panel_m_user').fadeOut('slow')") ×
       #user
+        / close button, .close is from T-BS
+        / WHAT'S THE RAILS WAY TO DO THIS 'ONCLICK?'
+        %button#m_user_close.close(onclick="$('#panel_m_user').fadeOut('slow')") ×
 
+  / google map script
   %script(type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false")
 
-
-// AJAX POST FILTER SYSTEM
-// TO BE RE-VISITED LATER WITH EXPERT HELP
-// #post_filter
-//   = render 'posfilter'
-
-// #filter_form(style="display:none;")
-// = collection_select(nil, :search, @countries, :country, :country, {:prompt => true})
-// = collection_select(nil, :search, @cities, :city, :city, {:prompt => true})
-// = collection_select(nil, :search, @skills, :skill, :skill, {:prompt => true})
-// TO BE RE-VISITED LATER WITH EXPERT HELP
+  / hidden modal html
+  = render 'posts/new_modal'

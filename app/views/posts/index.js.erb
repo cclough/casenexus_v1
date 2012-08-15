@@ -1,1 +1,7 @@
+// re-renders the post list
 $("#posts").html("<%= escape_javascript(render("posts")) %>")
+
+// fades in post list successively. NB uses post_block class (cool!)
+$(".post_block").each(function(i) {
+   $(this).delay((i + 1) * 50).fadeIn();
+});

@@ -1,10 +1,21 @@
-// refresh posts - NEED TO REPLACE THIS WITH CLEANER ACTION?
+// refresh posts, by submitting form- NEED TO REPLACE THIS WITH CLEANER ACTION?
 $.get($("#posts_search").attr("action"), $("#posts_search").serialize(), null, "script");
 
-//hide form, remove form, load flash html, show flash
-$('#post_form').hide('slow', function () {
-	$('#post_form').remove();
-	$("#flash_posts").html("<%= escape_javascript(render :partial => 'layouts/flash' , :locals => { :flash => flash }).html_safe %>");
-	$("#flash_posts").fadeIn("slow");
-});
+
+//delay 200ms to allow hide modal animation,
+setTimeout(function(){
+
+	// hide modal
+  $("#post_new_modal").modal('hide');
+
+  // update application flash html
+  $("#flash_application").html("<%= escape_javascript(render :partial => 'layouts/flash' , :locals => { :flash => flash }).html_safe %>");
+	
+	// fade in application flash
+	$("#flash_posts").fadeIn("fast");
+
+}, 200);
+
+
+
 

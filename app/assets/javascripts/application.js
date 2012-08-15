@@ -19,7 +19,7 @@
 
 $(function() {
 
-	/////////////////// MAP PAGE AJAX ////////SHOULDNT I BREAK THESE UP?/////////
+	/////////////////// MAP PAGE AJAX ////////CANT I MOVE THIS OUT OF APPLICATION?/////////
 
 	// ajax pagination
 	$("#posts th a, #posts .nexus_pagination a").live("click", function() {
@@ -31,10 +31,10 @@ $(function() {
 	// initial post load NEED TO REPLACE THIS WITH CLEANER ACTION?
 	$.get($("#posts_search").attr("action"), $("#posts_search").serialize(), null, "script");
 
-	// RAILS CASTS RECOMMENDS USING 'LIVE SEARCH GEM'
+  // RAILS CASTS RECOMMENDS USING 'LIVE SEARCH GEM'
 	$("#posts_search input").keyup(function() {
 		$.get($("#posts_search").attr("action"), $("#posts_search").serialize(), null, "script");
-		return false;
+    return false;
 	});
 
 	/////////////////// THROUGHOUT SITE /////////////////
@@ -44,4 +44,8 @@ $(function() {
 	document.body.style.background = bgcolorlist[Math.floor(Math.random()*bgcolorlist.length)]
 
 });
+
+
+
+
 

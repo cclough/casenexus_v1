@@ -1,24 +1,29 @@
-= will_paginate @posts, class: "nexus_pagination", :inner_window => 1, :outer_window => 0
-
 / ensure direction and sort order persists
 = hidden_field_tag :direction, params[:direction]
 = hidden_field_tag :sort, params[:sort]
 
-%table.posts
-  %tr
-    %th(style="width:60px;")
-      / column heading - click to sort
-      / = sortable "Sort by Date"
-    %th
+%ul#post_list
+  / %tr
+  /   %th(style="width:60px;")
+  /     / column heading - click to sort
+  /     / = sortable "Sort by Date"
+  /   %th
 
   / loop through posts
   - for post in @posts
 
     / make entire row trigger marker click
-    %tr{onclick: "google.maps.event.trigger(markerArray[" + post.user_id.to_s + "],'click');"}
-      %td= post.created_at.strftime("%m/%d/%Y")
-      %td
-        = post.user.name
-        .post_content
-          = post.content
+    %li.btn.post_block{onclick: "google.maps.event.trigger(markerArray[" + post.user_id.to_s + "],'click');"}
+      %table
+        %tr
+          %td.post_avatar_block
+            = avatar_for(post.user)
+          %td.post_content_block
+            %strong
+              = post.user.name
+            %span.timestamp
+              #{time_ago_in_words(post.created_at)} ago.
+            .post_content
+              = post.content.truncate(35, :separator => ' ')
 
+= will_paginate @posts, class: "nexus_pagination", :inner_window => 1, :outer_window => 0
