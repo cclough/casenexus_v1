@@ -12,11 +12,6 @@ class UsersController < ApplicationController
     # for new post
     @post = current_user.posts.build
 
-    #### populate post filter drop downs (not yet implemented)
-    # @countries = User.find(:all, :order => 'country').uniq{|x| x.country}
-    # @cities = User.find(:all, :order => 'city').uniq{|x| x.city}
-    # @skills = User.find(:all, :order => 'skill').uniq{|x| x.skill}
-
     # load json of map markers, inc. only user id, lat & lng
     respond_to do |format|
       format.html { render layout: 'map' }

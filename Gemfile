@@ -11,6 +11,7 @@ gem 'font-awesome-rails'
 gem 'redis'
 gem 'session_tracker'
 gem 'mail'
+gem 'geokit-rails3'
 
 group :development, :test do
   gem 'pg'

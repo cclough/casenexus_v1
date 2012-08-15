@@ -18,13 +18,15 @@ Casenexus::Application.routes.draw do
   match '/about', to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
 
-  # cases custom actions routes - HOW DO I SET THESE TO BE WITHIN /cases/ ???
+  # custom actions routes - HOW DO I SET THESE TO BE WITHIN e.g. /cases/ ??? bastards
   match '/analysis' => 'cases#analysis'
   match '/request' => 'cases#request'
 
   match '/sent' => 'messages#sent'
 
   match '/random' => 'roulette#random'
+
+  match '/approve' => 'posts#approve'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

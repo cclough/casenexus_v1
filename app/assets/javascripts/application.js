@@ -19,7 +19,33 @@
 
 $(function() {
 
-	/////////////////// MAP PAGE AJAX ////////CANT I MOVE THIS OUT OF APPLICATION?/////////
+
+
+
+	/////////////////// MAP PAGE AJAX //////////////////
+	// Surely I can put this in some map specific location?
+
+	// initial post load
+	// PUT THIS IN POSTS INDEX.JS.ERB???
+	updateposts();
+
+	// live search reload function	
+  // NB RAILSCASTS RECOMMENDS USING 'LIVE SEARCH GEM' instead of this
+	$("#posts_search_form input").keyup(function() {
+		updateposts();
+	});
+
+	// update on change radio buttons in filter
+	// COMBINE WITH FUNCTION ABOVE?
+	$("input[name=type]").change(function () {
+		updateposts();
+	});
+
+	// function that submits search form, for all above
+	function updateposts () {
+		$.get($("#posts_search_form").attr("action"), $("#posts_search_form").serialize(), null, "script");
+	  return false;
+	}
 
 	// ajax pagination
 	$("#posts th a, #posts .nexus_pagination a").live("click", function() {
@@ -27,21 +53,21 @@ $(function() {
 		return false;
 	});
 
-	// PUT THIS IN POSTS INDEX.JS.ERB???
-	// initial post load NEED TO REPLACE THIS WITH CLEANER ACTION?
-	$.get($("#posts_search").attr("action"), $("#posts_search").serialize(), null, "script");
+	// check box when click on menu item link
+	// TBD
+	// $(".filter_pulldown_item").click(function(){
+	// 	$(this).find("input").attr('checked', 'checked');
+	// });
 
-  // RAILS CASTS RECOMMENDS USING 'LIVE SEARCH GEM'
-	$("#posts_search input").keyup(function() {
-		$.get($("#posts_search").attr("action"), $("#posts_search").serialize(), null, "script");
-    return false;
-	});
+
 
 	/////////////////// THROUGHOUT SITE /////////////////
 
 	// random background color generator
 	var bgcolorlist = new Array("#FFFFBF", "#93ff93", "#C9FFA8","#9bd6ff", "#feabc3", "#b46cfd", "#fdcf6c");
 	document.body.style.background = bgcolorlist[Math.floor(Math.random()*bgcolorlist.length)]
+
+
 
 });
 

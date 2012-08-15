@@ -14,6 +14,14 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  # ties to geokit gem
+  acts_as_mappable :default_units => :kms,
+                   :default_formula => :flat,
+                   :distance_field_name => :distance,
+                   :lat_column_name => :lat,
+                   :lng_column_name => :lng
+
+  # posessions
   has_many :posts
   has_many :messages
   has_many :cases

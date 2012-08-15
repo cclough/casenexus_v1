@@ -204,6 +204,7 @@ footer {
   margin-right:20%;
   width:60%;
   z-index:200;
+  margin-top:0px;
 
 }
 
@@ -267,8 +268,20 @@ height: .001em;
 
 }
 
-#posts_search{
+#posts_search_form {
   margin:0px;
+}
+
+#posts_search_field{
+  width:272px;
+}
+
+#posts_search {
+  height:35px;
+}
+
+#posts_buttons {
+  height:35px;
 }
 
 #post_form_container{
@@ -277,10 +290,6 @@ height: .001em;
   margin-right: auto;
   height:120px;
   /* border: 1px solid black; */
-}
-
-.posts_buttons {
-  height:40px;
 }
 
 

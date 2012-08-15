@@ -18,18 +18,37 @@
   #panel_m_posts.panel_m
 
     .panel
-      .posts_buttons
+      #posts_buttons
 
         / post.new modal trigger
         %a.btn.btn-inverse.pull-right{"data-toggle" => "modal", :href => "#post_new_modal"}
           %i.icon-comment.icon-white
           Write your post
 
-      / post search form
-      = form_tag posts_path, :method => 'get', :id => "posts_search" do
-        / search field
-        = text_field_tag :search, params[:search], placeholder: "Search posts..."
-
+      #posts_search
+        / post search form
+        = form_tag posts_path, method: 'get', id: "posts_search_form" do
+          %span.pull-left
+            / search field
+            = text_field_tag :search, params[:search], id: "posts_search_field", placeholder: "Search posts..."
+          %span.pull-right
+            .btn-group
+              %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                Filter
+                %span.caret
+              %ul.dropdown-menu
+                %li
+                  %a.filter_pulldown_item
+                    = radio_button_tag :type, 'ten', checked: true
+                    Within 50km
+                %li
+                  %a.filter_pulldown_item
+                    = radio_button_tag :type, 'glo'
+                    Global
+                %li
+                  %a.filter_pulldown_item
+                    = radio_button_tag :type, 'rand'
+                    Randomise
       #posts
         / posts are rendered in index.js.erb
 
