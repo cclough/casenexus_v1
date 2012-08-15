@@ -1,0 +1,30 @@
+- provide(:title, 'Posts awaiting review')
+
+= content_for :content do
+
+  .panel
+    = will_paginate @posts, class: "nexus_pagination", :inner_window => 2, :outer_window => 2
+
+
+    %ol.cases
+      - if @posts.count > 0
+        - @posts.each do |post|
+          /<a href="<%= "/cases/" + c.id.to_s %>><%= c.subject =></a>
+          %li
+            %span.user
+              = User.find_by_id(post.user_id).name
+            %span.content
+              = post.content
+            %span.timestamp
+              #{time_ago_in_words(post.created_at)} ago.
+            %br/
+            %span
+              = post.approved
+            %span
+              = link_to "APPROVE", { controller: :posts, action: :approve, id: post.id }, confirm: "Approve, You sure?"
+            %span
+              = link_to "DISAPPROVE", { controller: :posts, action: :disapprove, id: post.id }, confirm: "Disapprove You sure?"
+      - else
+        %h3 There are no cases awaiting approval
+
+    = will_paginate @posts, class: "nexus_pagination", :inner_window => 2, :outer_window => 2

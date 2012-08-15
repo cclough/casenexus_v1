@@ -26,8 +26,10 @@ Casenexus::Application.routes.draw do
 
   match '/random' => 'roulette#random'
 
+  match '/review' => 'posts#review'
   match '/approve' => 'posts#approve'
-  
+  match '/disapprove' => 'posts#disapprove'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

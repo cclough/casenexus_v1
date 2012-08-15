@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_filter :signed_in_user, only: [:map, :index, :edit, :update]
   before_filter :correct_user, only: [:edit, :update]
-  before_filter :admin_user, only: :destroy
+  before_filter :admin_user, only: [:destroy]
 
   # include all user session data e.g. messages and username
   before_filter :session_data
@@ -9,19 +9,59 @@ class PostsController < ApplicationController
   # for post sorting
   helper_method :sort_column, :sort_direction
 
+
+  def review
+    # unapproved post viewer
+    # MAKE ADMIN ONLY
+    @posts = Post.where(approved: false).order("created_at desc").paginate(per_page: 7, page: params[:page])
+  end
+
+  def approve
+    # approve post action
+    # includes sending an email to the user
+    @post = Post.find(params[:id])
+    @post.toggle!(:approved)
+
+    #send approve email
+    @user = User.find_by_id(@post.user_id)
+    UserMailer.approve_email(@user).deliver
+
+    # flash and re-direct
+    @flash_text = "Success - Post for " + User.find_by_id(@post.user_id).name + " has been approved & an email sent"
+    flash[:success] = @flash_text
+    redirect_to '/review'
+  end
+
+  def disapprove
+    # DISapprove post action
+    # includes sending an email to the user
+    @post = Post.find(params[:id])
+
+    #send disapprove email
+    @user = User.find_by_id(@post.user_id)
+    UserMailer.disapprove_email(@user).deliver
+
+    # flash and re-direct
+    @flash_text = "Post for " + User.find_by_id(@post.user_id).name + " has been disapproved & an email sent"
+    flash[:notice] = @flash_text
+    redirect_to '/review'
+  end
+
   def index
 
     # get posts depending on :type sent from post pull-down menu
-    if params[:type] == "ten"
+    if params[:type] == "fifty"
 
       # get posts from users within 10km
 
       #load in current user location
       @userlocation = [current_user.lat, current_user.lng]
+      
       #geokit gem within function to get users within 100km
       #units and other options for this are set in the model
-      @users_ten = User.within(100, origin: @userlocation)
-      # map id's of users within distance, then get posts with this user_id...
+      @users_ten = User.within(50, origin: @userlocation)
+
+      # map id's of users within a distance, then get posts with this user_id...
       # (from Stack Overflow comment - http://stackoverflow.com/questions/11975532/rails-get-posts-of-users-within-10km-of-a-point)
       # not elegant solution, could be better!
       @posts = Post.where(["user_id IN (?)", @users_ten.map { |u| u.id }])
@@ -72,10 +112,6 @@ class PostsController < ApplicationController
   
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
-  end
-
-  def approve
-    @posts = Post.where(approved: false)
   end
 
 end

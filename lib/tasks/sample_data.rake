@@ -181,9 +181,11 @@ namespace :db do
 		end
 
 		User.all.each do |user|
-      2.times do
+        # create without approval
         user.posts.create!(:content => Faker::Lorem.sentence(5))
-			end
+
+        # create with approval
+        user.posts.create!(:content => Faker::Lorem.sentence(5), approved: true)
 		end
 
   	50.times do |n|
