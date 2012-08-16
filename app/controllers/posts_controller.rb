@@ -115,7 +115,7 @@ class PostsController < ApplicationController
 
       #send approve email
       @user = User.find_by_id(@post.user_id)
-      UserMailer.postapprove_email(@user).deliver
+      UserMailer.postapproved_email(@user).deliver
 
       # flash and re-direct
       @flash_text = "Success - Post for " + User.find_by_id(@post.user_id).name + " has been approved & an email sent"
@@ -126,7 +126,7 @@ class PostsController < ApplicationController
 
       #send disapprove email
       @user = User.find_by_id(@post.user_id)
-      UserMailer.postdisapprove_email(@user).deliver
+      UserMailer.postdisapproved_email(@user).deliver
 
       # flash and re-direct
       @flash_text = "Post for " + User.find_by_id(@post.user_id).name + " has been disapproved & an email sent"
