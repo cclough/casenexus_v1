@@ -7,4 +7,5 @@ ActionMailer::Base.smtp_settings = {
   :domain         => 'heroku.com'
 }
 ActionMailer::Base.delivery_method = :smtp
-ActionMailer::Base.raise_delivery_errors = true
+# unsure whether line below works, remove if not
+ActionMailer::Base.raise_delivery_errors = :true
