@@ -415,12 +415,12 @@ input, textarea, select, .uneditable-input {
 
 
 
-/************ messages ************/
+/************ notifications ************/
 
 
-/* message index */
+/* mnotification index */
 
-.messages {
+.notifications {
   list-style: none;
   margin: 10px 0 0 0;
   li {
@@ -439,32 +439,32 @@ input, textarea, select, .uneditable-input {
 
 }
 
-.message_avatar_block{
+.notification_avatar_block{
   width: 50px;
   height: 50px;
   border-right: 1px solid $grayLighter;
   text-align: center;
 }
 
-.message_content_block{
+.notification_content_block{
   text-align:left;
   padding-left:3px;
 }
 
-/* header messages */
+/* header notifications */
 
-.message_header_content {
+.notification_header_content {
   font-size:90%;
 }
 
-.message_header_avatar_block{
+.notification_header_avatar_block{
   width: 40px;
   height: 30px;
   border-right: 1px solid $grayLighter;
 
 }
 
-.message_header_content_block {
+.notification_header_content_block {
   text-align:left;
   padding-left:5px;
   .timestamp {
@@ -472,12 +472,13 @@ input, textarea, select, .uneditable-input {
   }
 }
 
-.message_header_table {
+.notification_header_table {
   width: 230px;
 }
 
-/************ cases ************/
 
+
+/************ cases ************/
 
 /* case index */
 

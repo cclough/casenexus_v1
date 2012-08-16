@@ -217,8 +217,15 @@ namespace :db do
 
     User.all.each do |user|
       10.times do
-        user.notifications.create!(:sender_id => rand(100), 
-                              :content => Faker::Lorem.sentence(5))
+        user.notifications.create!(:ntype => "message",
+                                   :sender_id => rand(100), 
+                                   :content => Faker::Lorem.sentence(5))
+        user.notifications.create!(:ntype => "feedback_new",
+                                   :sender_id => rand(100), 
+                                   :content => "You have received new feedback")
+        user.notifications.create!(:ntype => "feedback_req",
+                                   :sender_id => rand(100), 
+                                   :content => "Feedback has been requested from you")
       end
     end
 

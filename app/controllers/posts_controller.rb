@@ -3,9 +3,8 @@ class PostsController < ApplicationController
   before_filter :correct_user, only: [:create, :update]
   before_filter :admin_user, only: [:review, :approve]
 
-  # include all user session data e.g. messages and username
+  # include all user session data e.g. notifications and username
   before_filter :session_data
-
 
 
   def index
@@ -138,6 +137,8 @@ class PostsController < ApplicationController
 
   private
 
+  # posts controller specific correct_user function from MH
+  # why does it define 'post'?
   def correct_user
     @post = current_user.posts.find_by_id(params[:id])
     redirect_to root_path if @post.nil?

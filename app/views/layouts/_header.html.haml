@@ -24,31 +24,30 @@
 
         %ul.nav.pull-right
 
-          / Messages pull down
+          / Notifications pull down
           %li#fat-menu.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-              / messages icon + message count
+              / notifications icon + notification count
               %i.icon-comments.icon-white.icon-large 
-              = "(" + @user_messages_count.to_s + ")"
+              = "(" + @user_notifications_count.to_s + ")"
               %span.caret
             %ul.dropdown-menu
-
               %li
                 / see all link
                 / should make a css class of centering at some point
-                = link_to "See all", '/messages', style: "text-align:center;"
+                = link_to "See all", '/notifications', style: "text-align:center;"
               %li.divider
 
               %li
-                / Build message list for notifcations icon
-                - if @user_messages_count > 0
-                  - @user_messages.each do |message_header|
+                / Build notification list for notifcations icon
+                - if @user_notifications_count > 0
+                  - @user_notifications.each do |notification_header|
 
-                    / render message_header partial
-                    = render partial: 'messages/message_header' , locals: { :message_header => message_header }
+                    / render notification_header partial
+                    = render partial: 'notifications/notification_header' , locals: { :notification_header => notification_header }
 
                 - else
-                  = link_to "No Notifications", '#'
+                  = link_to "You have no Notifications", '#'
 
           / Profile pull-down
           %li#fat-menu.dropdown

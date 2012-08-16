@@ -1,23 +1,24 @@
-class NotificationController < ApplicationController
+class NotificationsController < ApplicationController
 
-  before_filter :signed_in_user, only: [:map, :index, :edit, :update]
-  before_filter :correct_user, only: [:edit, :update]
+  before_filter :signed_in_user
+  before_filter :correct_user, only: [:create]
   before_filter :admin_user, only: :destroy
   # include notifications instance var
   before_filter :session_data
 
   def index
 
-    # build user messages, paginated, ordered
+    # build user notifications, paginated, ordered
     #  get this to sort descending and paginate? 
   	@notifications = current_user.notifications.paginate(per_page: 10, page: 
               params[:page], order: "created_at DESC")
   end
 
   def sent
-    # get sent messages
-    @sentnotifications = Notification.paginate(per_page: 10, page: 
-                params[:page], order: "created_at DESC").find_by_sender_id(current_user.id)
+    # get sent notifications
+    @notifications_sent = Notification.paginate(per_page: 10, page: 
+                          params[:page], order: "created_at DESC")
+                          .find_by_sender_id(current_user.id)
   end
 
   def show
@@ -29,7 +30,7 @@ class NotificationController < ApplicationController
 
   def create
 
-    @notification = Message.new(params[:message])
+    @notification = Notification.new(params[:notification])
 
     # respond_to .js enables ajax create
     respond_to do |format|
@@ -38,7 +39,7 @@ class NotificationController < ApplicationController
 
         # get User object from id supplied
         user_target = User.find(@notification.user_id)
-        # send message via email to target user
+        # send notification via email to target user
         UserMailer.message_email(user_target).deliver
 
         flash.now[:success] = 'Message sent!'
@@ -50,6 +51,16 @@ class NotificationController < ApplicationController
       end
 
     end
+
+    private
+
+    # notifications controller specific correct_user function from MH
+    # why does it define 'notification'?
+    def correct_user
+      @notification = current_user.notifications.find_by_id(params[:id])
+      redirect_to root_path if @notification.nil?
+    end
+
   end
 
 end

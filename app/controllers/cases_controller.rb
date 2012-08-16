@@ -1,6 +1,6 @@
 class CasesController < ApplicationController
-  before_filter :signed_in_user, only: [:map, :index, :edit, :update]
-  before_filter :correct_user, only: [:edit, :update]
+  before_filter :signed_in_user
+  before_filter :correct_user, only: [:create]
   before_filter :admin_user, only: :destroy
 
   # include notifications instance var
@@ -103,9 +103,16 @@ class CasesController < ApplicationController
     def parseDate(dateString)
 
     	@dateArray = dateString.split("-")
-		var date = Date(@dateArray[0].to_i, @dateArray[1].to_i - 1, @dateArray[2].to_i)
+			var date = Date(@dateArray[0].to_i, @dateArray[1].to_i - 1, @dateArray[2].to_i)
     	return date
+		
+		end
 
-	end
+	  # cases controller specific correct_user function from MH
+	  # why does it define 'case'?
+	  def correct_user
+	    @case = current_user.cases.find_by_id(params[:id])
+	    redirect_to root_path if @case.nil?
+	  end
 
 end

@@ -23,7 +23,6 @@ class User < ActiveRecord::Base
 
   # posessions
   has_many :posts
-  has_many :messages
   has_many :cases
   has_many :notifications
 

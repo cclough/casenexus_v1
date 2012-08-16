@@ -91,8 +91,8 @@
       Actions:
     %li
 
-      / send message button
-      %a#message_show.btn.btn-inverse{:href => "#"}
+      / send notification button
+      %a#notification_show.btn.btn-inverse{:href => "#"}
         %i.icon-comment.icon-white
         Message    
         %span.caret
@@ -103,16 +103,16 @@
 
 
     %li(style="margin-top:10px;")
-      / new message form
-      = render 'messages/message_form'
+      / new notification form
+      = render 'notifications/notification_form'
 
 
-  / message form jquery show
+  / notification form jquery show
   :javascript
-    $('#message_show').click(function() {
+    $('#notification_show').click(function() {
 
-      $('#message_form').toggle('slow', function() {
-        $('#message_field').val('');
+      $('#notification_form').toggle('slow', function() {
+        $('#notification_field').val('');
       });
 
     });

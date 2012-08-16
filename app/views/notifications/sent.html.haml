@@ -1,0 +1,22 @@
+- provide(:title, 'Sent Items')
+- provide(:subtitle, 'Notifications you have sent to others')
+
+= will_paginate @notifications_sent, class: "nexus_pagination", :inner_window => 2, :outer_window => 2
+
+%ul.notifications
+  - if @notifications_sent.count > 0
+    - @notifications_sent.each do |notification_sent|
+      %li
+        %span.user
+          = User.find_by_id(notification_sent.sender_id).name
+        %span.content
+          = link_to notification_sent.content, "/notifications/" + notification_sent.id.to_s
+        %span.timestamp
+          #{time_ago_in_words(notification_sent.created_at)} ago.
+
+  - else
+    %h3 You have no notifications
+    %h5
+      No user's have contacted you yet
+
+= will_paginate @notifications_sent, class: "nexus_pagination", :inner_window => 2, :outer_window => 2

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user, only: :destroy
   
-  # include all user session data e.g. messages and username
+  # include all user session data e.g. notifications and username
   before_filter :session_data
 
   def index
@@ -28,6 +28,8 @@ class UsersController < ApplicationController
 
     # load json of map markers, inc. only user id, lat & lng
     respond_to do |format|
+      # render map layout, identical to application layout, but without footer
+      # is there a better way?
       format.html { render layout: 'map' }
       format.json { render json: User.all.map {|m|
                   { id: m.id, lat: m.lat, lng: m.lng } }}
@@ -43,8 +45,8 @@ class UsersController < ApplicationController
     # load user's approved post
     @user_post = @user.posts.where('approved = true').first
 
-    # for new message form
-    @message = Message.new
+    # for new notification form
+    @notification = Notification.new
     
     respond_to do |format|
       # don't load layout - make like a partial

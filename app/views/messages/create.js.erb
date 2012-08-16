@@ -1,6 +1,0 @@
-//hide form, remove form, load flash html, show flash
-$('#message_form').hide('slow', function () {
-	$("#flash_messages").html("<%= escape_javascript(render :partial => 'layouts/flash' , :locals => { :flash => flash }).html_safe %>");
-	$("#flash_messages").show("fast");
-});
-

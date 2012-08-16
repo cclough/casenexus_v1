@@ -1,0 +1,15 @@
+- @notification_user = User.find_by_id(notification.sender_id)
+= link_to ("/notifications/" + notification.id.to_s) do
+  
+  %li
+    %table
+      %tr
+        %td.notification_avatar_block
+          = avatar_for(@notification_user)
+        %td.notification_content_block
+          %strong
+            = @notification_user.name
+          %span.timestamp
+            #{time_ago_in_words(notification.created_at)} ago.
+          %div
+            = notification.content.truncate(50, :separator => ' ')

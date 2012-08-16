@@ -1,0 +1,14 @@
+- provide(:title, 'Your Notifications')
+- provide(:subtitle, 'View notifications from other users')
+
+%ul.notifications
+  - if @notifications.count > 0
+    - @notifications.each do |notification|
+
+      / render notification partial
+      = render partial: 'notifications/notification' , locals: { :notification => notification }
+
+  - else
+    %p You have no notifications
+
+= will_paginate @notifications, class: "nexus_pagination", :inner_window => 2, :outer_window => 2

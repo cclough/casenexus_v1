@@ -1,0 +1,8 @@
+- provide(:title, "Notification")
+- provide(:subtitle, "From " + @notification_sender.name)
+
+%h3
+  Notification from
+  = @notification_sender.name
+%br
+  = @notification.content

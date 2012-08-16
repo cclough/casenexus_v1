@@ -4,7 +4,7 @@ Casenexus::Application.routes.draw do
   resources :users
   resources :posts
   resources :cases
-  resources :messages
+  resources :notifications
   resources :sessions, only: [:new, :create, :destroy]
   resources :roulette, only: [:index]
   
@@ -22,7 +22,7 @@ Casenexus::Application.routes.draw do
   match '/analysis' => 'cases#analysis'
   match '/request' => 'cases#request'
 
-  match '/sent' => 'messages#sent'
+  match '/sent' => 'notifications#sent'
 
   match '/random' => 'roulette#random'
 
