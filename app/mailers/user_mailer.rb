@@ -30,14 +30,14 @@ class UserMailer < ActionMailer::Base
     mail(:to => email_with_name, :subject => "casenexus: request for feedback")
   end
 
-  def postapprove_email(user)
+  def postapproved_email(user)
     @user = user
     @url  = "http://example.com/login"
     email_with_name = "#{@user.name} <#{@user.email}>"
     mail(:to => email_with_name, :subject => "casenexus: post approved")
   end
 
-  def postdisapprove_email(user)
+  def postdisapproved_email(user)
     @user = user
     @url  = "http://example.com/login"
     email_with_name = "#{@user.name} <#{@user.email}>"

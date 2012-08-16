@@ -1,7 +1,6 @@
 @import "bootstrap";
 
 
-
 /////////////////HACKS////////////////////
 
 // FIELD HEIGHT SHRUNK TO 18px
@@ -96,7 +95,7 @@ textarea {
   padding-bottom:10px;
   border-bottom: 1px solid $grayLight;
   line-height:3em;
-  background-color: $grayLighter;
+  background-color: white;
 }
 
 /*********** typography ***********/
@@ -440,6 +439,43 @@ input, textarea, select, .uneditable-input {
 
 }
 
+.message_avatar_block{
+  width: 50px;
+  height: 50px;
+  border-right: 1px solid $grayLighter;
+  text-align: center;
+}
+
+.message_content_block{
+  text-align:left;
+  padding-left:3px;
+}
+
+/* header messages */
+
+.message_header_content {
+  font-size:90%;
+}
+
+.message_header_avatar_block{
+  width: 40px;
+  height: 30px;
+  border-right: 1px solid $grayLighter;
+
+}
+
+.message_header_content_block {
+  text-align:left;
+  padding-left:5px;
+  .timestamp {
+    font-size:85%;
+  }
+}
+
+.message_header_table {
+  width: 230px;
+}
+
 /************ cases ************/
 
 
@@ -464,6 +500,17 @@ input, textarea, select, .uneditable-input {
 
 }
 
+.case_avatar_block{
+  width: 50px;
+  height: 50px;
+  border-right: 1px solid $grayLighter;
+  text-align: center;
+}
+
+.case_content_block{
+  text-align:left;
+  padding-left:3px;
+}
 
 /* case show */
 
@@ -525,6 +572,7 @@ input, textarea, select, .uneditable-input {
   margin-bottom: 5px;
   margin-top: 5px;
 }
+
 .case_block_desc {
   color: gray;
   width: 100%;
@@ -541,6 +589,7 @@ input, textarea, select, .uneditable-input {
   text-align:center;
   width:100%;
 }
+
 
 /************* roulette **************/
 

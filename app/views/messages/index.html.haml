@@ -1,18 +1,12 @@
 - provide(:title, 'Your Messages')
 - provide(:subtitle, 'View messages from other users')
 
-= will_paginate @messages, class: "nexus_pagination", :inner_window => 2, :outer_window => 2
-
 %ul.messages
   - if @messages.count > 0
     - @messages.each do |message|
-      %li
-        %span.user
-          = User.find_by_id(message.sender_id).name
-        %span.content
-          = link_to message.content, "/messages/" + message.id.to_s
-        %span.timestamp
-          #{time_ago_in_words(message.created_at)} ago.
+
+      / render message partial
+      = render partial: 'messages/message' , locals: { :message => message }
 
   - else
     %p You have no messages

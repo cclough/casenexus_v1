@@ -1,0 +1,15 @@
+- @case_user = User.find_by_id(cas.marker_id)
+
+= link_to ("/cases/" + cas.id.to_s) do
+  %li
+    %table
+      %tr
+        %td.case_avatar_block
+          = avatar_for(@case_user)
+        %td.case_content_block
+          %strong
+            = link_to @case_user.name, "mailto:"+cas.email
+          %span.timestamp
+            #{time_ago_in_words(cas.created_at)} ago.
+          %div
+            = cas.subject

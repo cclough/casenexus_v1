@@ -1,22 +1,19 @@
 - provide(:title, 'Your Cases')
 - provide(:subtitle, 'View your cases')
 
-= will_paginate @cases, class: "nexus_pagination", :inner_window => 2, :outer_window => 2
-
+/ NB cas is used instead of 'case' as it's apparently used for something else in rails and fails!
 %ol.cases
+
   - if @cases.count > 0
-    - @cases.each do |c|
-      /<a href="<%= "/cases/" + c.id.to_s %>><%= c.subject =></a>
-      %li
-        %span.user
-          = link_to c.email, "#"
-        %span.content
-          = link_to c.subject, "/cases/" + c.id.to_s
-        %span.timestamp
-          #{time_ago_in_words(c.created_at)} ago.
+    - @cases.each do |cas|
+
+      / render cas partial
+      = render partial: 'cases/cas' , locals: { :cas => cas }
+
   - else
     %h3 You have no cases
     %h5
       Use the user map or the roulette page to find new case partners and start practising!
+
 
 = will_paginate @cases, class: "nexus_pagination", :inner_window => 2, :outer_window => 2

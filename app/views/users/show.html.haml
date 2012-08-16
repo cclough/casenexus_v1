@@ -5,14 +5,18 @@
         = @user_post.content
 
 .panel
+
+  / close button, .close is from T-BS
+  / WHAT'S THE RAILS WAY TO DO THIS 'ONCLICK?'
+  %button#m_user_close.close(onclick="$('#panel_m_user').fadeOut('slow')") ×
+
   %ul.m_user
     %li.name
       %h3
         = @user.name
       %h5  
         = "# Cases: " + @user.cases.all.count.to_s
-      id: 
-      = @user.id
+
     %li.header
       City
     %li
@@ -31,18 +35,34 @@
       .pull-right
         = @user.education1_from.strftime("%Y") + "-" + @user.education1_to.strftime("%Y")
       %br/
-      = @user.education2 + " " + @user.education2_from.strftime("%Y") + "-" + @user.education2_to.strftime("%Y")
+      .pull-left
+        = @user.education2
+      .pull-right
+        = @user.education2_from.strftime("%Y") + "-" + @user.education2_to.strftime("%Y")
       %br/
-      = @user.education3 + " " + @user.education2_from.strftime("%Y") + "-" + @user.education2_to.strftime("%Y")
-
+      .pull-left
+        = @user.education3
+      .pull-right
+        = @user.education3_from.strftime("%Y") + "-" + @user.education3_to.strftime("%Y")
+      %br/
     %li.header
       Experience
     %li
-      = @user.experience1 + " " + @user.experience1_from.strftime("%Y") + "-" + @user.experience1_to.strftime("%Y")
+      .pull-left
+        = @user.experience1
+      .pull-right
+        = @user.experience1_from.strftime("%Y") + "-" + @user.experience1_to.strftime("%Y")
       %br/
-      = @user.experience2 + " " + @user.experience2_from.strftime("%Y") + "-" + @user.experience2_to.strftime("%Y")
+      .pull-left
+        = @user.experience2
+      .pull-right
+        = @user.experience2_from.strftime("%Y") + "-" + @user.experience2_to.strftime("%Y")
       %br/
-      = @user.experience3 + " " + @user.experience3_from.strftime("%Y") + "-" + @user.experience3_to.strftime("%Y")
+      .pull-left
+        = @user.experience3
+      .pull-right
+        = @user.experience3_from.strftime("%Y") + "-" + @user.experience3_to.strftime("%Y")
+      %br/
 
     %li.header
       Skill:

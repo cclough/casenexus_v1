@@ -8,19 +8,9 @@
   - if @posts.count > 0
     - for post in @posts
 
-      / make entire row trigger marker click
-      %li.btn.post_block{onclick: "google.maps.event.trigger(markerArray[" + post.user_id.to_s + "],'click');"}
-        %table
-          %tr
-            %td.post_avatar_block
-              = avatar_for(post.user)
-            %td.post_content_block
-              %strong
-                = post.user.name
-              %span.timestamp
-                #{time_ago_in_words(post.created_at)} ago.
-              .post_content
-                = post.content.truncate(35, :separator => ' ')
+      / render post partial
+      = render partial: 'posts/post' , locals: { :post => post }
+
   - else
     %p.pull-left
       No posts found

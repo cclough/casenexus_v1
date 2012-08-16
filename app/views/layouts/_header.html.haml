@@ -33,20 +33,17 @@
               %span.caret
             %ul.dropdown-menu
               %li
+              
                 / Build message list for notifcations icon
                 - if @user_messages_count > 0
-                  - @user_messages.each do |message|
-                    %a{:href => "/messages/" + message.id.to_s ,
-                       :style => ""}
-                      %b
-                        = User.find_by_id(message.sender_id).name
-                      = time_ago_in_words(message.created_at) + " ago"
-                      %br
-                      %p(style="font-size:90%;")
-                        = message.content.truncate(35, :separator => ' ')
+                  - @user_messages.each do |message_header|
+
+                    / render message_header partial
+                    = render partial: 'messages/message_header' , locals: { :message_header => message_header }
 
                 - else
-                  = link_to "No Messages", '#'      
+                  = link_to "No Messages", '#'
+
               %li.divider
               %li
                 = link_to "See all", '/messages'

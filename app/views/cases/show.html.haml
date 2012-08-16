@@ -1,15 +1,17 @@
 - provide(:title, 'Case with ' + @case.marker_id.to_s)
 - provide(:subtitle, @case.subject)
 
+- @case_marker = User.find_by_id(@case.marker_id)
 .row(style="margin-bottom:15px;")
   .span4
 
     .row
       .span2
         %p
-          Marker id:
+          Marker:
       .span2
-        = @case.marker_id
+        = avatar_for(@case_marker)
+        = @case_marker.name
     .row
       .span2
         %p
