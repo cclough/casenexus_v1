@@ -1,0 +1,14 @@
+- provide(:title, 'Your Messages')
+- provide(:subtitle, 'View messages from other users')
+
+%ul.messages
+  - if @messages.count > 0
+    - @messages.each do |message|
+
+      / render message partial
+      = render partial: 'messages/message' , locals: { :message => message }
+
+  - else
+    %p You have no messages
+
+= will_paginate @messages, class: "nexus_pagination", :inner_window => 2, :outer_window => 2

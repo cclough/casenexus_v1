@@ -32,8 +32,14 @@
               = "(" + @user_messages_count.to_s + ")"
               %span.caret
             %ul.dropdown-menu
+
               %li
-              
+                / see all link
+                / should make a css class of centering at some point
+                = link_to "See all", '/messages', style: "text-align:center;"
+              %li.divider
+
+              %li
                 / Build message list for notifcations icon
                 - if @user_messages_count > 0
                   - @user_messages.each do |message_header|
@@ -42,11 +48,7 @@
                     = render partial: 'messages/message_header' , locals: { :message_header => message_header }
 
                 - else
-                  = link_to "No Messages", '#'
-
-              %li.divider
-              %li
-                = link_to "See all", '/messages'
+                  = link_to "No Notifications", '#'
 
           / Profile pull-down
           %li#fat-menu.dropdown

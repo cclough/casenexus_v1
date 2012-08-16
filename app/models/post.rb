@@ -4,8 +4,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
 
   validates_presence_of :content, :user_id
-  validates_length_of   :content, maximum: 140
-
+  validates_length_of   :content, maximum: 500
 
   # POST SEARCH FUNCTION
   # what the hell is scoped?

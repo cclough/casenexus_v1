@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :messages
   has_many :cases
+  has_many :notifications
 
   # session stuff
   before_save { |user| user.email = user.email.downcase }

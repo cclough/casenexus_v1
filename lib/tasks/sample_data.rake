@@ -217,7 +217,7 @@ namespace :db do
 
     User.all.each do |user|
       10.times do
-        user.messages.create!(:sender_id => rand(100), 
+        user.notifications.create!(:sender_id => rand(100), 
                               :content => Faker::Lorem.sentence(5))
       end
     end
