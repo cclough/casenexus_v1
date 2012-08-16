@@ -10,7 +10,21 @@ class UsersController < ApplicationController
   def index
 
     # for new post
-    @post = current_user.posts.build
+    # check if post already exists - if not don't build
+    # if approved present, offer edit
+    # if unapproved present, disable edit & new
+    # NB view uses @post_can for decisions
+    if current_user.posts.count == 0
+      @post_can = "yes"
+      @post = current_user.posts.build
+    else
+      if current_user.posts.first.approved?
+        @post_can = "no"
+        @post = current_user.posts.first
+      else
+        @post_can = "disable"
+      end
+    end
 
     # load json of map markers, inc. only user id, lat & lng
     respond_to do |format|
@@ -23,7 +37,13 @@ class UsersController < ApplicationController
 
   # user profile on map page
   def show
+
   	@user = User.find(params[:id])
+
+    # load user's approved post
+    @user_post = @user.posts.where('approved = true').first
+
+    # for new message form
     @message = Message.new
     
     respond_to do |format|
@@ -81,27 +101,13 @@ class UsersController < ApplicationController
     end
   end
 
-  
-
   private
 
-  # standard signed_in user check
-  def signed_in_user
-    unless signed_in?
-      store_location
-      redirect_to signin_path, notice: "Please sign in." unless signed_in?
-    end
-  end
-
+  # Users controller specific user check functions (hartl)
   # check correct_user to make sure users can't access other's info
   def correct_user
     @user = User.find(params[:id])
     redirect_to root_path unless current_user?(@user)
-  end
-
-  # check if admin user for admin function (e.g. delete posts; not used currently)
-  def admin_user
-    redirect_to root_path unless current_user.admin?
   end
 
 end

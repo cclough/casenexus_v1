@@ -43,4 +43,11 @@ module SessionsHelper
       redirect_to signin_path, notice: "Please sign in." 
     end
   end
+
+  # check if admin user for admin function 
+  # NB moved from user controller, does it work?
+  def admin_user
+    redirect_to root_path unless current_user.admin?
+  end
+  
 end

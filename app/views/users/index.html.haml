@@ -19,11 +19,25 @@
 
     .panel
       #posts_buttons
-
-        / post.new modal trigger
-        %a.btn.btn-inverse.pull-right{"data-toggle" => "modal", :href => "#post_new_modal"}
-          %i.icon-comment.icon-white
-          Write your post
+        / post.new and edit modal trigger button
+        / anchor name button_write used by js to change button to disabled once new post been made
+        / style button according to @post_can set in user controller
+        / possible to shorten this? NB 'disabled' on third if clause
+        - if @post_can == "yes"
+          %a#post_button_write.btn.btn-inverse.pull-right{"data-toggle" => "modal", :href => "#post_modal"}
+            %i.icon-comment.icon-white
+            %span#post_button_write_text
+              Write your post
+        - elsif @post_can == "no"
+          %a#post_button_write.btn.btn-inverse.pull-right{"data-toggle" => "modal", :href => "#post_modal"}
+            %i.icon-comment.icon-white
+            %span#post_button_write_text
+              Edit your post
+        - elsif @post_can == "disable"
+          %a#post_button_write.btn.btn-inverse.disabled.pull-right{"data-toggle" => "modal", :href => "#post_modal"}
+            %i.icon-comment.icon-white
+            %span#post_button_write_text
+              Post awaiting approval
 
       #posts_search
         / post search form
@@ -32,6 +46,7 @@
             / search field
             = text_field_tag :search, params[:search], id: "posts_search_field", placeholder: "Search posts..."
           %span.pull-right
+            / sort/filter pulldown menu
             .btn-group
               %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                 Filter
@@ -39,7 +54,7 @@
               %ul.dropdown-menu
                 %li
                   %a.filter_pulldown_item
-                    = radio_button_tag :type, 'fifty', checked: true
+                    = radio_button_tag :type, 'local', checked: true
                     Within 50km
                 %li
                   %a.filter_pulldown_item
@@ -54,14 +69,13 @@
 
   / USER Panel
   #panel_m_user.panel_m
-    .panel
-      #user
-        / close button, .close is from T-BS
-        / WHAT'S THE RAILS WAY TO DO THIS 'ONCLICK?'
-        %button#m_user_close.close(onclick="$('#panel_m_user').fadeOut('slow')") ×
+    #user
+      / close button, .close is from T-BS
+      / WHAT'S THE RAILS WAY TO DO THIS 'ONCLICK?'
+    %button#m_user_close.close(onclick="$('#panel_m_user').fadeOut('slow')") ×
 
   / google map script
   %script(type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false")
 
   / hidden modal html
-  = render 'posts/new_modal'
+  = render 'posts/modal'

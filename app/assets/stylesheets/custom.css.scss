@@ -293,20 +293,6 @@ height: .001em;
 }
 
 
-/* might want to get rid of all of this TH stuff! */
-.posts th .current {
-  background-repeat: no-repeat;
-  background-position: right center;
-}
-
-.posts th .asc {
-  background-image: url(up_arrow.gif);
-}
-
-.posts th .desc {
-  background-image: url(down_arrow.gif);
-}
-
 
 /******** sidebar WHAT THE HELL IS THIS FOR? ******/
 
@@ -384,7 +370,7 @@ input, textarea, select, .uneditable-input {
 }
 
 #panel_m_user {
-  top: 20%;
+  top: 10%;
   right: 30px;
   width: 320px;
   display: none;
@@ -622,3 +608,10 @@ input, textarea, select, .uneditable-input {
     color: black; }
     .nexus_pagination a:hover, .nexus_pagination a:focus {
       text-decoration: underline; }
+
+
+/* Modals */
+
+#modal_post_edit {
+  height: 230px;
+}

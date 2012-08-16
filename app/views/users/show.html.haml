@@ -1,88 +1,98 @@
-%ul.m_user
-  %li.name
-    %h3
-      = @user.name
-    %h5  
-      = "# Cases: " + @user.cases.all.count.to_s
-    id: 
-    = @user.id
-  %li.header
-    City
-  %li
-    = @user.city
+- if @user_post
+  .panel
+    %blockquote
+      %p
+        = @user_post.content
 
-  %li.header
-    Country
-  %li
-    = @user.country
+.panel
+  %ul.m_user
+    %li.name
+      %h3
+        = @user.name
+      %h5  
+        = "# Cases: " + @user.cases.all.count.to_s
+      id: 
+      = @user.id
+    %li.header
+      City
+    %li
+      = @user.city
 
-  %li.header
-    Education
-  %li
-    = @user.education1
-    %br/
-    = @user.education2
-    %br/
-    = @user.education3
+    %li.header
+      Country
+    %li
+      = @user.country
 
-  %li.header
-    Experience
-  %li
-    = @user.experience1
-    %br/
-    = @user.experience2
-    %br/
-    = @user.experience3
+    %li.header
+      Education
+    %li
+      .pull-left
+        = @user.education1
+      .pull-right
+        = @user.education1_from.strftime("%Y") + "-" + @user.education1_to.strftime("%Y")
+      %br/
+      = @user.education2 + " " + @user.education2_from.strftime("%Y") + "-" + @user.education2_to.strftime("%Y")
+      %br/
+      = @user.education3 + " " + @user.education2_from.strftime("%Y") + "-" + @user.education2_to.strftime("%Y")
 
-  %li.header
-    Skill:
-  %li
-    = @user.skill
+    %li.header
+      Experience
+    %li
+      = @user.experience1 + " " + @user.experience1_from.strftime("%Y") + "-" + @user.experience1_to.strftime("%Y")
+      %br/
+      = @user.experience2 + " " + @user.experience2_from.strftime("%Y") + "-" + @user.experience2_to.strftime("%Y")
+      %br/
+      = @user.experience3 + " " + @user.experience3_from.strftime("%Y") + "-" + @user.experience3_to.strftime("%Y")
 
-  %li.header
-    Number of Cases:
-  %li
-    = @user.num
+    %li.header
+      Skill:
+    %li
+      = @user.skill
 
-  %li.header
-    LinkedIn:
-  %li
-    / linkedin button
-    = link_to image_tag("icons/linkedin.png", alt: "View xx's profile on LinkedIn", height: "15", width: "20", border:"0") + "LinkedIn", 'http://uk.linkedin.com/in/xx'
+    %li.header
+      Number of Cases:
+    %li
+      = @user.num
 
-  %li.header
-    Skype:
-  %li
-    / skype button
-    %a{:href => "#{@user.skype}?add"}
-      %img{:alt => "#{@user.skype}'s status", :height => "16", :src => "http://mystatus.skype.com/smallicon/#{@user.skype}", :width => "16"}
+    %li.header
+      LinkedIn:
+    %li
+      / linkedin button
+      = link_to image_tag("icons/linkedin.png", alt: "View xx's profile on LinkedIn", height: "15", width: "20", border:"0") + "LinkedIn", 'http://uk.linkedin.com/in/xx'
 
-  %li.header
-    Actions:
-  %li
+    %li.header
+      Skype:
+    %li
+      / skype button
+      %a{:href => "#{@user.skype}?add"}
+        %img{:alt => "#{@user.skype}'s status", :height => "16", :src => "http://mystatus.skype.com/smallicon/#{@user.skype}", :width => "16"}
 
-    / send message button
-    %a#message_show.btn.btn-inverse{:href => "#"}
-      %i.icon-comment.icon-white
-      Message    
-      %span.caret
+    %li.header
+      Actions:
+    %li
 
-    / send feedback button
-    = link_to raw("<i class=\"icon-edit icon-white\"/>Send Feedback"), { controller: "cases", action: "new", target: @user.id }, class: "btn btn-inverse"
+      / send message button
+      %a#message_show.btn.btn-inverse{:href => "#"}
+        %i.icon-comment.icon-white
+        Message    
+        %span.caret
 
-
-
-  %li(style="margin-top:10px;")
-    / new message form
-    = render 'messages/message_form'
+      / send feedback button
+      = link_to raw("<i class=\"icon-edit icon-white\"/>Send Feedback"), { controller: "cases", action: "new", target: @user.id }, class: "btn btn-inverse"
 
 
-/ message form jquery show
-:javascript
-  $('#message_show').click(function() {
 
-    $('#message_form').toggle('slow', function() {
-      $('#message_field').val('');
+    %li(style="margin-top:10px;")
+      / new message form
+      = render 'messages/message_form'
+
+
+  / message form jquery show
+  :javascript
+    $('#message_show').click(function() {
+
+      $('#message_form').toggle('slow', function() {
+        $('#message_field').val('');
+      });
+
     });
-
-  });

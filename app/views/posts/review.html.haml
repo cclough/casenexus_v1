@@ -5,7 +5,6 @@
   .panel
     = will_paginate @posts, class: "nexus_pagination", :inner_window => 2, :outer_window => 2
 
-
     %ol.cases
       - if @posts.count > 0
         - @posts.each do |post|
@@ -16,14 +15,20 @@
             %span.content
               = post.content
             %span.timestamp
-              #{time_ago_in_words(post.created_at)} ago.
+              Created: #{time_ago_in_words(post.created_at)} ago.
+            %br/
+            %span.timestamp
+              Updated: #{time_ago_in_words(post.updated_at)} ago.
             %br/
             %span
               = post.approved
             %span
-              = link_to "APPROVE", { controller: :posts, action: :approve, id: post.id }, confirm: "Approve, You sure?"
-            %span
-              = link_to "DISAPPROVE", { controller: :posts, action: :disapprove, id: post.id }, confirm: "Disapprove You sure?"
+              / offer approve/disapprove link depending on current status
+              - if post.approved?
+                = link_to "DISAPPROVE", { controller: :posts, action: :approve, id: post.id }, confirm: "Disapprove You sure?"
+              - else
+                = link_to "APPROVE", { controller: :posts, action: :approve, id: post.id }, confirm: "Approve, You sure?"
+
       - else
         %h3 There are no cases awaiting approval
 

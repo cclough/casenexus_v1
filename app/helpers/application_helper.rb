@@ -10,16 +10,9 @@ module ApplicationHelper
 		end
 	end
 
-	# DONT NEED THIS ANY MORE AS NOT DOING AJAX SORTING????
-	# for post list sorting
-	def sortable(column, title = nil)
- 		title ||= column.titleize
-		css_class = column == sort_column ? "current #{sort_direction}" : nil
-		direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
-		link_to title, params.merge(:sort => column, :direction => direction, :page => nil), {:class => css_class}
-	end
-	
 
+
+	# user avatar/icon function
 	def avatar_for(user)
 
 		# load in user case count
@@ -43,5 +36,8 @@ module ApplicationHelper
 		image_tag(avatar_url, alt: user.name, class: "avatar")
 	
 	end
+
+
+
 
 end
