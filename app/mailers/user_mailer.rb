@@ -16,14 +16,14 @@ class UserMailer < ActionMailer::Base
     mail(:to => email_with_name, :subject => "casenexus: you have been sent a message")
   end
 
-  def newfeedback_email(user)
+  def feedback_new_email(user)
     @user = user
     @url  = "http://example.com/login"
     email_with_name = "#{@user.name} <#{@user.email}>"
     mail(:to => email_with_name, :subject => "casenexus: new feedback")
   end
 
-  def feedbackreq_email(user)
+  def feedback_req_email(user)
     @user = user
     @url  = "http://example.com/login"
     email_with_name = "#{@user.name} <#{@user.email}>"

@@ -50,19 +50,21 @@ class CasesController < ApplicationController
         respond_to do |format|
       		format.html
       		# this is model stuff ...defining an action in the model...?
-			format.json { render json: current_user.cases.order('date asc').map {|c|
-						{ date: c.date.strftime("%Y-%m-%d"), plan: c.plan, analytic: c.analytic, 
-						struc: c.struc, conc: c.conc } }}
+					format.json { render json: current_user.cases.order('date asc').map {|c|
+											{ date: c.date.strftime("%Y-%m-%d"), plan: c.plan, analytic: c.analytic, 
+											struc: c.struc, conc: c.conc } }}
+    	
     	end
 
 	end
 
 	def new
-		@case = Case.new
 
-		# if target is set, pass the id to the form, if not, error and re-direct
+		# if target is set, pass the id to the form & build new case, 
+		# if not, error and re-direct
 		if params[:target]
-			@target = User.find_by_id(params[:target])
+			@user_target = User.find_by_id(params[:target])
+			@case = @user_target.cases.build
 		else
 			flash[:error] = "<strong>Error</strong> You must use the map 
 							or the 'send feedback' page to select a 
@@ -83,10 +85,24 @@ class CasesController < ApplicationController
 	end
 
 	def create
-	    @case = Case.new(params[:case])
+			@user_target = User.find_by_id(@case.user_id)
+
+	    @case = @user_target.cases.build(params[:case])
 	    # @case.marker_id = current_user.user_id
 
 	  	if @case.save
+
+	  		# get target user
+
+
+	  		# build new record in notification model
+        @user_target.notifications.create!(:ntype => "feedback_new",
+                           								 :sender_id => current_user.id, 
+                           								 :content => "You have received new feedback")
+
+	  		# send email - new feedback
+      	UserMailer.feedback_new_email(@user_target).deliver
+
 	  		flash[:success] = "Feedback sent!"
 	  		redirect_to cases_path
 	  	else

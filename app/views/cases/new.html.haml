@@ -13,8 +13,9 @@
         %h5
           Feedback For:
         .target_name
-          = @target.name
-
+          = @user_target.name
+          = f.hidden_field :user_id, :value => @user_target.id
+          
       .span4
         .field_text         
           = f.text_field :date, placeholder: "Date", id: "datepicker", tabindex: "3"
