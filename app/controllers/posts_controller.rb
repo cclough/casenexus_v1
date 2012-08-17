@@ -35,6 +35,11 @@ class PostsController < ApplicationController
                .search(params[:search]).order('created_at desc')
                .paginate(per_page: 7, page: params[:page])
 
+
+      # @posts = Post.joins(:user).merge(User.within(1000, origin: [51.123123, 0.1323123])).search(params[:search]).order('created_at desc').paginate(per_page: 7, page: params[:page])
+      # this is complete using Yuri's method
+
+
       # @posts = Post.where(user_id: User.within(10, origin: [51.123123, 0.1323123]))
       #          .search(params[:search]).order('created_at desc')
       #          .paginate(per_page: 7, page: params[:page])

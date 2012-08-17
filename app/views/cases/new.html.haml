@@ -14,7 +14,7 @@
           Feedback For:
         .target_name
           = @user_target.name
-          = f.hidden_field :user_id, :value => @user_target.id
+
           
       .span4
         .field_text         
@@ -82,7 +82,8 @@
       .span8
         .field
           = f.text_area :comment, placeholder: "Any further comments", :style=>'width: 620px;', tabindex: "11"
-
+        
+        = f.hidden_field :user_id, :value => @user_target.id
         = f.hidden_field :marker_id, :value => current_user.id
         = f.submit "Submit", class: "btn btn-large btn-inverse pull-right", tabindex: "12"
 

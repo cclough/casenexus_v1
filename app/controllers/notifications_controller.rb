@@ -28,6 +28,10 @@ class NotificationsController < ApplicationController
 
   def create
 
+    # find incoming notification type
+    @ntype = params[:notification][:ntype]
+
+    # load new notification
     @notification = Notification.new(params[:notification])
 
     # respond_to .js enables ajax create
@@ -37,18 +41,34 @@ class NotificationsController < ApplicationController
 
         # get User object from id supplied
         user_target = User.find(@notification.user_id)
-        # send notification via email to target user
-        UserMailer.message_email(user_target).deliver
+        
+        # EMAIL NOTIFICATION TOO
+        # Doing this emailing (requiring an if statement) here to keep it out of other controllers
+        # MESSAGE email
+        if @ntype == "message"
+          UserMailer.message_email(user_target, user_from, url).deliver
+        # FEEDBACK NEW email
+        elsif @ntype == "feedback_new"
+          UserMailer.feedback_new_email(user_target, user_from, url).deliver
+        # FEEDBACK REQUEST email
+        elsif @ntype == "feedback_req"
+          UserMailer.feedback_req_email(user_target, user_from, url).deliver
+        end
 
-        flash.now[:success] = 'Message sent!'
+        # might not need this flash
+        flash.now[:success] = 'Notification sent & emailed!'
         format.js
+
       else
         # do I need the .html line below?
         format.html { render action: "new" }  
         format.js  
+      
       end
 
     end
+
+
   end
 
 end

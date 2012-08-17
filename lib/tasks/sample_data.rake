@@ -195,7 +195,6 @@ namespace :db do
   	50.times do |n|
     	User.find(1).cases.create!(
     		:user_id => 1,
-        :email => "test-#{n+1}@cases.org",
     		:marker_id => rand(100),
         :date => randomDate(:year_range => 1, :year_latest => 0),
     		:subject => Faker::Lorem.sentence(5),

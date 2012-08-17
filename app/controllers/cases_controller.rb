@@ -47,15 +47,25 @@ class CasesController < ApplicationController
 
 		#### generate data for progress chart
 		
-        respond_to do |format|
-      		format.html
-      		# this is model stuff ...defining an action in the model...?
-					format.json { render json: current_user.cases.order('date asc').map {|c|
-											{ date: c.date.strftime("%Y-%m-%d"), plan: c.plan, analytic: c.analytic, 
-											struc: c.struc, conc: c.conc } }}
-    	
-    	end
+    respond_to do |format|
+  		format.html
+  		# this is model stuff ...defining an action in the model...?
+			format.json { render json: current_user.cases.order('date asc').map {|c|
+									{ date: c.date.strftime("%Y-%m-%d"), plan: c.plan, analytic: c.analytic, 
+									struc: c.struc, conc: c.conc } }}
+	
+		end
 
+	end
+
+	def show
+		@case = Case.find(params[:id])
+
+		# data for radar graph
+		@chart_data = "[{criteria: \"Plan\", score: "+@case.plan.to_s+"},
+					   {criteria: \"Analytical\", score: "+@case.analytic.to_s+"},
+					   {criteria: \"Structure\", score: "+@case.struc.to_s+"},
+				       {criteria: \"Conclusion\", score: "+@case.conc.to_s+"}]"
 	end
 
 	def new
@@ -74,40 +84,33 @@ class CasesController < ApplicationController
 
 	end
 
-	def show
-		@case = Case.find(params[:id])
-
-		# data for radar graph
-		@chart_data = "[{criteria: \"Plan\", score: "+@case.plan.to_s+"},
-					   {criteria: \"Analytical\", score: "+@case.analytic.to_s+"},
-					   {criteria: \"Structure\", score: "+@case.struc.to_s+"},
-				       {criteria: \"Conclusion\", score: "+@case.conc.to_s+"}]"
-	end
-
 	def create
-			@user_target = User.find_by_id(@case.user_id)
+			
+			# get target user
+			@user_target = User.find_by_id(params[:case][:user_id])
 
+			# build new case
+			# not sure if this .build route (as opposed to just case.new) is neccessary
+			# ...as we give it the user_id in a hidden field...but oh well
 	    @case = @user_target.cases.build(params[:case])
-	    # @case.marker_id = current_user.user_id
 
 	  	if @case.save
-
-	  		# get target user
-
 
 	  		# build new record in notification model
         @user_target.notifications.create!(:ntype => "feedback_new",
                            								 :sender_id => current_user.id, 
-                           								 :content => "You have received new feedback")
+                           								 :content => "You have received new feedback from #{current_user.name}")
 
 	  		# send email - new feedback
       	UserMailer.feedback_new_email(@user_target).deliver
 
+      	# flash success and re-direct
 	  		flash[:success] = "Feedback sent!"
-	  		redirect_to cases_path
+	  		redirect_to users_path
 	  	else
 	  		render 'new'
 	  	end
+
 	end
 
 

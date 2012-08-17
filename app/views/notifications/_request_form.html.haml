@@ -1,0 +1,19 @@
+/ render feedback request form, remote AJAX enabled
+
+= form_for(@notification, remote: true) do |f|
+
+  #flash_notifications
+
+  = render 'shared/error_messages', object: @notification
+
+  #request_form(style="display:none;")
+
+    .field
+      = f.text_area :content, placeholder: "Send message...", style: "height:100px;", id: "notification_field"
+      = f.hidden_field :user_id, :value => @user.id
+      = f.hidden_field :sender_id, :value => current_user.id
+      = f.hidden_field :ntype, :value => "feedback_req"
+
+    %button.btn.btn-primary.btn-inverse.pull-right{:type => "submit"}
+      %i.icon-arrow-right
+      Send

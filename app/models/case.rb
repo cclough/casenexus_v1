@@ -1,5 +1,5 @@
 class Case < ActiveRecord::Base
-  attr_accessible :user_id, :email, :marker_id, :date, :subject, :source, :plan, :plan_s,
+  attr_accessible :user_id, :marker_id, :date, :subject, :source, :plan, :plan_s,
   							  :analytic, :analytic_s, :struc, :struc_s, :conc, :conc_s,
   							  :comms, :comms_s, :comment, :notes
 

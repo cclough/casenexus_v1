@@ -16,7 +16,8 @@
         = @user.name
       %h5  
         = "# Cases: " + @user.cases.all.count.to_s
-
+        %br
+          = @user.id
     %li.header
       City
     %li
@@ -97,22 +98,39 @@
         Message    
         %span.caret
 
+      / send notification button
+      %a#request_show.btn.btn-inverse{:href => "#"}
+        %i.icon-refresh.icon-white
+        Request Feedback  
+
+        %span.caret
       / send feedback button
       = link_to raw("<i class=\"icon-edit icon-white\"/>Send Feedback"), { controller: "cases", action: "new", target: @user.id }, class: "btn btn-inverse"
-
 
 
     %li(style="margin-top:10px;")
       / new notification form
       = render 'notifications/notification_form'
+      / request feedback form     
+      = render 'notifications/request_form'
 
 
-  / notification form jquery show
   :javascript
+
+    / notification form jquery show
     $('#notification_show').click(function() {
 
       $('#notification_form').toggle('slow', function() {
         $('#notification_field').val('');
+      });
+
+    });
+
+    / request form jquery show
+    $('#request_show').click(function() {
+
+      $('#request_form').toggle('slow', function() {
+        /// reset anything?
       });
 
     });
