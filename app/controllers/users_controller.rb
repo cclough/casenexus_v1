@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
-
-  before_filter :signed_in_user, only: [:map, :index, :edit, :update]
+  before_filter :signed_in_user, only: [:index, :edit, :update, :show]
   before_filter :correct_user, only: [:edit, :update]
-  before_filter :admin_user, only: :destroy
   
   # include all user session data e.g. notifications and username
   before_filter :session_data

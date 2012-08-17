@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
-    before_filter :session_data
+  # include all user session data e.g. notifications and username 
+  before_filter :session_data
 
   def home
  	if signed_in?

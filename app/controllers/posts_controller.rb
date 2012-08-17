@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :signed_in_user, only: [:index, :create, :update, :review, :approve]
-  before_filter :correct_user, only: [:create, :update]
+  before_filter :signed_in_user
   before_filter :admin_user, only: [:review, :approve]
 
   # include all user session data e.g. notifications and username
@@ -133,15 +132,6 @@ class PostsController < ApplicationController
       redirect_to '/review'
 
     end
-  end
-
-  private
-
-  # posts controller specific correct_user function from MH
-  # why does it define 'post'?
-  def correct_user
-    @post = current_user.posts.find_by_id(params[:id])
-    redirect_to root_path if @post.nil?
   end
 
 end

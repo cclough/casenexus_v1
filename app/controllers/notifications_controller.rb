@@ -1,9 +1,7 @@
 class NotificationsController < ApplicationController
-
   before_filter :signed_in_user
-  before_filter :correct_user, only: [:create]
-  before_filter :admin_user, only: :destroy
-  # include notifications instance var
+
+  # include all user session data e.g. notifications and username
   before_filter :session_data
 
   def index
@@ -51,16 +49,6 @@ class NotificationsController < ApplicationController
       end
 
     end
-
-    private
-
-    # notifications controller specific correct_user function from MH
-    # why does it define 'notification'?
-    def correct_user
-      @notification = current_user.notifications.find_by_id(params[:id])
-      redirect_to root_path if @notification.nil?
-    end
-
   end
 
 end

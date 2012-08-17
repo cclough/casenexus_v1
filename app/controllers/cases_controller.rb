@@ -1,9 +1,7 @@
 class CasesController < ApplicationController
   before_filter :signed_in_user
-  before_filter :correct_user, only: [:create]
-  before_filter :admin_user, only: :destroy
 
-  # include notifications instance var
+  # include all user session data e.g. notifications and username
   before_filter :session_data
 
 	def index
