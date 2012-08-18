@@ -42,24 +42,36 @@ class NotificationsController < ApplicationController
         # get User object from id supplied
         user_target = User.find(@notification.user_id)
         
-        # EMAIL NOTIFICATION TOO
-        # Doing this emailing (requiring an if statement) here to keep it out of other controllers
+        ######## EMAIL NOTIFICATION & UI JAVASCRIPT RESPONSES
+        # EMAIL: Doing emailing (requiring an if statement) here to keep it out of other controllers
+        # JAVASCRIPTS: javascript for each message type is specified here,
+        #              this severely limits usage of this action
+        #              later the js contents of these files should be put on e.g. just the map page
+
         # MESSAGE email
         if @ntype == "message"
           UserMailer.message_email(user_target, user_from, url).deliver
+          # JS action to hide message form
+          format.js { render :action => "create_messsage" }
+
         # FEEDBACK NEW email
         elsif @ntype == "feedback_new"
           UserMailer.feedback_new_email(user_target, user_from, url).deliver
+          # (no JS action neccessary)
+
         # FEEDBACK REQUEST email
         elsif @ntype == "feedback_req"
           UserMailer.feedback_req_email(user_target, user_from, url).deliver
+          # JS action to hide feedback request form
+          format.js { render :action => "create_feedback_req" }
+
         end
 
         # might not need this flash
         flash.now[:success] = 'Notification sent & emailed!'
-        format.js
-
+        
       else
+        # if fails...
         # do I need the .html line below?
         format.html { render action: "new" }  
         format.js  

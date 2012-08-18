@@ -1,0 +1,38 @@
+#modal_feedback_req.modal.hide.fade
+  = form_for(@notification, remote: true) do |f|
+    .modal-header
+      %button.close{"data-dismiss" => "modal", :type => "button"} ×
+      %h3 Send Feedback Request
+
+    #modal_body_feedback_req.modal-body
+
+      %p
+        This user will be sent a feedback form to complete
+
+      / render new feedback_req form, remote AJAX enabled
+      #feedback_req_form_container
+
+        #flash_notifications
+          = render 'shared/error_messages', object: @notification
+
+        #feedback_req_form
+          .field      
+            = f.text_field :feedback_req_date, placeholder: "Date", id: "datepicker", tabindex: "3"
+          .field
+            = f.text_area :content, placeholder: "Case Subject...", rows: '5'
+
+            = f.hidden_field :user_id, :value => @user.id
+            = f.hidden_field :sender_id, :value => current_user.id
+            = f.hidden_field :ntype, :value => "message"
+
+    .modal-footer
+      %a.btn{"data-dismiss" => "modal", :href => "#"} Close
+      %button.btn.btn-primary{:href => "#",:type => "submit"}
+        %i.icon-arrow-right.icon-white
+        Send Feedback Request
+
+:javascript
+
+  $(function() {
+    $("#datepicker").datepicker();
+  });

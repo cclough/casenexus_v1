@@ -218,13 +218,17 @@ namespace :db do
       10.times do
         user.notifications.create!(:ntype => "message",
                                    :sender_id => rand(100), 
-                                   :content => Faker::Lorem.sentence(5))
+                                   :content => Faker::Lorem.sentence(5),
+                                   :url => "http://xxx/")
         user.notifications.create!(:ntype => "feedback_new",
                                    :sender_id => rand(100), 
-                                   :content => "You have received new feedback")
+                                   :content => Faker::Lorem.sentence(5),
+                                   :url => "http://xxx/")
         user.notifications.create!(:ntype => "feedback_req",
                                    :sender_id => rand(100), 
-                                   :content => "Feedback has been requested from you")
+                                   :content => Faker::Lorem.sentence(5),
+                                   :feedback_req_date => randomDate(:year_range => 1, :year_latest => 0),
+                                   :url => "http://xxx/")
       end
     end
 

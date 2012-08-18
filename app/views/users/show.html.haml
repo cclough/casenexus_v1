@@ -92,45 +92,51 @@
       Actions:
     %li
 
-      / send notification button
-      %a#notification_show.btn.btn-inverse{:href => "#"}
+      / send message button
+      %a#message_show.btn.btn-inverse
         %i.icon-comment.icon-white
-        Message    
-        %span.caret
+        Message
 
-      / send notification button
-      %a#request_show.btn.btn-inverse{:href => "#"}
+
+      / send feedback req button
+      %a#feedback_req_show.btn.btn-inverse
         %i.icon-refresh.icon-white
         Request Feedback  
 
-        %span.caret
+
       / send feedback button
       = link_to raw("<i class=\"icon-edit icon-white\"/>Send Feedback"), { controller: "cases", action: "new", target: @user.id }, class: "btn btn-inverse"
 
 
-    %li(style="margin-top:10px;")
-      / new notification form
-      = render 'notifications/notification_form'
-      / request feedback form     
-      = render 'notifications/request_form'
+/ hidden modal html
+= render 'notifications/modal_feedback_req'
+= render 'notifications/modal_message'
 
+:javascript
+  // message modal has no background
+  // this is a workaround for bug where the modal displays behind the background - this is a result of it being placed within a contained with fixed positioning (the #user panel
+  // message modal does not auto load - not sure why this is required this time, but is
+  $('#modal_message').modal({
+    backdrop: false,
+    show:false
+  });
 
-  :javascript
+  // same for feedback_req modal, as above
+  $('#modal_feedback_req').modal({
+    backdrop: false,
+    show:false
+  });
 
-    / notification form jquery show
-    $('#notification_show').click(function() {
+  // message button click, hides other modal
+  // not using TBS data-toggle etc. as doesn't let you hide others
+  $('#message_show').click(function() {
+    $('#modal_message').modal('show');
+    $('#modal_feedback_req').modal('hide')
+  });
 
-      $('#notification_form').toggle('slow', function() {
-        $('#notification_field').val('');
-      });
-
-    });
-
-    / request form jquery show
-    $('#request_show').click(function() {
-
-      $('#request_form').toggle('slow', function() {
-        /// reset anything?
-      });
-
-    });
+  // feedback_req button click, hides other modal
+  // not using TBS data-toggle etc. as doesn't let you hide others
+  $('#feedback_req_show').click(function() {
+    $('#modal_message').modal('hide');
+    $('#modal_feedback_req').modal('show')
+  });
