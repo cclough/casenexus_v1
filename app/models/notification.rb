@@ -1,6 +1,6 @@
 class Notification < ActiveRecord::Base
   attr_accessible :ntype, :user_id, :sender_id, :content, :read, 
-  				  :feedback_req_date, :url
+  				  :event_date, :url
 
   belongs_to :user
 

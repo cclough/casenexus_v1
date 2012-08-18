@@ -1,6 +1,11 @@
 New Feedback
 ===============================================
 
-You have new feedback on casenexus from #{@user_from.name}.
+You have new feedback on casenexus from <%= @user_from.name %>.
  
-To view this feedback, follow this link: #{@url}.
+Date of the case:
+	<%= @date %>
+Subject of the case:
+	<%= @subject %>
+
+To view this feedback, follow this link: <%= link_to @url, @url %>.

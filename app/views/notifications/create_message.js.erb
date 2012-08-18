@@ -1,6 +1,19 @@
-//hide form, remove form, load flash html, show flash
-$('#message_form').hide('slow', function () {
-	$("#flash_notifications").html("<%= escape_javascript(render :partial => 'layouts/flash' , :locals => { :flash => flash }).html_safe %>");
-	$("#flash_notifications").show("fast");
-});
+//delay 200ms to allow hide modal animation,
+setTimeout(function(){
 
+	// hide modal
+  $("#modal_message").modal('hide');
+
+  // update application flash html
+  $("#flash_application").html("<%= escape_javascript(render :partial => 'layouts/flash' , :locals => { :flash => flash }).html_safe %>");
+	
+	// fade in application flash
+	$("#flash_application").fadeIn("fast");
+
+	// changes write post button to disabled!
+	$('#message_show').addClass("disabled")
+
+	// changes write post button to disabled!
+	$('#message_show_text').html("Message Sent")
+
+}, 200);

@@ -6,6 +6,9 @@
     %h1
       New Message
     %p
-      You have a new message from {@user_from.name}
+      You have a new message from #{@user_from.name}
     %p
-      To view this message, click here #{@url}.
+      Message #{@message}
+    %p
+      To view this message, click here 
+      = link_to @url, @url

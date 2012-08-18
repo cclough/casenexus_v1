@@ -41,27 +41,52 @@ class NotificationsController < ApplicationController
 
         # get User object from id supplied
         user_target = User.find(@notification.user_id)
-        
+        user_from = current_user
+        url_root = "https://radiant-shore-5325.herokuapp.com/"
         ######## EMAIL NOTIFICATION & UI JAVASCRIPT RESPONSES
         # EMAIL: Doing emailing (requiring an if statement) here to keep it out of other controllers
         # JAVASCRIPTS: javascript for each message type is specified here,
         #              this severely limits usage of this action
         #              later the js contents of these files should be put on e.g. just the map page
 
-        # MESSAGE email
+        # MESSAGE stuff
         if @ntype == "message"
-          UserMailer.message_email(user_target, user_from, url).deliver
-          # JS action to hide message form
-          format.js { render :action => "create_messsage" }
+          #url is simply to the message ID
+          url = url_root + "notifications/" + @notification.id.to_s
 
-        # FEEDBACK NEW email
+          #message content
+          message = @notification.content
+
+          UserMailer.message_email(user_target, user_from, url, message).deliver
+
+          # JS action to hide message form
+          format.js { render :action => "create_message" }
+
+        # FEEDBACK NEW stuff
         elsif @ntype == "feedback_new"
-          UserMailer.feedback_new_email(user_target, user_from, url).deliver
+          #url is notification ID
+          url = url_root + "notifications/" + @notification.id.to_S
+
+          # feedback new stuff
+          subject = @notification.content
+          date = @notification.event_date
+
+          UserMailer.feedback_new_email(user_target, user_from, url, subject, date).deliver
+
           # (no JS action neccessary)
 
-        # FEEDBACK REQUEST email
+        # FEEDBACK REQUEST stuff
         elsif @ntype == "feedback_req"
-          UserMailer.feedback_req_email(user_target, user_from, url).deliver
+          #url is to new case form, including subject and date
+          url = url_root + "cases/new?subject=" + @notification.content
+                + "&date=" + @notification.date
+
+          # feedback request stuff
+          subject = @notification.content
+          date = @notification.event_date
+
+          UserMailer.feedback_req_email(user_target, user_from, url, subject, date).deliver
+
           # JS action to hide feedback request form
           format.js { render :action => "create_feedback_req" }
 

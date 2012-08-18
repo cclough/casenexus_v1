@@ -7,6 +7,10 @@
       Feedback Request
     %p
       Feedback on a case has been requested by {@user_from.name}
-      %br/
     %p
-      Complete a feedback form for this user now #{@url}.
+      Date of the case: #{@date}
+    %p
+      Subject of the case: #{@subject}
+    %p
+      Complete a feedback form for this user now
+      = link_to @url, @url

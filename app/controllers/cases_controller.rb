@@ -86,23 +86,22 @@ class CasesController < ApplicationController
 
 	def create
 			
-			# get target user
-			@user_target = User.find_by_id(params[:case][:user_id])
+		# get target user
+		@user_target = User.find_by_id(params[:case][:user_id])
 
-			# build new case
-			# not sure if this .build route (as opposed to just case.new) is neccessary
-			# ...as we give it the user_id in a hidden field...but oh well
-	    @case = @user_target.cases.build(params[:case])
+		# build new case
+		# not sure if this .build route (as opposed to just case.new) is neccessary
+		# ...as we give it the user_id in a hidden field...but oh well
+    	@case = @user_target.cases.build(params[:case])
 
 	  	if @case.save
-
 	  		# build new record in notification model
-        @user_target.notifications.create!(:ntype => "feedback_new",
-                           								 :sender_id => current_user.id, 
-                           								 :content => "You have received new feedback from #{current_user.name}")
+        	@user_target.notifications.create!(:ntype => "feedback_new",
+                           					   :sender_id => current_user.id, 
+                           					   :content => "You have received new feedback from #{current_user.name}")
 
 	  		# send email - new feedback
-      	UserMailer.feedback_new_email(@user_target).deliver
+      		UserMailer.feedback_new_email(@user_target).deliver
 
       	# flash success and re-direct
 	  		flash[:success] = "Feedback sent!"

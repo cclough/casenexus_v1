@@ -1,6 +1,8 @@
 New Message
 ===============================================
 
-You have a new message from {@user_from.name}
+You have a new message from <%= @user_from.name %>
+
+Message <%= @message %>
   
-To view this message, click here #{@url}.
+To view this message, click here <%= link_to @url, @url %>.

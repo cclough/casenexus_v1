@@ -12,21 +12,19 @@
 
       / render message form, remote AJAX enabled
       #message_form_container
+      
+        #flash_notifications
 
-        = form_for(@notification, remote: true) do |f|
+        = render 'shared/error_messages', object: @notification
 
-          #flash_notifications
+        #message_form
 
-          = render 'shared/error_messages', object: @notification
+          .field
+            = f.text_area :content, placeholder: "Send message...", style: "height:100px;", id: "message_field"
 
-          #message_form
-
-            .field
-              = f.text_area :content, placeholder: "Send message...", style: "height:100px;", id: "message_field"
-
-              = f.hidden_field :user_id, :value => @user.id
-              = f.hidden_field :sender_id, :value => current_user.id
-              = f.hidden_field :ntype, :value => "message"
+            = f.hidden_field :user_id, :value => @user.id
+            = f.hidden_field :sender_id, :value => current_user.id
+            = f.hidden_field :ntype, :value => "message"
 
     .modal-footer
       %a.btn{"data-dismiss" => "modal", :href => "#"} Close

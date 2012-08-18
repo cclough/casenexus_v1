@@ -8,4 +8,9 @@
     %p
       You have new feedback on casenexus from #{@user_from.name}
     %p
-      To view this feedback, follow this link: #{@url}.
+      Date of the case: #{@date}
+    %p
+      Subject of the case: #{@subject}
+    %p
+      To view this feedback, follow this link
+      = link_to @url, @url

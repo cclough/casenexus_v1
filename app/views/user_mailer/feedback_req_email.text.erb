@@ -1,6 +1,11 @@
 Feedback Request
 ===============================================
 
-Feedback on a case has been requested by {@user_from.name}
+Feedback on a case has been requested by <%= @user_from.name %>
 
-Complete a feedback form for this user now #{@url}.
+Date of the case:
+	<%= @date %>
+Subject of the case:
+	<%= @subject %>
+
+Complete a feedback form for this user now <%= link_to @url, @url %>.
