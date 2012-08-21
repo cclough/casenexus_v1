@@ -10,6 +10,9 @@ gem 'bootstrap-sass', '2.0.4'
 gem 'font-awesome-rails'
 gem 'mail'
 gem 'geokit-rails3'
+# vincent:
+gem 'nokogiri'
+gem 'request_exception_handler'
 
 group :development, :test do
   gem 'pg'

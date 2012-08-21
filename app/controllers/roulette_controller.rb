@@ -5,10 +5,7 @@ class RouletteController < ApplicationController
   before_filter :session_data
 
 
-  def index
-  end
-
-
+  # VideoSoftware.pro Roulette Function by Vincent
   def registration
     action = CGI.parse(URI.parse(request.url).query)
     params[:action] = action['action'].first
@@ -21,6 +18,7 @@ class RouletteController < ApplicationController
     render :text => @result
   end
 
+  # VideoSoftware.pro Roulette Function by Vincent
   def configuration
     action = CGI.parse(URI.parse(request.url).query)
     params[:action] = action['action'].first
@@ -33,9 +31,10 @@ class RouletteController < ApplicationController
     render :text => result
   end
   
+  # VideoSoftware.pro Roulette Function by Vincent
   def configfile
     render 'configfile.xml', :content_type => 'application/xml'
   end
 
-  
+
 end

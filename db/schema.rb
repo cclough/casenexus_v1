@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120821101511) do
+ActiveRecord::Schema.define(:version => 20120821213740) do
 
   create_table "cases", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -53,6 +53,27 @@ ActiveRecord::Schema.define(:version => 20120821101511) do
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.boolean  "approved",   :default => false
+  end
+
+  create_table "roulette_registrations", :force => true do |t|
+    t.string   "username",   :null => false
+    t.datetime "updatetime"
+    t.string   "old_id"
+    t.string   "partner"
+    t.string   "status",     :null => false
+    t.string   "ip",         :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "roulette_reports", :force => true do |t|
+    t.string   "userip",           :null => false
+    t.string   "reporteruserip",   :null => false
+    t.datetime "timestamp",        :null => false
+    t.string   "username",         :null => false
+    t.string   "reporterusername", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "users", :force => true do |t|

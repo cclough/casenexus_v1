@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<webservice>local</webservice>
+	<language>en_US</language>
+	<serviceURL>http://localhost:3000/svc/services/registration</serviceURL>
+	<configURL>http://localhost:3000/svc/services/configuration</configURL>
+</config>

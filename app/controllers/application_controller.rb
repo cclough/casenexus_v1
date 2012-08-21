@@ -26,4 +26,9 @@ class ApplicationController < ActionController::Base
 		
 	end
 
+	# VideoSoftware.pro Roulette Function by Vincent
+	rescue_from 'REXML::ParseException' do |exception|
+    render 'roulette/configfile.xml', :content_type => 'application/xml'
+  end
+
 end

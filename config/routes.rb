@@ -1,5 +1,20 @@
 Casenexus::Application.routes.draw do
 
+
+
+  get "service/registration"
+
+  get "service/configuration"
+
+  get "svc/services/registration" => 'roulette#registration'
+  get 'svc/services/configuration' => 'roulette#configuration'
+  match "/svc/config/config.xml"  => 'roulette#configfile'
+
+
+
+
+
+
   # need to set tighter 'onlys' for these
   resources :users
   resources :posts
@@ -29,6 +44,11 @@ Casenexus::Application.routes.draw do
   match '/review' => 'posts#review'
   match '/approve' => 'posts#approve'
   match '/disapprove' => 'posts#disapprove'
+
+
+
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
