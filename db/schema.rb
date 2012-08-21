@@ -1,4 +1,4 @@
-2# encoding: UTF-8
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120818122451) do
+ActiveRecord::Schema.define(:version => 20120821101511) do
 
   create_table "cases", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -48,12 +48,11 @@ ActiveRecord::Schema.define(:version => 20120818122451) do
   end
 
   create_table "posts", :force => true do |t|
-    t.integer  "user_id",                    :null => false
+    t.integer  "user_id",                       :null => false
     t.text     "content"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.boolean  "approved",   :default => false
-
   end
 
   create_table "users", :force => true do |t|
@@ -64,8 +63,6 @@ ActiveRecord::Schema.define(:version => 20120818122451) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",            :default => false
-    t.string   "country"
-    t.string   "city"
     t.float    "lat"
     t.float    "lng"
     t.boolean  "email_admin",      :default => true
@@ -93,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20120818122451) do
     t.date     "experience3_from"
     t.date     "experience3_to"
     t.boolean  "completed",        :default => false
+    t.boolean  "accept_tandc",     :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

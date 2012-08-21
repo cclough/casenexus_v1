@@ -148,10 +148,11 @@ p {
 }
 
 .count {
-  font-size: 1.7em;
+  font-size: 1.1em;
   color: white;
   letter-spacing: 1px;
-  padding-top: 7px;
+  
+  padding-left: 4px;
   /* font-weight: bold; */
   line-height: 1;
   &:hover {
@@ -403,7 +404,7 @@ input, textarea, select, .uneditable-input {
 
 /* being used? */
 .panel_latlng {
-  margin:auto;
+  display:none;
 }
 
 .panel_map_edit {

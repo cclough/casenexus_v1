@@ -24,8 +24,6 @@ namespace :db do
            password_confirmation: "numbnuts",
            lat: 51.901128232665856,
            lng: -0.54241188764572144,
-           country: "UK",
-           city: "Oxford",
            skill: "God-like",
 
            skype: "christianclough",
@@ -54,6 +52,7 @@ namespace :db do
            experience3_to: randomDate(:year_range => 3, :year_latest => 0))
 
     admin.toggle!(:admin)
+    admin.toggle!(:accept_tandc)
 
     admin2 = User.create!(name: "Robin Clough",
            email: "robin.clough@gmail.com",
@@ -61,8 +60,6 @@ namespace :db do
            password_confirmation: "numbnuts",
            lat: 51.201128232665856,
            lng: -0.54241188764572144,
-           country: "UK",
-           city: "Oxford",
            skill: "God-like",
 
            skype: "robinclough",
@@ -91,15 +88,14 @@ namespace :db do
            experience3_to: randomDate(:year_range => 3, :year_latest => 0))
 
     admin2.toggle!(:admin)
-    
+    admin2.toggle!(:accept_tandc)
+
     designer = User.create!(name: "Design Pro",
            email: "design@design.com",
            password: "design",
            password_confirmation: "design",
            lat: 51.221128232665856,
            lng: -0.54241188764572144,
-           country: "UK",
-           city: "Oxford",
            skill: "God-like",
 
            skype: "greatdesign",
@@ -127,14 +123,14 @@ namespace :db do
            experience3_from: randomDate(:year_range => 3, :year_latest => 0),
            experience3_to: randomDate(:year_range => 3, :year_latest => 0))
 
+    designer.toggle!(:accept_tandc)
+
 		98.times do |n|
 			name = Faker::Name.name
 			email = "test#{n+1}@casenexus.com"
 			password = "password"
 			lat = -90 + rand(180)
 			lng = -180 + rand(360)
-			country = "US"
-			city = "Boston"
       skill = "Intermediate"
 
       skype = "christianclough"
@@ -161,11 +157,13 @@ namespace :db do
       experience2_from = randomDate(:year_range => 3, :year_latest => 0)
       experience3_to = randomDate(:year_range => 3, :year_latest => 0)
       experience3_from = randomDate(:year_range => 3, :year_latest => 0)
+
+      accept_tandc = :true
+
 			User.create!(name: name, email: email, 
                password: password,
 						   password_confirmation: password,
-						   lat: lat, lng: lng, country: country,
-               city: city, skill: skill, 
+						   lat: lat, lng: lng, skill: skill, 
                skype: skype, linkedin: linkedin, num: num,
                education1: education1, education2: education2,
                education3: education3, experience1: experience1,
@@ -176,7 +174,7 @@ namespace :db do
                experience1_from: education1_from, experience1_to: education1_to,
                experience2_from: education2_from, experience2_to: education2_to,
                experience3_from: education3_from, experience3_to: education3_to,
-               )
+               accept_tandc: accept_tandc)
 
 		end
 

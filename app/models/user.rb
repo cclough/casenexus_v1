@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, 
-                  :lat, :lng, :country, :city, 
+                  :lat, :lng, 
                   :email_admin,:email_users, :skill, 
                   :skype, :linkedin, :num,
                   :education1, :education2, :education3,
@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
                   :experience1_from, :experience1_to,
                   :experience2_from, :experience2_to,
                   :experience3_from, :experience3_to,
+                  :accept_tandc
 
   has_secure_password
 
@@ -41,8 +42,6 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true 
   validates :lat, presence: true
   validates :lng, presence: true
-  validates :country, presence: true
-  validates :city, presence: true
   # all other fields not required
 
 

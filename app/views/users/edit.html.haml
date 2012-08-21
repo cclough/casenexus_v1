@@ -44,15 +44,11 @@
 
       .span8
         .row
-          .span2
-            .panel.type1.kill_left.kill_right
-              = f.label :country, "Country"
-              = f.text_field :country, id: "country"
-              = f.label :city, "City"
-              = f.text_field :city, id: "city"
+          .span8
+            .panel_latlng
               = f.text_field :lat, id: "lat"
               = f.text_field :lng, id: "lng"
-          .span6
+
             #map_edit.map.panel_map_edit
 
         .row

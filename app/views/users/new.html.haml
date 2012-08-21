@@ -27,16 +27,16 @@
 
           = f.label :email_users, "Send notifications from users to your email"
           = f.check_box :email_users
+
+          = f.label :accept_tandc, "Accept the terms and conditions"
+          = f.check_box :accept_tandc
+
           %br
           = f.submit "Create my account", class: "btn btn-large btn-inverse"
       .span7
         #map_new.map{:style => "height:450px; width:100%"}
 
-        .panel.type1.kill_left.kill_right
-          = f.label :country, "Country"
-          = f.text_field :country, id: "country"
-          = f.label :city, "City"
-          = f.text_field :city, id: "city"
+        .panel_latlng
           = f.text_field :lat, id: "lat"
           = f.text_field :lng, id: "lng"
 

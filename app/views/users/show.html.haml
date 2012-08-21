@@ -13,20 +13,15 @@
   %ul.m_user
     %li.name
       %h3
+        = avatar_for(@user)
         = @user.name
       %h5  
         = "# Cases: " + @user.cases.all.count.to_s
-        %br
-          = @user.id
-    %li.header
-      City
-    %li
-      = @user.city
 
     %li.header
-      Country
+      Location
     %li
-      = @user.country
+      xxx
 
     %li.header
       Education
