@@ -4,48 +4,38 @@ class RouletteController < ApplicationController
   # include all user session data e.g. notifications and username
   before_filter :session_data
 
-  # start session_Tracker
-  before_filter :track_active_sessions
 
   def index
-      # call in user data from session tracker gem (from redis)
-      # number at the end defines minutes to look back
-  end
-
-  def random
-
-      # get array of users (remember token codes store in track_active_sessions func below)
-      @onlineusers = SessionTracker.new("onlineuser", $redis).active_users_data(1, Time.now)
-      # random select one of them
-      @selectonlineuser = @onlineusers[rand(@onlineusers.length)]
-      # get user object from remember token
-      # this is then used in the view
-      @onlineuser = User.find_by_remember_token(@selectonlineuser)
-
-      respond_to do |format|
-        # don't load layout - make like a partial
-        format.html { render :layout => false }
-      end
-
   end
 
 
-  # start sessiontracker gem(redis) on user arriving to controller
-  # store remember token in redis (could change for email or params[:session]?)
-  def track_active_sessions
-    # first insist that the skype field is completed in a users profile
-    if current_user.skype.blank?
-      # if blank, flash an error to update their profile
-      flash.now[:error] = "You must add your skype username to
-                           #{view_context.link_to 'your profile', edit_user_path(current_user)}
-                           to use the roulette. If you do not 
-                           have a Skype address, 
-                           #{view_context.link_to 'register for one', 
-                           'https://www.skype.com/go/join'}".html_safe
-    
+  def registration
+    action = CGI.parse(URI.parse(request.url).query)
+    params[:action] = action['action'].first
+    # status = params[:status]
+    # username = params[:username]
+    # time = params[:time]
+    # code = params[:code]
+    @result = RouletteRegistration.process(params, request.remote_ip)
+    logger.debug @result
+    render :text => @result
+  end
+
+  def configuration
+    action = CGI.parse(URI.parse(request.url).query)
+    params[:action] = action['action'].first
+    result = (if params[:action] == 'request'
+      { action: params[:action], config: {:ping_interval => $PING_INTERVAL, :request_config_interval => $REQUEST_CONFIG_INTERVAL, :invitation_sent_timeout => $INVITATION_SENT_TIMEOUT, :find_next_button_activation_timeout => $FIND_NEXT_BUTTON_ACTIVATION_TIMEOUT, :find_next_activation_timeout => $FIND_NEXT_ACTIVATION_TIMEOUT, :hide_age_male => $HIDE_AGE_MALE, :hide_age_female => $HIDE_AGE_FEMALE, :PROP_FILTER_DENSITY => $FILTER_DENSITY }, :success => true}
     else
-      SessionTracker.new("onlineuser", $redis).track(current_user.remember_token)
-    end
+      { action: params[:action], error: "Unhandled action type #{params[:action]}", :success => false}
+    end).to_xml(:root => 'result')
+    logger.debug result
+    render :text => result
+  end
+  
+  def configfile
+    render 'configfile.xml', :content_type => 'application/xml'
   end
 
+  
 end

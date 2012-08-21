@@ -8,8 +8,6 @@ gem 'haml'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-sass', '2.0.4'
 gem 'font-awesome-rails'
-gem 'redis'
-gem 'session_tracker'
 gem 'mail'
 gem 'geokit-rails3'
 
