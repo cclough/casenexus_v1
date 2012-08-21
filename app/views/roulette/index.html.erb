@@ -1,23 +1,8 @@
 <%= content_for :content do %>
 
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!-- saved from url=(0014)about:internet -->
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">	
-    <!-- 
-    Smart developers always View Source. 
-    
-    This application was built using Adobe Flex, an open source framework
-    for building rich Internet applications that get delivered via the
-    Flash Player or to desktops via Adobe AIR. 
-    
-    Learn more about Flex at http://flex.org 
-    // -->
     <head>
-        <title>Video Chat</title>
-	<meta name="description" content="Video Chat | Powered by SVC - videosoftware.pro"/>
-        <meta name="google" value="notranslate">         
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
 		<!-- Include CSS to eliminate any default margins/padding and set the height of the html element and 
 		     the body element to 100%, because Firefox, or any Gecko based browser, interprets percentage as 
 			 the percentage of the height of its parent container, which has to be set explicitly.  Fix for
@@ -34,7 +19,6 @@
 		
 		<!-- Enable Browser History by replacing useBrowserHistory tokens with two hyphens -->
 		<!-- BEGIN Browser History required section -->
-		<link rel="shortcut icon" href="svc/media/images/favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" type="text/css" href="svc/history/history.css" />
 		<script type="text/javascript" src="svc/history/history.js"></script>
 		<!-- END Browser History required section -->  
@@ -65,15 +49,10 @@
 			swfobject.createCSS("#flashContent", "display:block;text-align:left;");
         </script>
     </head>
-    <body background="svc/media/images/VideoChat.jpg" style="background-repeat: no-repeat; background-position: top center;padding-top:99px;">
-	    <div id="fb-root"></div>
-	    <script>(function(d, s, id) {
-	      var js, fjs = d.getElementsByTagName(s)[0];
-	      if (d.getElementById(id)) return;
-	      js = d.createElement(s); js.id = id;
-	      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=364377350271660";
-	      fjs.parentNode.insertBefore(js, fjs);
-	    }(document, 'script', 'facebook-jssdk'));</script>
+
+
+    <div background="<%= asset_path 'art/banner.png' %>" style="background-repeat: no-repeat; background-position: top center;padding-top:99px;">
+
         <!-- SWFObject's dynamic embed method replaces this alternative HTML content with Flash content when enough 
 			 JavaScript and Flash plug-in support is available. The div is initially hidden so that it doesn't show
 			 when JavaScript is disabled.
@@ -88,22 +67,8 @@
 		    document.write("<a href='http://www.adobe.com/go/getflashplayer'><img src='" + pageHost + "www.adobe.com/images/shared/download_buttons/get_flash_player.gif' alt='Get Adobe Flash player' /></a>" ); 
 		</script> 
         </div>
-	
-	<center>
-	<div id="social" style="width:666px;padding-top:20px;">
-	    <div style="float: right;width:20px;">
-	    </div>
-	    <div style="float: right;">
-		<div class="fb-like" data-href="http://www.facebook.com/govido" data-send="true" data-layout="button_count" data-width="100" data-show-faces="false"></div>
-	    </div>
-	    <div style="float: right;">
-		<g:plusone size="medium" href="http://www.govido.com"></g:plusone>
-	    </div>
-	    <div style="float: right;">
-		<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.govido.com" data-via="Govido">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-	    </div>
-	</div>
-	</center>
+
+
 	   	
        	<noscript>
             <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="666" height="397" id="VideoChat">
@@ -121,8 +86,7 @@
                 <!--<![endif]-->
                 <!--[if gte IE 6]>-->
                 	<p> 
-                	    Either scripts and active content are not permitted to run or Adobe Flash Player version
-			    10.2.0 or greater is not installed.
+                	    Either scripts and active content are not permitted to run or Adobe Flash Player version 10.2.0 or greater is not installed.
                 	</p>
                 <!--<![endif]-->
                     <a href="http://www.adobe.com/go/getflashplayer">
@@ -133,14 +97,8 @@
                 <!--<![endif]-->
             </object>
 	    </noscript>		
-	<script type="text/javascript">
-	    (function() {
-	      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-	      po.src = 'https://apis.google.com/js/plusone.js';
-	      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-	    })();
-	</script>
-    </body>
-</html>
+
+    </div>
+
 
 <% end %>

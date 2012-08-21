@@ -2,16 +2,6 @@ Casenexus::Application.routes.draw do
 
 
 
-  get "service/registration"
-
-  get "service/configuration"
-
-  get "svc/services/registration" => 'roulette#registration'
-  get 'svc/services/configuration' => 'roulette#configuration'
-  match "/svc/config/config.xml"  => 'roulette#configfile'
-
-
-
 
 
 
@@ -46,6 +36,14 @@ Casenexus::Application.routes.draw do
   match '/disapprove' => 'posts#disapprove'
 
 
+  # vincent's roulette routes
+
+  match "service/registration"
+  match "service/configuration"
+
+  match "svc/services/registration" => 'roulette#registration'
+  match 'svc/services/configuration' => 'roulette#configuration'
+  match "/svc/config/config.xml"  => 'roulette#configfile'
 
 
 
