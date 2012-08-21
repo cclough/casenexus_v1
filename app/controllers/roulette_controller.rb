@@ -30,6 +30,7 @@ class RouletteController < ApplicationController
     logger.debug result
     render :text => result
   end
+
   
   # VideoSoftware.pro Roulette Function by Vincent
   def configfile
