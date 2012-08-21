@@ -481,6 +481,64 @@ input, textarea, select, .uneditable-input {
 
 /************ cases ************/
 
+
+#analysis_stats{
+  td{
+    border-bottom:1px solid $grayLighter;
+    padding:5px;
+    &.value{
+      font-style:italic;
+      text-align:right;
+    }
+  }
+}
+
+#button_print_analysis{
+  width:178px;
+  height:18px;
+  margin-left:20px;
+}
+
+.cases_comment {
+  background: #FEFEFE;
+  margin: 5px;
+  margin-bottom: 0px;
+  border: 1px solid $grayLight;
+  padding: 5px;
+
+  border-radius: 1px;
+  -moz-border-radius: 1px;
+  -webkit-border-radius: 1px;
+
+  .from {
+    font-weight: bold;
+    .date {
+      font-weight:normal;
+      color: $grayLight;
+    }
+  }
+
+  .content {
+    font-style: italic;
+    color: $grayLight
+  }
+}
+
+#comments_panel {
+  font-size:85%;
+  ul {
+    margin:0px;
+    margin:auto;
+  }
+  background-color: $grayLighter;
+}
+
+.comment_scroll {
+  overflow-y:auto;
+  height:200px;
+  background-color:white;
+}
+
 /* case index */
 
 .cases {

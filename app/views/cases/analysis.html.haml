@@ -1,26 +1,106 @@
 - provide(:title, 'Your Progress')
 - provide(:subtitle, 'Analysis of all of the cases you have done')
 
+/ table for top row (stats, comments and radar)
 %table{:style => "width:100%;"}
   %tr
-    %td
-      %table
-        %tr
-          %td
-            Total cases
-          %td
-            = @user_cases_count
-        %tr
-          %td
-            = current_user.cases.first.created_at.strftime("%m/%d/%Y")
-          %td
-            1st Jan 2012
-        %tr
-          %td
-            "...some metrics..."
-          %td
-            "...xxx..."
+    %td{:style => "width:240px;", :valign => "top"}
+      / stats panel
+      .panel.type1
+        %table#analysis_stats
+          %tr
+            %td
+              Total Cases
+            %td.value
+              = avatar_for(current_user)
+              = @user_cases_count
+          %tr
+            %td
+              1st Case Date
+            %td.value
+              = current_user.cases.first.created_at.strftime("%m/%d/%Y")
+          %tr
+            %td
+              Avg Score /50
+            %td.value
+              36.4
+          %tr
+            %td
+              Improvement Rate, %
+            %td.value
+              5%/week
+          %tr
+            %td
+              Weakest Skill
+            %td.value
+              Analytical (Avg 5.4/10)
+
+      #button_print_analysis.btn
+        Print Crib Sheet
+
+
+    %td{:valign => "top"}
+      / comments panel
+      #comments_panel.panel.kill_left
+        %ul.nav.nav-tabs
+          %li
+            %a{"data-toggle" => "tab", :href => "#tab_plan"} Plan
+          %li
+            %a{"data-toggle" => "tab", :href => "#tab_analytic"} Analytic
+          %li
+            %a{"data-toggle" => "tab", :href => "#tab_struc"} Struc
+          %li
+            %a{"data-toggle" => "tab", :href => "#tab_conc"} Conc
+
+        .tab-content
+          / comment scroll class forces overflow
+          / CRAPPY ISSUE WITH MAPPING MEANT I COULDNT DO A PARTIAL
+          #tab_plan.comment_scroll.tab-pane.active
+            - if @comments_plan.count > 0
+              - for comment in @comments_plan
+
+                .cases_comment
+                  .from
+                    = User.find_by_id(comment.marker_id).name
+                    %span.date
+                      = comment.created_at.strftime("%d/%m/%Y")
+                  .content
+                    = comment.plan_s
+
+          #tab_analytic.comment_scroll.tab-pane
+            - if @comments_analytic.count > 0
+              - for comment in @comments_analytic
+
+                .cases_comment
+                  .from
+                    = User.find_by_id(comment.marker_id).name
+                  .content
+                    = comment.analytic_s
+
+          #tab_struc.comment_scroll.tab-pane
+            - if @comments_struc.count > 0
+              - for comment in @comments_struc
+
+                .cases_comment
+                  .from
+                    = User.find_by_id(comment.marker_id).name
+                  .content
+                    = comment.struc_s
+
+          #tab_conc.comment_scroll.tab-pane
+            - if @comments_struc.count > 0
+              - for comment in @comments_struc
+
+                .cases_comment
+                  .from
+                    = User.find_by_id(comment.marker_id).name
+                  .content
+                    = comment.conc_s
+
+
+
     %td{:style => "width:340px;"}
+      / radar!
       #chart_radar{:style => "height: 300px; width: 340px;"}
 
 

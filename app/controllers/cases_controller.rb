@@ -14,7 +14,16 @@ class CasesController < ApplicationController
 
 	def analysis
 
-		#### generate data for radar graph
+		#### Comments ####
+
+		# using mapping for this - should be done in model?
+		# marker_id to username conversion done in comment partial - saves repetition - may not be best tho
+		@comments_plan = current_user.cases.all {|m| { marker_id: m.marker_id, created_at: m.created_at, plan_s: m.plan_s } }
+		@comments_analytic = current_user.cases.all {|m| { marker_id: m.marker_id, analytic_s: m.analytic_s } }
+		@comments_struc = current_user.cases.all {|m| { marker_id: m.marker_id, struc_s: m.struc_s } }
+		@comments_conc = current_user.cases.all {|m| { marker_id: m.marker_id, conc_s: m.conc_s } }
+
+		############# generate data for radar graph #############
 
 		# load current user into object
 		@user = current_user
