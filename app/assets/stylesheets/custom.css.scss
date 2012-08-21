@@ -364,14 +364,14 @@ input, textarea, select, .uneditable-input {
 }
 
 #panel_m_posts {
-  top: 10%;
-  left: 100px;
+  top: 37px;
+  left: 80px;
   width: 400px;
 }
 
 #panel_m_user {
-  top: 10%;
-  right: 30px;
+  top: 37px;
+  right: 80px;
   width: 320px;
   display: none;
 }
@@ -558,6 +558,15 @@ input, textarea, select, .uneditable-input {
     }
   }
 
+  .score {
+    padding: 10px;
+    margin:5px;
+    width:40px;
+    text-align:center;
+    font-size:190%;
+    font-weight:bold;
+    color:#98cdff;
+  }
 }
 
 .case_avatar_block{
@@ -575,20 +584,48 @@ input, textarea, select, .uneditable-input {
 /* case show */
 
 .case_comment {
-  background-color: $grayLighter;
-  border: 1px solid $grayLight;
+
   padding: 5px;
   margin: 5px;
+  border: 1px solid $grayLighter;
+
+  border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+
+  &.notes{
+    background-color:#fffe8c;
+    border-color:#ffe38c;
+    height:70px;
+  }
+
+  .title {
+    margin-bottom:5px;
+    width:100%;
+    border-bottom:1px solid $grayLighter;
+    margin:0px;
+    font-weight:bold;
+    padding-bottom:3px;
+    text-align:center;
+  }
+
+  .score {
+    padding: 10px;
+    margin:5px;
+    width:40px;
+    text-align:center;
+    font-size:190%;
+    font-weight:bold;
+    color:#98cdff;
+  }
+
+  .comment{
+    color: gray;
+  }
+
 }
 
-.case_score {
-  padding: 10px;
-  margin:5px;
-  width:40px;
-  text-align:center;
-  font-size:130%;
-  font-weight:bold;
-}
+
 
 /* case form */
 
@@ -613,7 +650,7 @@ input, textarea, select, .uneditable-input {
 .slider_input {
   border:0;
   height:30px;
-  font-size:150%;
+  font-size:180%;
   color:#b9b9b9;
   font-weight:bold;
   text-align:center;
@@ -643,7 +680,7 @@ input, textarea, select, .uneditable-input {
 
 .target_name {
   padding-bottom:20px;
-  padding-top:10px;
+  padding-top:40px;
   font-size:200%;
   font-weight:bold;
   text-align:center;

@@ -2,92 +2,130 @@
 - provide(:subtitle, @case.subject)
 
 - @case_marker = User.find_by_id(@case.marker_id)
-.row(style="margin-bottom:15px;")
-  .span4
 
-    .row
-      .span2
-        %p
-          Marker:
-      .span2
-        = avatar_for(@case_marker)
-        = @case_marker.name
-    .row
-      .span2
-        %p
-          Date:
-      .span2
-        = @case.date
-    .row
-      .span2
-        %p
-          Subject:
-      .span2
-        = @case.subject
-    .row
-      .span2
-        %p
-          Source:
-      .span2
-        = @case.source
-    .row
-      .span2
-        %p
-          Submitted:
-      .span2
-        = @case.created_at
 
-  .span4
-    #chartdiv{:style => "width: 100%; height: 250px;"}
 
-.row
-  .span4
-    .case_block_title
-      Plan
-    .case_score
-      = @case.plan
-    .case_comment
-      = @case.plan_s
-  .span4
-    .case_block_title
-      Analytical/Problem-solving      
-    .case_score
-      = @case.analytic
-    .case_comment
-      = @case.analytic_s
-.row
-  .span4      
-    .case_block_title
-      Structure
-    .case_score
-      = @case.struc
-    .case_comment
-      = @case.struc_s
-  .span4
-    .case_block_title
-      Conclusion/Solution       
-    .case_score
-      = @case.conc
-    .case_comment
-      = @case.conc_s
-.row
-  .span4
-    .case_block_title
-      Communication/Presentation       
-    .case_score
-      = @case.comms
-    .case_comment
-      = @case.comms_s
-  .span4
-    .case_block_title
-      Further Comment  
-    .case_comment
-      = @case.comment
-.row
-  .span4
-    .case_comment
-      = image_tag('art/paper.jpg')
-      = @case.notes
+%table{:style => "width:100%;"}
+  %tr
+    %td{:style => "width:60%", :valign => "top"}
+      / stats panel
+      .panel.type1
+        %table#analysis_stats
+          %tr
+            %td
+              Marker
+            %td.value
+              = avatar_for(@case_marker)
+              = @case_marker.name
+          %tr
+            %td
+              Date
+            %td.value
+              = @case.date.strftime("%m/%d/%Y")
+          %tr
+            %td
+              Subject
+            %td.value
+              = @case.subject
+          %tr
+            %td
+              Source
+            %td.value
+              = @case.source
+          %tr
+            %td
+              Submitted
+            %td.value
+              = @case.created_at.strftime("%m/%d/%Y")
+
+
+
+    %td{:style => "width:340px;"}
+
+      #chartdiv{:style => "width: 100%; height: 250px;"}
+
+
+%table{:style => "width:100%;"}
+
+  %tr
+    %td{:style => "width:50%;"}
+      .case_comment
+        .title
+          Plan
+        %table
+          %tr
+            %td
+              .score
+                = @case.plan
+            %td
+              .comment
+                = @case.plan_s
+    %td
+      .case_comment
+        .title
+          Analytical/Problem-solving  
+        %table
+          %tr
+            %td
+              .score
+                = @case.analytic
+            %td
+              .comment
+                = @case.analytic_s
+
+  %tr
+    %td
+      .case_comment
+        .title
+          Structure
+        %table
+          %tr
+            %td
+              .score
+                = @case.struc
+            %td
+              .comment
+                = @case.struc_s
+
+    %td
+      .case_comment
+        .title
+          Conclusion/Solution
+        %table
+          %tr
+            %td
+              .score
+                = @case.conc
+            %td
+              .comment
+                = @case.conc_s
+
+  %tr
+    %td
+      .case_comment
+        .title
+          Communication/Presentation     
+        %table
+          %tr
+            %td
+              .score
+                = @case.comms
+            %td
+              .comment
+                = @case.comms_s
+
+    %td
+      .case_comment
+        .title
+          Further Comment
+        .comment
+          = @case.comment
+
+
+.case_comment.notes
+  .title
+    Notes
+  = @case.notes
 
 
 
