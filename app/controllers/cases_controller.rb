@@ -8,7 +8,8 @@ class CasesController < ApplicationController
 
 		# load in user's cases, paginated, ordered
 		@cases = current_user.cases.paginate(per_page: 10, page: 
-			     params[:page], order: "created_at DESC")
+			     	 params[:page], order: "created_at DESC")
+		
 	end
 
 	def analysis
@@ -123,12 +124,5 @@ class CasesController < ApplicationController
     	return date
 		
 		end
-
-	  # cases controller specific correct_user function from MH
-	  # why does it define 'case'?
-	  def correct_user
-	    @case = current_user.cases.find_by_id(params[:id])
-	    redirect_to root_path if @case.nil?
-	  end
 
 end

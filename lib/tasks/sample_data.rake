@@ -194,7 +194,7 @@ namespace :db do
     	User.find(1).cases.create!(
     		:user_id => 1,
     		:marker_id => rand(100),
-        :date => randomDate(:year_range => 1, :year_latest => 0),
+        :date => randomDate(:year_range => 2, :year_latest => 0.5),
     		:subject => Faker::Lorem.sentence(5),
     		:source => Faker::Lorem.sentence(5), 		
     		:plan => rand(10),

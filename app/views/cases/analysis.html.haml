@@ -1,34 +1,37 @@
 - provide(:title, 'Your Progress')
 - provide(:subtitle, 'Analysis of all of the cases you have done')
 
-.row
-  .span3
-    %table
-      %tr
-        %td
-          Total case
-        %td
-          = @user_cases_count
-      %tr
-        %td
-          = current_user.cases.first.created_at.strftime("%m/%d/%Y")
-        %td
-          1st Jan 2012
-      %tr
-        %td
-          "...some metrics..."
-        %td
-          "...xxx..."
-
-  .span8
-    #chart_radar{:style => "height: 300px;"}
-
-.row
-  .span11
-    #chart_progress{:style => "width:100%; height:350px;"}
+%table{:style => "width:100%;"}
+  %tr
+    %td
+      %table
+        %tr
+          %td
+            Total cases
+          %td
+            = @user_cases_count
+        %tr
+          %td
+            = current_user.cases.first.created_at.strftime("%m/%d/%Y")
+          %td
+            1st Jan 2012
+        %tr
+          %td
+            "...some metrics..."
+          %td
+            "...xxx..."
+    %td{:style => "width:340px;"}
+      #chart_radar{:style => "height: 300px; width: 340px;"}
 
 
+#chart_progress{:style => "width:100%; height:350px;"}
+
+
+////////////////////////////////////////////
 / Radar Chart Javascript
+////////////////////////////////////////////
+
+
 :javascript
 
   var chart_radar;
@@ -42,45 +45,60 @@
     chart = new AmCharts.AmRadarChart();
     chart.dataProvider = chartData_radar;
     chart.categoryField = "criteria";
-    chart.startDuration = 0;
+    chart.startDuration = 0.3;
+    chart.startEffect = ">";
+    chart.sequencedAnimation = true;
 
-    // GRAPH
+    // GRAPH - FIRST 5
     var graph = new AmCharts.AmGraph();
     graph.title = "First 5";
     graph.lineColor = "#bdd523"
     graph.fillAlphas = 0.2;
     graph.bullet = "round"
     graph.valueField = "first5"
-    graph.balloonText = "[[category]]: [[value]] m/s"
+    graph.balloonText = "[[category]]: [[value]]/10"
     chart.addGraph(graph);
 
-    // GRAPH
+    // GRAPH - LAST 5
     var graph = new AmCharts.AmGraph();
     graph.title = "Last 5";
     graph.lineColor = "#98cdff"
     graph.fillAlphas = 0.2;
     graph.bullet = "round"
     graph.valueField = "last5"
-    graph.balloonText = "[[category]]: [[value]] m/s"
+    graph.balloonText = "[[category]]: [[value]]/10"
     chart.addGraph(graph);
 
     // VALUE AXIS
     var valueAxis = new AmCharts.ValueAxis();
     valueAxis.gridType = "circles";
-    valueAxis.fillAlpha = 0.05;
+    valueAxis.fillAlpha = 0.02;
     valueAxis.fillColor = "#000000"
-    valueAxis.axisAlpha = 0.2;
-    valueAxis.gridAlpha = 0;
+    valueAxis.axisAlpha = 0.1;
+    valueAxis.gridAlpha = 0.1;
     valueAxis.fontWeight = "bold"
     valueAxis.minimum = 0;
+    valueAxis.maximum = 10;
     chart.addValueAxis(valueAxis);
 
+    // Balloon Settings
+    var balloon = chart.balloon;
+    balloon.adjustBorderColor = true;
+    balloon.color = "#000000";
+    balloon.cornerRadius = 5;
+    balloon.fillColor = "#000000";
+    balloon.fillAlpha = 0.7
+    balloon.color = "#FFFFFF"
+
+    // Legend Settings
     var legend = new AmCharts.AmLegend();
     legend.position = "bottom";
     legend.align = "center";
-    legend.rollOverGraphAlpha = "0.1";
-    legend.horizontalGap = "0";
-    legend.spacing = "5";
+    legend.markerType = "square";
+    legend.rollOverGraphAlpha = 0;
+    legend.horizontalGap = 5;
+    legend.valueWidth = 5;
+    legend.switchable = false;
     chart.addLegend(legend);
 
     // WRITE
@@ -88,8 +106,11 @@
   });
 
 
-
+////////////////////////////////////////////
 / Progress graph javascript
+////////////////////////////////////////////
+
+
 :javascript
 
   var chart_area;
@@ -102,6 +123,7 @@
 
       var dataObject = {date:parseDate(json[i].date), plan:json[i].plan, analytic:json[i].analytic, struc:json[i].struc, conc:json[i].conc};
 
+      // load array for chart
       chartData_progress.push(dataObject); 
     }
 
@@ -111,14 +133,33 @@
   AmCharts.ready(function () {
     // SERIAL CHART
     chart = new AmCharts.AmSerialChart();
-    chart.pathToImages = "/lib/samples/javascript/images/";
+    // still not yet sure if below line is working?
+    chart.pathToImages = '#{ asset_path 'amcharts/'}';
+    // below from http://www.amcharts.com/javascript/line-chart-with-date-based-data/
+    chart.panEventsEnabled = true;
     chart.zoomOutButton = {
         backgroundColor: "#000000",
         backgroundAlpha: 0.15
     };
     chart.dataProvider = chartData_progress;
     chart.categoryField = "date";
+    
+    // neccessary ?
+    chart.autoMargins = false;
+    chart.marginRight = 15;
+    chart.marginLeft = 15;
+    chart.marginBottom = 35;
+    chart.marginTop = 10;
 
+    // animations
+    chart.startDuration = 0.3;
+    chart.startEffect = ">";
+    chart.sequencedAnimation = true;
+
+    // scroll bar stuff from: http://www.amcharts.com/javascript/line-chart-with-date-based-data/
+    // listen for "dataUpdated" event (fired when chart is rendered) and call zoomChart method when it happens
+    chart.addListener("dataUpdated", zoomChart);
+    
     // AXES
     // Category
     var categoryAxis = chart.categoryAxis;
@@ -126,21 +167,24 @@
     categoryAxis.axisColor = "#DADADA";
     categoryAxis.startOnAxis = true;
     categoryAxis.labelRotation = 45;
-    categoryAxis.parseDates = true;  
+    categoryAxis.parseDates = true;
+    //http://www.amcharts.com/javascript/line-chart-with-date-based-data/
+    categoryAxis.minPeriod = "DD"; // our data is daily, so we set minPeriod to DD
 
     // Value
     var valueAxis = new AmCharts.ValueAxis();
     valueAxis.stackType = "regular"; // this line makes the chart "stacked"
     valueAxis.gridAlpha = 0.07;
-    valueAxis.axisColor = "#DADADA";
-    valueAxis.title = "Case Score";
-    valueAxis.titleBold = false;
+    valueAxis.axisAlpha = 0;
+    // change to 50?
+    valueAxis.maximum = 40;
+    valueAxis.labelsEnabled = false
     chart.addValueAxis(valueAxis);
 
     // DONT FORGET YOU CAN USE 'GUIDES'
 
     // GRAPHS
-    // first graph
+    // first graph - PLAN
     var graph = new AmCharts.AmGraph();
     graph.type = "line";
     graph.title = "Planning";
@@ -149,7 +193,7 @@
     graph.fillAlphas = 0.6; // setting fillAlphas to > 0 value makes it area graph
     chart.addGraph(graph);
 
-    // second graph
+    // second graph - ANALYTIC
     graph = new AmCharts.AmGraph();
     graph.type = "line";
     graph.title = "Analytical";
@@ -158,7 +202,7 @@
     graph.fillAlphas = 0.6;
     chart.addGraph(graph);
 
-    // third graph
+    // third graph - STRUC
     graph = new AmCharts.AmGraph();
     graph.type = "line";
     graph.title = "Structure";
@@ -167,7 +211,7 @@
     graph.fillAlphas = 0.6;
     chart.addGraph(graph);
 
-    // fourth graph
+    // fourth graph - CONC
     graph = new AmCharts.AmGraph();
     graph.type = "line";
     graph.title = "Conclusion";
@@ -176,23 +220,48 @@
     graph.fillAlphas = 0.6;
     chart.addGraph(graph);
 
+
     // LEGEND
     var legend = new AmCharts.AmLegend();
     legend.position = "bottom";
-    legend.rollOverGraphAlpha = "0.3";
-    legend.horizontalGap = "0";
-    legend.spacing = "0";
+    legend.align = "center"
+    legend.rollOverGraphAlpha = "0.15";
+    legend.horizontalGap = 5;
+    legend.switchable = false;
+    legend.valueWidth = 5;
     chart.addLegend(legend);
 
-    // CURSOR
-    var chartCursor = new AmCharts.ChartCursor();
-    chartCursor.zoomable = true; // as the chart displayes not too many values, we disabled zooming
-    chartCursor.cursorAlpha = 0;
+    // CURSOR //////////
+    // http://www.amcharts.com/javascript/line-chart-with-date-based-data/
+    chartCursor = new AmCharts.ChartCursor();
+    chartCursor.cursorPosition = "mouse";
+    chartCursor.pan = true;
+    chartCursor.zoomable = false;
     chart.addChartCursor(chartCursor);
+
+
+    // Balloon Settings
+    var balloon = chart.balloon;
+    balloon.adjustBorderColor = true;
+    balloon.color = "#000000";
+    balloon.cornerRadius = 5;
+    balloon.fillColor = "#000000";
+    balloon.fillAlpha = 0.7
+    balloon.color = "#FFFFFF"
+
+
+    // SCROLLBAR
+    // http://www.amcharts.com/javascript/line-chart-with-date-based-data/
+    var chartScrollbar = new AmCharts.ChartScrollbar();
+    chartScrollbar.graph = graph;
+    chartScrollbar.autoGridCount = true;
+    chartScrollbar.scrollbarHeight = 25;
+    chartScrollbar.color = "#000000";
+    chart.addChartScrollbar(chartScrollbar);
 
     // WRITE
     chart.write("chart_progress");
-      
+    
   });
 
   // method to parse sql date string into AM compataible Date Object
@@ -209,5 +278,10 @@
   }
 
 
-//change chart.dataProvider??
-//chart.validateData()
+  // lifted from http://www.amcharts.com/javascript/line-chart-with-date-based-data/
+  // this method is called when chart is first inited as we listen for "dataUpdated" event
+  function zoomChart() {
+      // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
+      chart.zoomToIndexes(chartData_progress.length - 40, chartData_progress.length - 1);
+  }
+

@@ -1,4 +1,8 @@
-- @case_user = User.find_by_id(cas.marker_id)
+/ this should be marker_id...but doesn't work for no reason!
+- @case_user = User.find_by_id(cas.user_id)
+/ generate total case score out of 50
+/ could also add mini radars here?
+- @case_score = cas.plan + cas.analytic + cas.struc + cas.conc + cas.comms
 
 = link_to ("/cases/" + cas.id.to_s) do
   %li
@@ -6,10 +10,12 @@
       %tr
         %td.case_avatar_block
           = avatar_for(@case_user)
+        %td.case_score
+          = @case_score
         %td.case_content_block
           %strong
             = @case_user.name
           %span.timestamp
             #{time_ago_in_words(cas.created_at)} ago.
-          %div
+          .content
             = cas.subject
