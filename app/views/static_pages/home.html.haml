@@ -6,7 +6,7 @@
         = image_tag('art/banner.png')
 
     .span4
-      .panel.type1.kill_left
+      .panel.type1.kill_left(style="padding-bottom:18px;")
         = form_for(:session, url: sessions_path) do |f|
           = f.label :email
           = f.text_field :email
@@ -17,5 +17,4 @@
       .panel.kill_left
         .center
           %p
-            This site does things
           = link_to "Sign up now!", signup_path, class: "btn btn-large btn btn-inverse"

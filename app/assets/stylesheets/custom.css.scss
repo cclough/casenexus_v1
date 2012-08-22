@@ -132,19 +132,17 @@ p {
 
 /************ header ***********/
 
-#logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: white;
-  letter-spacing: 5px;
-  padding-top: 7px;
-  /* font-weight: bold; */
-  line-height: 1;
-  &:hover {
-    color: white;
-    text-decoration: none;
-  }
+#logo_container{
+  position: absolute;
+  top: 0px;
+}
+#logo-globe {
+
+}
+
+#logo-text {
+  position:relative;
+  top:7px;
 }
 
 .count {
