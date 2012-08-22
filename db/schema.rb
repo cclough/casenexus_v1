@@ -35,24 +35,32 @@ ActiveRecord::Schema.define(:version => 20120821213740) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "messages", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "sender_id",  :null => false
+    t.string   "content",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "notifications", :force => true do |t|
     t.integer  "user_id"
     t.integer  "sender_id"
-    t.string   "ntype"
-    t.text     "content"
+    t.boolean  "read",       :default => false
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+    t.string   "ntype"
     t.string   "url"
+    t.text     "content"
     t.date     "event_date"
-    t.boolean  "read",       :default => false
   end
 
   create_table "posts", :force => true do |t|
     t.integer  "user_id",                       :null => false
-    t.text     "content"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.boolean  "approved",   :default => false
+    t.text     "content"
   end
 
   create_table "roulette_registrations", :force => true do |t|
