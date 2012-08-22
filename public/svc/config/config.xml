@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<config>
-	<webservice>local</webservice>
-	<language>en_US</language>
-	<serviceURL>http://protected-harbor-6929.herokuapp.com/svc/services/registration</serviceURL>
-	<configURL>http://protected-harbor-6929.herokuapp.com/svc/services/configuration</configURL>
-</config>

@@ -42,7 +42,7 @@
             attributes.align = "middle";
             swfobject.embedSWF(
                 "VideoChat.swf", "flashContent", 
-                "666", "397", 
+                "900", "500", 
                 swfVersionStr, xiSwfUrlStr, 
                 flashvars, params, attributes);
 			<!-- JavaScript enabled so display the flashContent div in case it is not replaced with a swf object. -->
@@ -51,7 +51,7 @@
     </head>
 
 
-    <div background="<%= asset_path 'art/banner.png' %>" style="background-repeat: no-repeat; background-position: top center;padding-top:99px;">
+    <div background="<%= asset_path 'art/banner.png' %>" style="background-repeat: no-repeat; background-position: top center;padding-top:99px;" style="width:970px;height:635px;">
 
         <!-- SWFObject's dynamic embed method replaces this alternative HTML content with Flash content when enough 
 			 JavaScript and Flash plug-in support is available. The div is initially hidden so that it doesn't show
@@ -71,14 +71,14 @@
 
 	   	
        	<noscript>
-            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="666" height="397" id="VideoChat">
+            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="900" height="500" id="VideoChat">
                 <param name="movie" value="VideoChat.swf" />
                 <param name="quality" value="high" />
                 <param name="bgcolor" value="#ffffff" />
                 <param name="allowScriptAccess" value="sameDomain" />
                 <param name="allowFullScreen" value="true" />
                 <!--[if !IE]>-->
-                <object type="application/x-shockwave-flash" data="VideoChat.swf" width="666" height="397">
+                <object type="application/x-shockwave-flash" data="VideoChat.swf" width="900" height="500">
                     <param name="quality" value="high" />
                     <param name="bgcolor" value="#ffffff" />
                     <param name="allowScriptAccess" value="sameDomain" />
