@@ -61,7 +61,7 @@
 
                 .cases_comment
                   .from
-                    = User.find_by_id(comment.marker_id.to_i).name
+                    = User.find_by_id(comment.marker_id).name
                     %span.date
                       = comment.created_at.strftime("%d/%m/%Y")
                   .content
@@ -73,7 +73,7 @@
 
                 .cases_comment
                   .from
-                    = User.find_by_id(comment.marker_id.to_i).name
+                    = User.find_by_id(comment.marker_id).name
                   .content
                     = comment.analytic_s
 
@@ -83,7 +83,7 @@
 
                 .cases_comment
                   .from
-                    = User.find_by_id(comment.marker_id.to_i).name
+                    = User.find_by_id(comment.marker_id).name
                   .content
                     = comment.struc_s
 
@@ -93,7 +93,7 @@
 
                 .cases_comment
                   .from
-                    = User.find_by_id(comment.marker_id.to_i).name
+                    = User.find_by_id(comment.marker_id).name
                   .content
                     = comment.conc_s
 
