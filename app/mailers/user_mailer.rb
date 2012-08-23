@@ -30,7 +30,7 @@ class UserMailer < ActionMailer::Base
     @url  = @url_host + url
 
     @subject = subject
-    @date = date
+    @date = date.strftime("%m/%d/%Y")
 
     email_with_name = "#{@user_target.name} <#{@user_target.email}>"
     mail(:to => email_with_name, :subject => "casenexus: new feedback")

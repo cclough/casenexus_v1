@@ -114,7 +114,7 @@ class CasesController < ApplicationController
 	  		# email variables
 	  		url = "cases/" + @case.id.to_s
 	  		subject = @case.subject
-	  		date = @case.date.strftime("%d/%m/%Y")
+	  		date = @case.date
 
 	  		# send email
       	UserMailer.feedback_new_email(@user_target, current_user, url, subject, date).deliver
