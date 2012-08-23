@@ -68,11 +68,11 @@
     function load_geocode() {
     
       // start point centered
-      var latLng = new google.maps.LatLng(0,0);
+      var latLng = new google.maps.LatLng(51.5171, 0.1062);
 
       var map = new google.maps.Map(document.getElementById('map_new'), {
         // zoomed right out
-        zoom: 1,
+        zoom: 2,
         center: latLng,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         streetViewControl: false,

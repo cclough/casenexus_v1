@@ -26,29 +26,17 @@ class PostsController < ApplicationController
       #units and other options for this are set in the model
       @users_local = User.within(100, origin: @userlocation)
 
-      # map id's of users within a distance, then get posts with this user_id...
-      # (from Stack Overflow comment:
-      # http://stackoverflow.com/questions/11975532/rails-get-posts-of-users-within-10km-of-a-point)
-      # not elegant solution, could be better!
-
-      @posts = @posts_approved.where(["user_id IN (?)", @users_local.map { |u| u.id }])
+      # cool code from http://stackoverflow.com/questions/11975532/rails-get-posts-of-users-within-10km-of-a-point
+      # depends on acts_as_mappable in Post model
+      # 100 refers to 100km - this must also be set in the users#index view
+      @posts = @posts_approved.joins(:user).within(100, origin: @userlocation)
                .search(params[:search]).order('created_at desc')
                .paginate(per_page: 7, page: params[:page])
 
-
-      # @posts = Post.joins(:user).merge(User.within(1000, origin: [51.123123, 0.1323123])).search(params[:search]).order('created_at desc').paginate(per_page: 7, page: params[:page])
-      # this is complete using Yuri's method
-
-
-      # @posts = Post.where(user_id: User.within(10, origin: [51.123123, 0.1323123]))
+      # back-up solution if code above doesn't work (not as efficient)
+      # @posts = @posts_approved.where(["user_id IN (?)", @users_local.map { |u| u.id }])
       #          .search(params[:search]).order('created_at desc')
       #          .paginate(per_page: 7, page: params[:page])
-
-      # @posts = @users_fifty.collect(&:posts).flatten
-      #         .search(params[:search]).order('created_at desc')
-      #         .paginate(per_page: 7, page: params[:page])
-
-      # @posts = Post.joins(:user).merge(@users_fifty).search(params[:search]).order('created_at desc').paginate(per_page: 7, page: params[:page])
 
     elsif params[:type] == "glo"
 
