@@ -110,8 +110,14 @@ class CasesController < ApplicationController
                            					   :sender_id => current_user.id, 
                            					   :content => "You have received new feedback from #{current_user.name}")
 
-	  		# send email - new feedback
-      		UserMailer.feedback_new_email(@user_target).deliver
+	  		#### send email - new feedback
+	  		# email variables
+	  		url = "cases/" + @case.id
+	  		subject = @case.subject
+	  		date = @case.date.strftime("%d/%m/%Y")
+	  		
+	  		# send email
+      	UserMailer.feedback_new_email(@user_target, current_user, url, subject, date).deliver
 
       	# flash success and re-direct
 	  		flash[:success] = "Feedback sent!"
