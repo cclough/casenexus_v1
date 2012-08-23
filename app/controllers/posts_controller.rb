@@ -8,11 +8,11 @@ class PostsController < ApplicationController
 
   def index
 
-    # get posts depending on :type sent from post pull-down menu
 
     # get only approved posts
     @posts_approved = Post.where('approved = true')
 
+    ### get posts depending on :type sent from post pull-down menu
     # NB search and paginate methods are repeated for each IF outcome here, rather than unified
     # at the end, as felt like it would be less server intensive - may be wrong however
     if params[:type] == "local"
@@ -74,11 +74,11 @@ class PostsController < ApplicationController
     # respond_to .js enables ajax create
     respond_to do |format|
       if @post.save
-        flash.now[:success] = 'your post has been sent for approval!'
+        flash.now[:success] = '<strong>Success</strong> - Your post has been sent for approval!'.html_safe
         format.js
       else
-        # do I need the .html line below?
-        format.html { render action: "new" }  
+        # recently got rid of .html here, does it still work? and does flash work?
+        flash.now[:error] = '<strong>Error</strong> - Your post could not be saved, please try again!'.html_safe
         format.js  
       end
     end
@@ -87,10 +87,11 @@ class PostsController < ApplicationController
   # update post
   def update
     
-    #re-set approval
-    @post.approved == :false
-
     if @post.update_attributes(params[:post])
+
+      #re-set approval
+      @post.approved == :false
+
       flash[:success] = '<strong>Success</strong> - Your post has been updated and is now awaiting approval'.html_safe
     else
       flash[:error] = '<strong>Error</strong> - Your post could not be updated at this time'.html_safe

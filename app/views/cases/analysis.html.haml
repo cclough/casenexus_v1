@@ -61,7 +61,7 @@
 
                 .cases_comment
                   .from
-                    / line below is causing problems on heroku for no reason!
+                    / line below is causing problems on heroku for no reason! - its to do with comment.marker_id
                     = User.find_by_id(comment.marker_id).name
                     %span.date
                       = comment.created_at.strftime("%d/%m/%Y")

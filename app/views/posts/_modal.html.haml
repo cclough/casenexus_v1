@@ -3,7 +3,7 @@
 
   - if @post_can == "yes"
     #post_modal.modal.hide.fade
-      = form_for(@post, remote: true) do |f|
+      = form_for(@post, remote: :true) do |f|
         .modal-header
           %button.close{"data-dismiss" => "modal", :type => "button"} ×
           %h3 New post to casenexus
@@ -41,7 +41,7 @@
   - elsif @post_can == "no"
 
     #post_modal.modal.hide.fade
-      = form_for(@post, remote: true) do |f|
+      = form_for(@post, remote: :true) do |f|
         .modal-header
           %button.close{"data-dismiss" => "modal", :type => "button"} ×
           %h3 Edit your post

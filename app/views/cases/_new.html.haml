@@ -1,0 +1,105 @@
+= form_for(@case) do |f|
+
+  / error message div
+  = render 'shared/error_messages', object: @case
+
+  .case_form
+    .row(style="margin-bottom:15px;")
+      .span4
+        / display target name
+        %h5
+          Feedback For
+        .target_name
+          / need to rig this in!
+          / = avatar_for(@user_target)
+          / = @user_target.name
+
+    .row     
+      .span4
+        .field_text         
+          = f.text_field :date, placeholder: "Date", id: "datepicker", tabindex: "3"
+        .field_text
+          = f.text_area :subject, placeholder: "Subject", tabindex: "4"
+        .field_text         
+          = f.text_field :source, placeholder: "Source", tabindex: "5"
+
+    .row(style="margin-bottom:10px;")
+      .span4
+        .case_block
+          .case_block_title
+            Plan
+          #plan.slider
+          .slider_value
+            = f.text_field :plan, value: "1", class: "slider_input", tabindex: "-1"
+          .case_block_desc
+            Brief instructions on how to score and comment
+          .field
+            = f.text_area :plan_s, placeholder: "Comment...", tabindex: "6"
+        .case_block
+          .case_block_title
+            Structure
+          #struc.slider
+          .slider_value
+          = f.text_field :struc, value: "1", class: "slider_input", tabindex: "-1"
+          .case_block_desc
+            Brief instructions on how to score and comment  
+          .field
+            = f.text_area :struc_s, placeholder: "Comment...", tabindex: "8"
+        .case_block
+          .case_block_title
+            Communication
+          #comms.slider
+          .slider_value
+          = f.text_field :comms, value: "1", class: "slider_input", tabindex: "-1"
+          .case_block_desc
+            Brief instructions on how to score and comment
+          .field
+            = f.text_area :comms_s, placeholder: "Comment...", tabindex: "10"
+        .case_block
+          .case_block_title
+            Analytical/Problem Solving
+          #analytic.slider
+          .slider_value
+          = f.text_field :analytic, value: "1", class: "slider_input", tabindex: "-1"
+          .case_block_desc
+            Brief instructions on how to score and comment
+          .field
+            = f.text_area :analytic_s, placeholder: "Comment...", tabindex: "7"
+        .case_block
+          .case_block_title
+            Conclusion/Solution
+          #conc.slider
+          .slider_value
+          = f.text_field :conc, value: "1", class: "slider_input", tabindex: "-1"
+          .case_block_desc
+            Brief instructions on how to score and comment
+          .field
+            = f.text_area :conc_s, placeholder: "Comment...", tabindex: "9"
+    .row
+      .span4
+        .field
+          = f.text_area :comment, placeholder: "Any further comments", tabindex: "11"
+        
+        / = f.hidden_field :user_id, :value => @user_target.id
+        = f.hidden_field :marker_id, :value => current_user.id
+        = f.submit "Submit", class: "btn btn-large btn-inverse pull-right", tabindex: "12"
+
+:javascript
+
+  $(function() {
+    $(".slider").slider({
+      range: "min",
+      step: 1,
+      min: 1,
+      max: 10,
+      value: 1,
+      slide: function(event, ui) {
+        $("#case_" + $(this).attr("id")).val(ui.value);
+        $("#case_" + $(this).attr("id")).css( 'color', '#6db9ff' )
+      }
+    });
+  });
+
+  $(function() {
+    $("#datepicker").datepicker();
+  });

@@ -2,7 +2,13 @@
 
 = content_for :content do
 
-  %body(onload="load_geocode();")
+  :javascript
+
+    // loads map when rest of page is 'ready', consider changing to asynchronously load
+    $(function() {
+      load_geocode();
+    });
+
 
   %h1 Sign up
   
@@ -61,9 +67,12 @@
       
     function load_geocode() {
     
-      var latLng = new google.maps.LatLng(51,0);
+      // start point centered
+      var latLng = new google.maps.LatLng(0,0);
+
       var map = new google.maps.Map(document.getElementById('map_new'), {
-        zoom: 12,
+        // zoomed right out
+        zoom: 1,
         center: latLng,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         streetViewControl: false,
@@ -88,10 +97,8 @@
     }
 
     function updateMarkerPosition(latLng) {
-    
-    document.getElementById('lat').value = latLng.lat(); 
-    document.getElementById('lng').value = latLng.lng();
-    
+      document.getElementById('lat').value = latLng.lat(); 
+      document.getElementById('lng').value = latLng.lng();
     }
     
     function updateMarkerAddress(str) {

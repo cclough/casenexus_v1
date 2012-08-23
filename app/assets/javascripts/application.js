@@ -20,8 +20,6 @@
 $(function() {
 
 
-
-
 	/////////////////// MAP PAGE AJAX //////////////////
 	// Surely I can put this in some map specific location?
 
@@ -30,7 +28,7 @@ $(function() {
 	updateposts();
 
 	// live search reload function	
-  // NB RAILSCASTS RECOMMENDS USING 'LIVE SEARCH GEM' instead of this
+  	// NB RAILSCASTS RECOMMENDS USING 'LIVE SEARCH GEM' instead of this
 	$("#posts_search_form input").keyup(function() {
 		updateposts();
 	});

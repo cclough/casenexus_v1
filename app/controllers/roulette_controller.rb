@@ -4,6 +4,9 @@ class RouletteController < ApplicationController
   # include all user session data e.g. notifications and username
   before_filter :session_data
 
+  def index
+    @case = Case.new
+  end
 
   # VideoSoftware.pro Roulette Function by Vincent
   def registration

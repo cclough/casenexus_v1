@@ -2,7 +2,15 @@
 
 = content_for :content do
 
-  %body(onload="load_geocode();")
+  :javascript
+    //var user_lat = "#{current_user.lat}";
+    //var user_lng = "#{current_user.lng}";
+
+    // loads map when rest of page is 'ready', consider changing to asynchronously load
+    $(function() {
+      load_geocode();
+    });
+
 
   .panel_title
     %h3 Update your profile
@@ -124,6 +132,7 @@
   :javascript
     var geocoder = new google.maps.Geocoder();
     
+    //
     function geocodePosition(pos) {
       geocoder.geocode({
         latLng: pos
@@ -136,6 +145,7 @@
       });
     }
       
+    //
     function load_geocode() {
     
       var latLng = new google.maps.LatLng("#{@user.lat}",#{@user.lng});
@@ -154,7 +164,6 @@
       });
     
       // Update current position info.
-    
       google.maps.event.addListener(marker, 'drag', function() {
         updateMarkerPosition(marker.getPosition());
       });
@@ -164,17 +173,18 @@
       }); 
     }
 
+    //
     function updateMarkerPosition(latLng) {
-    
-    document.getElementById('lat').value = latLng.lat(); 
-    document.getElementById('lng').value = latLng.lng();
-    
+      document.getElementById('lat').value = latLng.lat(); 
+      document.getElementById('lng').value = latLng.lng();
     }
     
+    //
     function updateMarkerAddress(str) {
       document.getElementById('loc').value = str;
     }
 
+    //
     $(function() {
       $(".datepicker").datepicker();
     });
