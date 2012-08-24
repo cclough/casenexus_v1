@@ -4,7 +4,7 @@ class UserMailer < ActionMailer::Base
  	layout 'email' # use awesome.(html|text).erb as the layout
 
   # host prefix for all email URLs
-  @url_host = "https://radiant-shore-5325.herokuapp.com/"
+  url_host = "https://radiant-shore-5325.herokuapp.com/"
 
   def welcome_email(user)
     @user = user
@@ -16,7 +16,7 @@ class UserMailer < ActionMailer::Base
   def message_email(user_target, user_from, url, message)
     @user_target = user_target
     @user_from = user_from
-    @url  = @url_host + url
+    @url  = url_host + url
 
     @message = message
     
@@ -27,7 +27,7 @@ class UserMailer < ActionMailer::Base
   def feedback_new_email(user_target, user_from, url, subject, date)
     @user_target = user_target
     @user_from = user_from
-    @url  = @url_host + url
+    @url  = url_host + url
 
     @subject = subject
     @date = date.strftime("%m/%d/%Y")
@@ -39,7 +39,7 @@ class UserMailer < ActionMailer::Base
   def feedback_req_email(user_target, user_from, url, subject, date)
     @user_target = user_target
     @user_from = user_from
-    @url  = @url_host + url
+    @url  = url_host + url
 
     @subject = subject
     @date = date
