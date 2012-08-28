@@ -2,6 +2,6 @@
 <config>
 	<webservice>local</webservice>
 	<language>en_US</language>
-	<serviceURL>https://radiant-shore-5325.herokuapp.comsvc/services/registration</serviceURL>
+	<serviceURL>https://radiant-shore-5325.herokuapp.com/svc/services/registration</serviceURL>
 	<configURL>https://radiant-shore-5325.herokuapp.com/svc/services/configuration</configURL>
 </config>
