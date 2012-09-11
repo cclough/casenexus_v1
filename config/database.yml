@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: utf8
-  database: casenexus_development
+  database: casenexus_v1_development
   pool: 5
   username: user1
   password:
@@ -9,7 +9,7 @@ development:
 test: &TEST
   adapter: postgresql
   encoding: utf8
-  database: casenexus_test
+  database: casenexus_v1_test
   pool: 5
   username: user1
   password:
@@ -17,7 +17,7 @@ test: &TEST
 production:
   adapter: postgresql
   encoding: utf8
-  database: casenexus_production
+  database: casenexus_v1_production
   pool: 5
   username: user1
   password:

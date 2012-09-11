@@ -1,6 +1,9 @@
 - provide(:title, 'Your Progress')
 - provide(:subtitle, 'Analysis of all of the cases you have done')
 
+- content_for :javascript_includes do
+  = javascript_include_tag "cases_analysis.js"
+
 / table for top row (stats, comments and radar)
 %table{:style => "width:100%;"}
   %tr
@@ -41,62 +44,62 @@
 
     %td{:valign => "top"}
       / comments panel
-      #comments_panel.panel.kill_left
-        %ul.nav.nav-tabs
-          %li
-            %a{"data-toggle" => "tab", :href => "#tab_plan"} Plan
-          %li
-            %a{"data-toggle" => "tab", :href => "#tab_analytic"} Analytic
-          %li
-            %a{"data-toggle" => "tab", :href => "#tab_struc"} Struc
-          %li
-            %a{"data-toggle" => "tab", :href => "#tab_conc"} Conc
+      / #comments_panel.panel.kill_left
+      /   %ul.nav.nav-tabs
+      /     %li
+      /       %a{"data-toggle" => "tab", :href => "#tab_plan"} Plan
+      /     %li
+      /       %a{"data-toggle" => "tab", :href => "#tab_analytic"} Analytic
+      /     %li
+      /       %a{"data-toggle" => "tab", :href => "#tab_struc"} Struc
+      /     %li
+      /       %a{"data-toggle" => "tab", :href => "#tab_conc"} Conc
 
-        .tab-content
-          / comment scroll class forces overflow
-          / CRAPPY ISSUE WITH MAPPING MEANT I COULDNT DO A PARTIAL
-          #tab_plan.comment_scroll.tab-pane.active
-            - if @comments_plan.count > 0
-              - for comment in @comments_plan
+      /   .tab-content
+      /     / comment scroll class forces overflow
+      /     / CRAPPY ISSUE WITH MAPPING MEANT I COULDNT DO A PARTIAL
+      /     #tab_plan.comment_scroll.tab-pane.active
+      /       - if @comments_plan.count > 0
+      /         - for comment in @comments_plan
 
-                .cases_comment
-                  .from
-                    / line below is causing problems on heroku for no reason! - its to do with comment.marker_id
-                    = User.find_by_id(comment.marker_id).name
-                    %span.date
-                      = comment.created_at.strftime("%d/%m/%Y")
-                  .content
-                    = comment.plan_s
+      /           .cases_comment
+      /             .from
+      /               / line below is causing problems on heroku for no reason! - its to do with comment.marker_id
+      /               = User.find_by_id(comment.marker_id).name
+      /               %span.date
+      /                 = comment.created_at.strftime("%d/%m/%Y")
+      /             .content
+      /               = comment.plan_s
 
-          #tab_analytic.comment_scroll.tab-pane
-            - if @comments_analytic.count > 0
-              - for comment in @comments_analytic
+      /     #tab_analytic.comment_scroll.tab-pane
+      /       - if @comments_analytic.count > 0
+      /         - for comment in @comments_analytic
 
-                .cases_comment
-                  .from
-                    = User.find_by_id(comment.marker_id).name
-                  .content
-                    = comment.analytic_s
+      /           .cases_comment
+      /             .from
+      /               = User.find_by_id(comment.marker_id).name
+      /             .content
+      /               = comment.analytic_s
 
-          #tab_struc.comment_scroll.tab-pane
-            - if @comments_struc.count > 0
-              - for comment in @comments_struc
+      /     #tab_struc.comment_scroll.tab-pane
+      /       - if @comments_struc.count > 0
+      /         - for comment in @comments_struc
 
-                .cases_comment
-                  .from
-                    = User.find_by_id(comment.marker_id).name
-                  .content
-                    = comment.struc_s
+      /           .cases_comment
+      /             .from
+      /               = User.find_by_id(comment.marker_id).name
+      /             .content
+      /               = comment.struc_s
 
-          #tab_conc.comment_scroll.tab-pane
-            - if @comments_struc.count > 0
-              - for comment in @comments_struc
+      /     #tab_conc.comment_scroll.tab-pane
+      /       - if @comments_struc.count > 0
+      /         - for comment in @comments_struc
 
-                .cases_comment
-                  .from
-                    = User.find_by_id(comment.marker_id).name
-                  .content
-                    = comment.conc_s
+      /           .cases_comment
+      /             .from
+      /               = User.find_by_id(comment.marker_id).name
+      /             .content
+      /               = comment.conc_s
 
 
 
